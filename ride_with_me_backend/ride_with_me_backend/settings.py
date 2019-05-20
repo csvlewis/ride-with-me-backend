@@ -76,13 +76,12 @@ WSGI_APPLICATION = 'ride_with_me_backend.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-   'test': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'ride_with_me_test'
-    },
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'ride_with_me_development'
+       'NAME': 'ride_with_me_development',
+       'TEST': {
+            'NAME': 'ride_with_me_test'
+        }
     },
    'production': {
        'ENGINE': 'django.db.backends.postgresql',
