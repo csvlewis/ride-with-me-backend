@@ -1,0 +1,34 @@
+[
+  {
+    "model": "rides.ride",
+    "pk": 1,
+    "fields": {
+      "driver_id": 1,
+      "start_city_id": 1,
+      "end_city_id": 2,
+      "description": "Going to Golden for the weekend",
+      "mileage": 15,
+      "price": 5.00,
+      "total_seats": 2,
+      "departure_time": "2019-05-22 16:00:00.000000",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.ride",
+    "pk": 2,
+    "fields": {
+      "driver_id": 2,
+      "start_city_id": 2,
+      "end_city_id": 1,
+      "description": "Driving to Denver",
+      "mileage": 15,
+      "price": 5.00,
+      "total_seats": 3,
+      "departure_time": "2019-05-25 16:00:00.000000",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  }
+]

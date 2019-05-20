@@ -1,5 +1,4 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 class City(models.Model):
     city = models.TextField(blank=True, null=True)
@@ -19,15 +18,15 @@ class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    phone_number = PhoneNumberField(blank=True)
-    api_key = models.UUIDField()
+    phone_number = models.BigIntegerField()
+    api_key = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Ride(models.Model):
-    driver_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    start_city_id = models.ForeignKey(City, related_name='start_city_id', on_delete=models.CASCADE)
-    end_city_id = models.ForeignKey(City, related_name='end_city_id', on_delete=models.CASCADE)
+    driver = models.ForeignKey(User, on_delete=models.CASCADE)
+    start_city = models.ForeignKey(City, related_name='start_city', on_delete=models.CASCADE)
+    end_city = models.ForeignKey(City, related_name='end_city', on_delete=models.CASCADE)
     description = models.TextField()
     mileage = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -38,16 +37,16 @@ class Ride(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Request(models.Model):
-    ride_id = models.ForeignKey(Ride, on_delete=models.CASCADE)
-    driver_id = models.ForeignKey(User, related_name='driver_id', on_delete=models.CASCADE)
-    passenger_id = models.ForeignKey(User, related_name='passenger_id', on_delete=models.CASCADE)
+    ride = models.ForeignKey(Ride, on_delete=models.CASCADE)
+    driver = models.ForeignKey(User, related_name='driver', on_delete=models.CASCADE)
+    passenger = models.ForeignKey(User, related_name='passenger', on_delete=models.CASCADE)
     message = models.TextField()
     status = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-class RidePassengers(models.Model):
-    ride_id = models.ForeignKey(Ride, on_delete=models.CASCADE)
-    passenger_id = models.ForeignKey(User, on_delete=models.CASCADE)
+class RidePassenger(models.Model):
+    ride = models.ForeignKey(Ride, on_delete=models.CASCADE)
+    passenger = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
