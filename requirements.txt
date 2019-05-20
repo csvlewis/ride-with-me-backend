@@ -1,0 +1,12 @@
+aniso8601==3.0.2
+Django==2.2.1
+graphene==2.1.3
+graphene-django==2.2.0
+graphql-core==2.1
+graphql-relay==0.4.5
+promise==2.2.1
+pytz==2019.1
+Rx==1.6.1
+singledispatch==3.4.0.3
+six==1.12.0
+sqlparse==0.3.0

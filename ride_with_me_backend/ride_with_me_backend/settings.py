@@ -31,12 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rides.apps.RidesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonenumber_field'
 ]
 
 MIDDLEWARE = [
@@ -74,9 +76,17 @@ WSGI_APPLICATION = 'ride_with_me_backend.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   'test': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'ride_with_me_test'
+    },
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'ride_with_me_development'
+    },
+   'production': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'ride_with_me_production'
     }
 }
 
