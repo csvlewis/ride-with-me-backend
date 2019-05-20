@@ -1,12 +1,11 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    phone_number = PhoneNumberField(blank=True)
-    api_key = models.UUIDField()
+    phone_number = models.BigIntegerField()
+    api_key = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
