@@ -1,2 +1,2 @@
 web: gunicorn rides.wsgi
-web: gunicorn hello:app
+web: gunicorn rides:app
