@@ -3,8 +3,8 @@ from django.db import models
 class City(models.Model):
     city = models.TextField(blank=True, null=True)
     state = models.TextField(blank=True, null=True)
-    lat = models.TextField(blank=True, null=True)
-    long = models.TextField(blank=True, null=True)
+    lat = models.DecimalField(max_digits=8, decimal_places=3)
+    long = models.DecimalField(max_digits=8, decimal_places=3)
 
     class Meta:
         managed = True
