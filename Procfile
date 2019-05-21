@@ -1,2 +1,1 @@
-web: gunicorn rides.wsgi
-web: gunicorn rides:app
+web: gunicorn ride-with-me-backend:app
