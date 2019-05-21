@@ -8,7 +8,7 @@ class City(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'rides_city' 
+        db_table = 'rides_city'
 
     def __str__(self):
         return '%s, %s' % (self.city, self.state)
