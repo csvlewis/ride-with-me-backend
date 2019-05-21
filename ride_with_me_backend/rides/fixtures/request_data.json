@@ -6,6 +6,8 @@
       "ride_id": 1,
       "driver_id": 1,
       "passenger_id": 2,
+      "message": "Can I join your ride?",
+      "status": "rejected",
       "created_at": "2019-05-20 16:23:00.067741",
       "updated_at": "2019-05-20 16:23:00.067741"
     }
@@ -14,9 +16,115 @@
     "model": "rides.request",
     "pk": 2,
     "fields": {
+      "ride_id": 1,
+      "driver_id": 1,
+      "passenger_id": 3,
+      "message": "Room for one more?",
+      "status": "pending",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 3,
+    "fields": {
+      "ride_id": 1,
+      "driver_id": 1,
+      "passenger_id": 4,
+      "message": "I'd like to join your ride",
+      "status": "accepted",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 4,
+    "fields": {
+      "ride_id": 3,
+      "driver_id": 2,
+      "passenger_id": 4,
+      "message": "I saw your post and I'd like to join your ride!",
+      "status": "accepted",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 5,
+    "fields": {
+      "ride_id": 8,
+      "driver_id": 10,
+      "passenger_id": 2,
+      "message": "Hi, I'd like to join your ride",
+      "status": "accepted",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 6,
+    "fields": {
+      "ride_id": 8,
+      "driver_id": 10,
+      "passenger_id": 7,
+      "message": "Can I join your ride?",
+      "status": "accepted",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 7,
+    "fields": {
+      "ride_id": 6,
+      "driver_id": 10,
+      "passenger_id": 9,
+      "message": "Can I join?",
+      "status": "accepted",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 8,
+    "fields": {
       "ride_id": 2,
       "driver_id": 2,
-      "passenger_id": 1,
+      "passenger_id": 7,
+      "message": "Requesting a ride",
+      "status": "accepted",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 9,
+    "fields": {
+      "ride_id": 2,
+      "driver_id": 2,
+      "passenger_id": 8,
+      "message": "I'd like to join your ride",
+      "status": "accepted",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.request",
+    "pk": 10,
+    "fields": {
+      "ride_id": 2,
+      "driver_id": 2,
+      "passenger_id": 9,
+      "message": "Can I please join your ride?",
+      "status": "accepted",
       "created_at": "2019-05-20 16:23:00.067741",
       "updated_at": "2019-05-20 16:23:00.067741"
     }

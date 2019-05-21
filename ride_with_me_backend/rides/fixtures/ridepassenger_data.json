@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "ride": 1,
-      "passenger": 2,
+      "passenger": 4,
       "created_at": "2019-05-20 16:23:00.067741",
       "updated_at": "2019-05-20 16:23:00.067741"
     }
@@ -13,8 +13,68 @@
     "model": "rides.ridepassenger",
     "pk": 2,
     "fields": {
+      "ride": 3,
+      "passenger": 4,
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.ridepassenger",
+    "pk": 3,
+    "fields": {
+      "ride": 8,
+      "passenger": 2,
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.ridepassenger",
+    "pk": 4,
+    "fields": {
+      "ride": 8,
+      "passenger": 7,
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.ridepassenger",
+    "pk": 5,
+    "fields": {
+      "ride": 6,
+      "passenger": 9,
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.ridepassenger",
+    "pk": 6,
+    "fields": {
       "ride": 2,
-      "passenger": 1,
+      "passenger": 7,
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.ridepassenger",
+    "pk": 7,
+    "fields": {
+      "ride": 2,
+      "passenger": 8,
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.ridepassenger",
+    "pk": 8,
+    "fields": {
+      "ride": 2,
+      "passenger": 9,
       "created_at": "2019-05-20 16:23:00.067741",
       "updated_at": "2019-05-20 16:23:00.067741"
     }
