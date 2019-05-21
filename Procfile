@@ -1,1 +1,1 @@
-web: gunicorn ride-with-me-backend:app
+web: gunicorn rides:app
