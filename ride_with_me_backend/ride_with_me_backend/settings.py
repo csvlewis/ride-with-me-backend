@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'csvimport.app.CSVImportConf',
     'rides.apps.RidesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
