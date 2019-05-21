@@ -48,5 +48,466 @@
       "lat": 36.1699,
       "long": 115.1398
     }
+  },
+  {
+    "model": "rides.city",
+    "pk": 6,
+    "fields": {
+      "city": "Aspen Park",
+      "state": "CO",
+      "lat": 39.5423,
+      "long": -105.2968
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 7,
+    "fields": {
+      "city": "Denver",
+      "state": "CO",
+      "lat": 39.7621,
+      "long": -104.8759
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 8,
+    "fields": {
+      "city": "Aurora",
+      "state": "CO",
+      "lat": 39.7084,
+      "long": -104.7274
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 9,
+    "fields": {
+      "city": "Vail",
+      "state": "CO",
+      "lat": 39.6386,
+      "long": -106.3608
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 10,
+    "fields": {
+      "city": "Boulder",
+      "state": "CO",
+      "lat": 40.0249,
+      "long": -105.2523
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 11,
+    "fields": {
+      "city": "Fort Collins",
+      "state": "CO",
+      "lat": 40.5479,
+      "long": -105.0658
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 12,
+    "fields": {
+      "city": "Eldora",
+      "state": "CO",
+      "lat": 39.9536,
+      "long": -105.5780
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 13,
+    "fields": {
+      "city": "Orlando",
+      "state": "FL",
+      "lat": 28.4788,
+      "long": -81.3420
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 14,
+    "fields": {
+      "city": "Houston",
+      "state": "TX",
+      "lat": 29.7868,
+      "long": -95.3905
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 15,
+    "fields": {
+      "city": "San Diego",
+      "state": "CA",
+      "lat": 32.8312,
+      "long": -117.1226
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 16,
+    "fields": {
+      "city": "Indianapolis",
+      "state": "IN",
+      "lat": 39.7771,
+      "long": -86.1458
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 17,
+    "fields": {
+      "city": "San Francisco",
+      "state": "IN",
+      "lat": 37.7562,
+      "long": -122.4430
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 18,
+    "fields": {
+      "city": "Fort Worth",
+      "state": "TX",
+      "lat": 32.7814,
+      "long": -97.3473
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 19,
+    "fields": {
+      "city": "El Paso",
+      "state": "TX",
+      "lat": 31.8479,
+      "long": -106.4309
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 20,
+    "fields": {
+      "city": "Boston",
+      "state": "MA",
+      "lat": 42.3188,
+      "long": -71.0846
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 21,
+    "fields": {
+      "city": "Omaha",
+      "state": "NE",
+      "lat": 41.2628,
+      "long": -96.0495
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 22,
+    "fields": {
+      "city": "Miami",
+      "state": "FL",
+      "lat": 25.7840,
+      "long": -80.2102
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 23,
+    "fields": {
+      "city": "Atlanta",
+      "state": "GA",
+      "lat": 33.7626,
+      "long": -84.4228
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 24,
+    "fields": {
+      "city": "Oakland",
+      "state": "CA",
+      "lat": 37.7903,
+      "long": -122.2165
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 25,
+    "fields": {
+      "city": "Jersey City",
+      "state": "NJ",
+      "lat": 40.7161,
+      "long": -74.0682
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 26,
+    "fields": {
+      "city": "Saint Paul",
+      "state": "MN",
+      "lat": 44.9477,
+      "long": -93.1040
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 27,
+    "fields": {
+      "city": "Lincoln",
+      "state": "NE",
+      "lat": 40.8098,
+      "long": -96.6802
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 28,
+    "fields": {
+      "city": "Montgomery",
+      "state": "AL",
+      "lat": 32.3470,
+      "long": -86.2663
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 29,
+    "fields": {
+      "city": "Detroit",
+      "state": "MI",
+      "lat": 42.3834,
+      "long": -83.1024
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 30,
+    "fields": {
+      "city": "Columbus",
+      "state": "OH",
+      "lat": 39.9860,
+      "long": -82.9852
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 31,
+    "fields": {
+      "city": "Phoenix",
+      "state": "AZ",
+      "lat": 33.5722,
+      "long": -112.0891
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 32,
+    "fields": {
+      "city": "Virginia Beach",
+      "state": "VA",
+      "lat": 36.7335,
+      "long": -76.0435
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 33,
+    "fields": {
+      "city": "Raleigh",
+      "state": "NC",
+      "lat": 35.8323,
+      "long": -78.6439
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 34,
+    "fields": {
+      "city": "Tulsa",
+      "state": "OK",
+      "lat": 36.1284,
+      "long": -95.9042
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 35,
+    "fields": {
+      "city": "New Orleans",
+      "state": "LA",
+      "lat": 30.0687,
+      "long": -89.9288
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 36,
+    "fields": {
+      "city": "Cincinnati",
+      "state": "IA",
+      "lat": 40.6309,
+      "long": -92.9222
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 37,
+    "fields": {
+      "city": "Newark",
+      "state": "NJ",
+      "lat": 40.7245,
+      "long": -74.1725
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 38,
+    "fields": {
+      "city": "Boise City",
+      "state": "OK",
+      "lat": 36.7309,
+      "long": -102.5112
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 39,
+    "fields": {
+      "city": "Little Rock",
+      "state": "AR",
+      "lat": 34.7255,
+      "long": -92.3581
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 40,
+    "fields": {
+      "city": "Knoxville",
+      "state": "TN",
+      "lat": 35.9692,
+      "long": -83.9495
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 41,
+    "fields": {
+      "city": "Philadelphia",
+      "state": "PA",
+      "lat": 40.0076,
+      "long": -75.1340
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 42,
+    "fields": {
+      "city": "Washington",
+      "state": "DC",
+      "lat": 38.9047,
+      "long": -77.0163
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 43,
+    "fields": {
+      "city": "Salt Lake City",
+      "state": "UT",
+      "lat": 40.7774,
+      "long": -111.9301
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 44,
+    "fields": {
+      "city": "Santa Cruz",
+      "state": "CA",
+      "lat": 36.9788,
+      "long": -122.0346
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 45,
+    "fields": {
+      "city": "Pittsburgh",
+      "state": "PA",
+      "lat": 40.4396,
+      "long": -79.9763
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 46,
+    "fields": {
+      "city": "Wichita",
+      "state": "KS",
+      "lat": 37.6897,
+      "long": -97.3442
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 47,
+    "fields": {
+      "city": "Dallas",
+      "state": "TX",
+      "lat": 32.7937,
+      "long": -96.7662
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 47,
+    "fields": {
+      "city": "Spokane",
+      "state": "WA",
+      "lat": 47.6671,
+      "long": -117.4330
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 48,
+    "fields": {
+      "city": "Cleveland",
+      "state": "OH",
+      "lat": 41.4767,
+      "long": -81.6805
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 49,
+    "fields": {
+      "city": "Greeley",
+      "state": "CO",
+      "lat": 40.4150,
+      "long": -104.7696
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 50,
+    "fields": {
+      "city": "Pueblo",
+      "state": "CO",
+      "lat": 38.2701,
+      "long": -104.6131
+    }
   }
+
 ]
