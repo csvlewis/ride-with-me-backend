@@ -3,9 +3,9 @@
     "model": "rides.user",
     "pk": 1,
     "fields": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "email": "johndoe@gmail.com",
+      "first_name": "Johnny",
+      "last_name": "Depp",
+      "email": "johnnydepp@gmail.com",
       "phone_number": "1234567890",
       "api_key": "key_1",
       "created_at": "2019-05-20 16:23:00.067741",
@@ -16,11 +16,115 @@
     "model": "rides.user",
     "pk": 2,
     "fields": {
-      "first_name": "Bill",
-      "last_name": "Smith",
-      "email": "billsmith@gmail.com",
-      "phone_number": "5555555555",
+      "first_name": "Arnold",
+      "last_name": "Schwarzenegger",
+      "email": "arnoldscharzenegger@gmail.com",
+      "phone_number": "9876543210",
       "api_key": "key_2",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 3,
+    "fields": {
+      "first_name": "Jim",
+      "last_name": "Carey",
+      "email": "jimcarey@gmail.com",
+      "phone_number": "1112223333",
+      "api_key": "key_3",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 4,
+    "fields": {
+      "first_name": "Emma",
+      "last_name": "Watson",
+      "email": "emmawatson@gmail.com",
+      "phone_number": "1111111111",
+      "api_key": "key_4",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 5,
+    "fields": {
+      "first_name": "Leonardo",
+      "last_name": "DiCaprio",
+      "email": "leonardodicaprio@gmail.com",
+      "phone_number": "2222222222",
+      "api_key": "key_5",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 6,
+    "fields": {
+      "first_name": "Tom",
+      "last_name": "Cruise",
+      "email": "tomcruise@gmail.com",
+      "phone_number": "3333333333",
+      "api_key": "key_6",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 7,
+    "fields": {
+      "first_name": "Natalie",
+      "last_name": "Portman",
+      "email": "natalieportman@gmail.com",
+      "phone_number": "4444444444",
+      "api_key": "key_7",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 8,
+    "fields": {
+      "first_name": "Tom",
+      "last_name": "Hanks",
+      "email": "tomhanks@gmail.com",
+      "phone_number": "5555555555",
+      "api_key": "key_8",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 9,
+    "fields": {
+      "first_name": "Jennifer",
+      "last_name": "Aniston",
+      "email": "jenniferaniston@gmail.com",
+      "phone_number": "6666666666",
+      "api_key": "key_9",
+      "created_at": "2019-05-20 16:23:00.067741",
+      "updated_at": "2019-05-20 16:23:00.067741"
+    }
+  },
+  {
+    "model": "rides.user",
+    "pk": 10,
+    "fields": {
+      "first_name": "Brad",
+      "last_name": "Pitt",
+      "email": "bradpitt@gmail.com",
+      "phone_number": "7777777777",
+      "api_key": "key_10",
       "created_at": "2019-05-20 16:23:00.067741",
       "updated_at": "2019-05-20 16:23:00.067741"
     }

@@ -11,12 +11,42 @@
   },
   {
     "model": "rides.city",
-    "pk": 2 ,
+    "pk": 2,
     "fields": {
       "city": "Golden",
       "state": "CO",
       "lat": 39.7555,
       "long": 105.2211
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 3,
+    "fields": {
+      "city": "Los Angeles",
+      "state": "CA",
+      "lat": 34.0522,
+      "long": 118.2437
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 4,
+    "fields": {
+      "city": "Austin",
+      "state": "TX",
+      "lat": 30.2672,
+      "long": 97.7431
+    }
+  },
+  {
+    "model": "rides.city",
+    "pk": 5,
+    "fields": {
+      "city": "Las Vegas",
+      "state": "NV",
+      "lat": 36.1699,
+      "long": 115.1398
     }
   }
 ]
