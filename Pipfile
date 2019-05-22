@@ -31,9 +31,9 @@ Django = "==2.2.1"
 Rx = "==1.6.1"
 django-cors-headers = "*"
 pytest-django = "*"
-pytest-cov = "*"
 snapshottest = "*"
 mixer = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.7"
