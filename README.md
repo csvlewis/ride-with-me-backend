@@ -7,7 +7,7 @@ This is the backend API for the Ride with Me App
 #### 1. To get all cities: ####
 
 To get a list of all the cities, a user can send a POST request to 
-    http://127.0.0.1:8000/graphql with the following query in the body:
+    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
 {"query": "{ allCities{name}}"}
 ```
