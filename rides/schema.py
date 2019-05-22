@@ -24,8 +24,6 @@ class RideType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    # start_city_id = graphene.Field(CityType, start_city_id=graphene.String(required=True))
-    # end_city_id = graphene.Field(CityType, end_city_id=graphene.String(required=True))
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
     search_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int())
