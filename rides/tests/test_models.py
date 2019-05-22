@@ -15,7 +15,7 @@ def test_can_count_cities(db, django_db_setup):
 
 def test_can_count_rides(db, django_db_setup):
     rides = Ride.objects.count()
-    assert rides == 10
+    assert rides == 11
 
 def test_ride_object_returns_description(db, django_db_setup):
     ride = Ride.objects.get(pk=1)
