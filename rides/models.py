@@ -35,6 +35,9 @@ class Ride(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.description
+
 class Request(models.Model):
     ride = models.ForeignKey(Ride, on_delete=models.CASCADE)
     driver = models.ForeignKey(User, related_name='driver', on_delete=models.CASCADE)

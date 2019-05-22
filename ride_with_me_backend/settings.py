@@ -132,6 +132,8 @@ GRAPHENE = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+TEST_RUNNER = 'snapshottest.django.TestRunner'
+
 
 # Configure Django App for Heroku.
 import django_heroku
