@@ -107,3 +107,32 @@ The header Content-Type should be application/json
 }
 ```
 </details>
+
+### 3. To get all available rides with start and end point: ####
+
+To get a list of all currently available rides with a certain start and end city id, a user can send a POST request to
+    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
+```
+{"query": "{ searchByCities(startCityId: 1, endCityId:2) {id} }" }
+```
+The header Content-Type should be application/json
+
+<details>
+  <summary>See example</summary>
+
+
+```
+{
+    "data": {
+        "searchByCities": [
+            {
+                "id": "11"
+            },
+            {
+                "id": "1"
+            }
+        ]
+    }
+}
+```
+</details>
