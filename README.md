@@ -9,7 +9,7 @@ This is the backend API for the Ride with Me App
 To get a list of all the cities, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
-{"query": "{ allCities{name}}"}
+{query: "{ allCities{name}}"}
 ```
 The header Content-Type should be application/json
 
@@ -17,7 +17,31 @@ The header Content-Type should be application/json
   <summary>See example</summary>
 
 
+```javascript
+fetch('https://ride-with-me-backend.herokuapp.com/graphql', {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(query: '{
+                                        allCities{
+                                             name
+                                        }'
+                                   })
+          })
+        .then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        })
+
 ```
+
+Example of the payload you should get:
+
+```
+
 {
     "data": {
         "allCities": [
