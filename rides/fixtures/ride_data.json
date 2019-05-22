@@ -168,5 +168,22 @@
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
+  },
+  {
+    "model": "rides.ride",
+    "pk": 11,
+    "fields": {
+      "driver_id": 5,
+      "start_city_id": 1,
+      "end_city_id": 2,
+      "description": "Taking a trip",
+      "mileage": 15,
+      "price": 5.00,
+      "total_seats": 1,
+      "departure_time": "2019-05-22 16:00:00.000000",
+      "status": "available",
+      "created_at": "2019-05-20 16:23:00.067741+00:00",
+      "updated_at": "2019-05-20 16:23:00.067741+00:00"
+    }
   }
 ]
