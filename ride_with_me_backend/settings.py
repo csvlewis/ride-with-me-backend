@@ -128,6 +128,9 @@ GRAPHENE = {
     'SCHEMA': 'ride_with_me_backend.schema.schema',
 }
 
+TEST_RUNNER = 'snapshottest.django.TestRunner'
+
+
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
