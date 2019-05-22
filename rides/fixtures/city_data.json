@@ -63,10 +63,10 @@
     "model": "rides.city",
     "pk": 7,
     "fields": {
-      "city": "Denver",
-      "state": "CO",
-      "lat": 39.7621,
-      "long": -104.8759
+      "city": "Milwaukee",
+      "state": "WI",
+      "lat": 43.0389,
+      "long": 87.9065
     }
   },
   {
