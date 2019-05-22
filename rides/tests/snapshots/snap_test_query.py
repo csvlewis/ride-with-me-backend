@@ -29,7 +29,7 @@ snapshots['test_all_cities 1'] = {
                 'name': 'Aspen Park, CO'
             },
             {
-                'name': 'Denver, CO'
+                'name': 'Milwaukee, WI'
             },
             {
                 'name': 'Aurora, CO'
@@ -184,6 +184,9 @@ snapshots['test_all_available_rides 1'] = {
             },
             {
                 'id': '7'
+            },
+            {
+                'id': '11'
             }
         ]
     }
