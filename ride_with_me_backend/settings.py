@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'csvimport.app.CSVImportConf',
     'rides.apps.RidesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,9 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'phonenumber_field',
     'graphene_django',
-
 ]
 
 MIDDLEWARE = [
