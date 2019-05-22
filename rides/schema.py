@@ -5,7 +5,9 @@ from django.db.models import Value
 
 from .models import City
 from .models import Ride
-
+from .models import User
+from .models import Request
+from .models import RidePassenger
 
 class CityType(DjangoObjectType):
     name = graphene.String()
@@ -21,6 +23,18 @@ class CityType(DjangoObjectType):
 class RideType(DjangoObjectType):
     class Meta:
         model = Ride
+
+class UserType(DjangoObjectType):
+    class Meta:
+        model = User
+
+class RideType(DjangoObjectType):
+    class Meta:
+        model = Ride
+
+class RidePassengerType(DjangoObjectType):
+    class Meta:
+        model = RidePassenger
 
 
 class Query(graphene.ObjectType):
