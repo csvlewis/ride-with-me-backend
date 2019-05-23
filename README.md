@@ -9,13 +9,12 @@ This is the backend API for the Ride with Me App
 To get a list of all the cities, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
-{query: "{ allCities{name}}"}
+{ "query": "{ allCities{ name } }"}
 ```
 The header Content-Type should be application/json
 
 <details>
   <summary>See example</summary>
-
 
 ```javascript
 fetch('https://ride-with-me-backend.herokuapp.com/graphql', {
@@ -23,11 +22,7 @@ fetch('https://ride-with-me-backend.herokuapp.com/graphql', {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(query: '{
-                                        allCities{
-                                             name
-                                        }'
-                                   })
+            body: JSON.stringify({ "query": "{ allCities{ name }" })
           })
         .then(function(response) {
             if (response.status >= 400) {
@@ -35,7 +30,6 @@ fetch('https://ride-with-me-backend.herokuapp.com/graphql', {
             }
             return response.json();
         })
-
 ```
 
 Example of the payload you should get:
@@ -64,10 +58,36 @@ Example of the payload you should get:
                 "name": "Telma, WA"
             }
             ]
+            ...
 ```
 </details>
 
-#### 2. To get all available rides: ####
+#### 2. To get a ride by id: ####
+
+To get a ride by id, a user can send a POST request to
+    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
+```
+{ query { searchRideById(id:1){ id } } }
+```
+The header Content-Type should be application/json
+
+<details>
+  <summary>See example</summary>
+
+```
+{
+  "data": {
+    "searchRideById": [
+      {
+        "id": "1"
+      }
+    ]
+  }
+}
+```
+</details>
+
+#### 3. To get all available rides: ####
 
 To get a list of all currently available rides, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
@@ -78,7 +98,6 @@ The header Content-Type should be application/json
 
 <details>
   <summary>See example</summary>
-
 
 ```
 {
@@ -108,17 +127,17 @@ The header Content-Type should be application/json
 ```
 </details>
 
-### 3. To get all available rides with start and end point: ####
+### 4. To get all available rides with start and end point: ####
 
 To get a list of all currently available rides with a certain start and end city id, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
-{"query": "{ searchByCities(startCityId: 1, endCityId:2) {id} }" }
+{ "query": "{ searchByCities(startCityId: 1, endCityId:2) { id } }" }
 ```
 
 Additional ride information can be added with additional query parameters like so:
 ```
-{"query": "{ searchByCities(startCityId: 1, endCityId:2) { id description mileage price totalSeats departureTime status driver { firstName lastName } endCity { name } startCity { name } } }" }
+{ "query": "{ searchByCities(startCityId: 1, endCityId:2) { id description mileage price totalSeats departureTime status driver { firstName lastName } endCity { name } startCity { name } } }" }
 ```
 The header Content-Type should be application/json
 
