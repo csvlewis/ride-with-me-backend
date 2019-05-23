@@ -48,7 +48,7 @@ class Query(graphene.ObjectType):
     def resolve_available_rides(self, info, **kwargs):
         return Ride.objects.filter(status='available')
 
-    def resolve_search_by_cities(self, info, start_city_id, end_city_id):
+    def resolve_search_ride_by_cities(self, info, start_city_id, end_city_id):
         return Ride.objects.filter(status='available', start_city_id = start_city_id, end_city_id = end_city_id)
 
     def resolve_search_ride_by_id(self, info, id):

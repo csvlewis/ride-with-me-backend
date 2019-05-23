@@ -67,7 +67,13 @@ Example of the payload you should get:
 To get a ride by id, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
-{ query { searchRideById(id:1){ id } } }
+{ "query": "{ searchRideById(id:1){ id } }" }
+```
+
+More ride information can be requested with additional query parameters like so:
+
+```
+{ "query": "{ searchRideById(id:1){ id description mileage price totalSeats departureTime status driver { firstName lastName } endCity { name } startCity { name } } }" }
 ```
 The header Content-Type should be application/json
 
@@ -132,10 +138,10 @@ The header Content-Type should be application/json
 To get a list of all currently available rides with a certain start and end city id, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
-{ "query": "{ searchByCities(startCityId: 1, endCityId:2) { id } }" }
+{ "query": "{ searchRideByCities(startCityId: 1, endCityId:2) { id } }" }
 ```
 
-Additional ride information can be added with additional query parameters like so:
+More ride information can be requested with additional query parameters like so:
 ```
 { "query": "{ searchByCities(startCityId: 1, endCityId:2) { id description mileage price totalSeats departureTime status driver { firstName lastName } endCity { name } startCity { name } } }" }
 ```
