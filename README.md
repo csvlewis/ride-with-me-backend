@@ -107,3 +107,69 @@ The header Content-Type should be application/json
 }
 ```
 </details>
+
+### 3. To get all available rides with start and end point: ####
+
+To get a list of all currently available rides with a certain start and end city id, a user can send a POST request to
+    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
+```
+{"query": "{ searchByCities(startCityId: 1, endCityId:2) {id} }" }
+```
+
+Additional ride information can be added with additional query parameters like so:
+```
+{"query": "{ searchByCities(startCityId: 1, endCityId:2) { id description mileage price totalSeats departureTime status driver { firstName lastName } endCity { name } startCity { name } } }" }
+```
+The header Content-Type should be application/json
+
+<details>
+  <summary>See example</summary>
+
+
+```
+{
+    "data": {
+        "searchByCities": [
+            {
+                "id": "11",
+                "description": "Taking a trip",
+                "mileage": 15,
+                "price": 5,
+                "totalSeats": 1,
+                "departureTime": "2019-05-22T16:00:00+00:00",
+                "status": "available",
+                "driver": {
+                    "firstName": "Leonardo",
+                    "lastName": "DiCaprio"
+                },
+                "endCity": {
+                    "name": "Golden, CO"
+                },
+                "startCity": {
+                    "name": "Denver, CO"
+                }
+            },
+            {
+                "id": "1",
+                "description": "Looking for two passengers",
+                "mileage": 15,
+                "price": 5,
+                "totalSeats": 2,
+                "departureTime": "2019-05-22T16:00:00+00:00",
+                "status": "available",
+                "driver": {
+                    "firstName": "Johnny",
+                    "lastName": "Depp"
+                },
+                "endCity": {
+                    "name": "Golden, CO"
+                },
+                "startCity": {
+                    "name": "Denver, CO"
+                }
+            }
+        ]
+    }
+}
+```
+</details>
