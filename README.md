@@ -11,6 +11,16 @@ To get a list of all the cities, a user can send a POST request to
 ```
 { "query": "{ allCities{ name } }"}
 ```
+
+or the same request in GraphQL query format:
+```
+query {
+    allCities {
+        name
+    }
+}
+```
+
 The header Content-Type should be application/json
 
 <details>
@@ -70,6 +80,15 @@ To get a ride by id, a user can send a POST request to
 { "query": "{ searchRideById(id:1){ id } }" }
 ```
 
+or the same request in GraphQL query format:
+```
+query {
+    searchRideById(id:1) {
+        id
+    }
+}
+```
+
 More ride information can be requested with additional query parameters like so:
 
 ```
@@ -99,6 +118,15 @@ To get a list of all currently available rides, a user can send a POST request t
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
 {"query": "{ availableRides{id}}"}
+```
+
+or the same request in GraphQL query format:
+```
+query {
+    availableRides {
+        id
+    }
+}
 ```
 The header Content-Type should be application/json
 
@@ -139,6 +167,15 @@ To get a list of all currently available rides with a certain start and end city
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
 { "query": "{ searchRideByCities(startCityId: 1, endCityId:2) { id } }" }
+```
+
+or the same request in GraphQL query format:
+```
+query {
+    searchRideByCities(startCityId:1 endCityId:2) {
+        id
+    }
+}
 ```
 
 More ride information can be requested with additional query parameters like so:
@@ -205,6 +242,25 @@ To get a create a new ride, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
 { "mutation": "{ createRide(driverId:1 startCityId:1 endCityId:2 description:'Going for a ride' mileage:100 price:50.00 totalSeats:4 departureTime:'2019-05-23T12:52:24+00:00'){ id driverId startCityId endCityId description mileage price totalSeats departureTime createdAt updatedAt } }" }
+```
+
+or the same request in GraphQL query format:
+```
+mutation {
+   createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
+        id
+        driverId
+        startCityId
+        endCityId
+        description
+        mileage
+        price
+        totalSeats
+        departureTime
+        createdAt
+        updatedAt
+    }
+}
 ```
 The header Content-Type should be application/json
 
