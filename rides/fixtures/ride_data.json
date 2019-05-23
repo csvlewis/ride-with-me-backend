@@ -10,7 +10,7 @@
       "mileage": 15,
       "price": 5.00,
       "total_seats": 2,
-      "departure_time": "2019-05-22 16:00:00.000000",
+      "departure_time": "2019-05-22",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -27,7 +27,7 @@
       "mileage": 15,
       "price": 5.00,
       "total_seats": 3,
-      "departure_time": "2019-05-25 16:00:00.000000",
+      "departure_time": "2019-05-25",
       "status": "full",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -44,7 +44,7 @@
       "mileage": 1000,
       "price": 200.00,
       "total_seats": 1,
-      "departure_time": "2019-05-29 12:00:00.000000",
+      "departure_time": "2019-05-29",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -61,7 +61,7 @@
       "mileage": 922,
       "price": 175.00,
       "total_seats": 2,
-      "departure_time": "2019-05-20 20:00:00.000000",
+      "departure_time": "2019-05-20",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -78,7 +78,7 @@
       "mileage": 270,
       "price": 50.00,
       "total_seats": 1,
-      "departure_time": "2019-05-21 13:00:00.000000",
+      "departure_time": "2019-05-21",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -95,7 +95,7 @@
       "mileage": 270,
       "price": 70.00,
       "total_seats": 3,
-      "departure_time": "2019-05-25 16:00:00.000000",
+      "departure_time": "2019-05-25",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -112,7 +112,7 @@
       "mileage": 930,
       "price": 175.00,
       "total_seats": 1,
-      "departure_time": "2019-05-27 12:00:00.000000",
+      "departure_time": "2019-05-27",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -129,7 +129,7 @@
       "mileage": 15,
       "price": 7.50,
       "total_seats": 2,
-      "departure_time": "2019-05-22 12:00:00.000000",
+      "departure_time": "2019-05-22",
       "status": "full",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -146,7 +146,7 @@
       "mileage": 15,
       "price": 5.00,
       "total_seats": 2,
-      "departure_time": "2019-05-20 17:00:00.000000",
+      "departure_time": "2019-05-20",
       "status": "complete",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -163,7 +163,7 @@
       "mileage": 1016,
       "price": 250.00,
       "total_seats": 1,
-      "departure_time": "2019-05-23 16:00:00.000000",
+      "departure_time": "2019-05-23",
       "status": "canceled",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -180,7 +180,7 @@
       "mileage": 15,
       "price": 5.00,
       "total_seats": 1,
-      "departure_time": "2019-05-22 16:00:00.000000",
+      "departure_time": "2019-05-22",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
