@@ -20,3 +20,8 @@ def test_can_count_rides(db, django_db_setup):
 def test_ride_object_returns_description(db, django_db_setup):
     ride = Ride.objects.get(pk=1)
     assert str(ride) == 'Looking for two passengers'
+
+def test_gets_rides_within_date_range(db, django_db_setup):
+    mock_input_date = '2019-05-25'
+    rides = Ride.objects.filter(departure_time__gte=mock_input_date)
+    assert len(rides) == 4
