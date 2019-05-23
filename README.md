@@ -4,7 +4,7 @@ This is the backend API for the Ride with Me App
 
 ### Endpoints: ####
 
-#### 1. To get all cities: ####
+#### 1. Get all cities: ####
 
 To get a list of all the cities, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
@@ -62,7 +62,7 @@ Example of the payload you should get:
 ```
 </details>
 
-#### 2. To get a ride by id: ####
+#### 2. Get a ride by id: ####
 
 To get a ride by id, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
@@ -93,7 +93,7 @@ The header Content-Type should be application/json
 ```
 </details>
 
-#### 3. To get all available rides: ####
+#### 3. Get all available rides: ####
 
 To get a list of all currently available rides, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
@@ -133,7 +133,7 @@ The header Content-Type should be application/json
 ```
 </details>
 
-### 4. To get all available rides with start and end point: ####
+### 4. Get all available rides with start and end point: ####
 
 To get a list of all currently available rides with a certain start and end city id, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
@@ -195,6 +195,40 @@ The header Content-Type should be application/json
             }
         ]
     }
+}
+```
+</details>
+
+### 5. Create a new ride: ####
+
+To get a create a new ride, a user can send a POST request to
+    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
+```
+{ "mutation": "{ createRide(driverId:1 startCityId:1 endCityId:2 description:'Going for a ride' mileage:100 price:50.00 totalSeats:4 departureTime:'2019-05-23T12:52:24+00:00'){ id driverId startCityId endCityId description mileage price totalSeats departureTime createdAt updatedAt } }" }
+```
+The header Content-Type should be application/json
+
+<details>
+  <summary>See example</summary>
+
+
+```
+{
+  "data": {
+    "createRide": {
+      "id": 21,
+      "driverId": 1,
+      "startCityId": 1,
+      "endCityId": 2,
+      "description": "Going for a ride",
+      "mileage": 100,
+      "price": 50,
+      "totalSeats": 4,
+      "departureTime": "2019-05-23T12:52:24+00:00",
+      "createdAt": "2019-05-23T13:31:07.369635+00:00",
+      "updatedAt": "2019-05-23T13:31:07.369710+00:00"
+    }
+  }
 }
 ```
 </details>
