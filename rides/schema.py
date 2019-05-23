@@ -36,11 +36,11 @@ class RidePassengerType(DjangoObjectType):
     class Meta:
         model = RidePassenger
 
-
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
-    search_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int())
+    search_ride_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int())
+    search_ride_by_id = graphene.List(RideType, id = graphene.Int())
 
     def resolve_all_cities(self, info, **kwargs):
         return City.objects.all()
@@ -50,3 +50,6 @@ class Query(graphene.ObjectType):
 
     def resolve_search_by_cities(self, info, start_city_id, end_city_id):
         return Ride.objects.filter(status='available', start_city_id = start_city_id, end_city_id = end_city_id)
+
+    def resolve_search_ride_by_id(self, info, id):
+        return Ride.objects.filter(id = id)
