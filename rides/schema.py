@@ -94,7 +94,7 @@ class Query(graphene.ObjectType):
 
     def resolve_search_ride_by_id(self, info, id):
         return Ride.objects.filter(id = id)
-      
+
     def resolve_search_rides_by_cities(self, info, start_city_id, end_city_id, departure_time = None):
 
         if departure_time and Ride.objects.filter(status='available', start_city_id = start_city_id, end_city_id = end_city_id, departure_time__gte = departure_time):
@@ -102,6 +102,6 @@ class Query(graphene.ObjectType):
 
         else:
             return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id).order_by('departure_time')
-    
-    class Mutation(graphene.ObjectType):
-      create_ride = CreateRide.Field()
+
+class Mutation(graphene.ObjectType):
+  create_ride = CreateRide.Field()
