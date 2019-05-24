@@ -78,6 +78,21 @@ class CreateRide(graphene.Mutation):
             created_at=ride.created_at,
             updated_at=ride.updated_at
         )
+
+class UpdateRide(graphene.Mutation):
+    id = graphene.Int()
+    status = graphene.String()
+
+    class Arguments:
+        id = graphene.Int()
+        status = graphene.String()
+
+    def mutate(self, info, id, status):
+        ride = Ride.objects.filter(id = id)[0]
+        setattr(ride, 'status', status)
+        ride.save()
+        return UpdateRide(id=id, status=status)
+
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
@@ -108,3 +123,4 @@ class Query(graphene.ObjectType):
 
 class Mutation(graphene.ObjectType):
     create_ride = CreateRide.Field()
+    change_ride_status = UpdateRide.Field()
