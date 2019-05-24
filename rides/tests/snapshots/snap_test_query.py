@@ -209,3 +209,15 @@ snapshots['test_find_ride_by_id 1'] = {
         ]
     }
 }
+
+snapshots['test_pending_requests 1'] = {
+    'data': {
+        'pendingRequests': [
+            {
+                'id': '2',
+                'message': 'Room for one more?',
+                'status': 'pending'
+            }
+        ]
+    }
+}

@@ -28,9 +28,9 @@ class UserType(DjangoObjectType):
     class Meta:
         model = User
 
-class RideType(DjangoObjectType):
+class RequestType(DjangoObjectType):
     class Meta:
-        model = Ride
+        model = Request
 
 class RidePassengerType(DjangoObjectType):
     class Meta:
@@ -82,8 +82,8 @@ class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
     search_ride_by_id = graphene.List(RideType, id = graphene.Int())
-
     search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_time = graphene.types.datetime.Date())
+    pending_requests = graphene.List(RequestType, driver_id = graphene.Int())
 
     def resolve_all_cities(self, info, **kwargs):
         return City.objects.all()
@@ -102,6 +102,9 @@ class Query(graphene.ObjectType):
 
         else:
             return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id).order_by('departure_time')
+
+    def resolve_pending_requests(self, info, driver_id):
+        return Request.objects.filter(driver_id = driver_id, status = 'pending')
 
 class Mutation(graphene.ObjectType):
     create_ride = CreateRide.Field()

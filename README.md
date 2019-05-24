@@ -163,12 +163,12 @@ The header Content-Type should be application/json
 
 ### 4. Get all available rides with start and end point and optional date argument: ####
 
-Users can search for Rides by making a request to our graphql endpoint (https://ride-with-me-backend/graphql). 
+Users can search for Rides by making a request to our graphql endpoint (https://ride-with-me-backend/graphql).
 
 The query is calles "searchRidesByCities" and it accepts 3 arguments:
 1. startCityId: type Integer and is required
 2. endCityId: type integer and is required
-3. departureTime: Date type and is optional. The format is "2019-05-22". 
+3. departureTime: Date type and is optional. The format is "2019-05-22".
 
 A user can send a POST request to https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
@@ -205,7 +205,7 @@ query {
 **It can also be sent as the body of a POST request, for which the body would be:**
 
 ```
-{"query": "{searchRidesByCities(startCityId:1, endCityId: 2, departureTime: \"2019-05-22\"){description }}"} 
+{"query": "{searchRidesByCities(startCityId:1, endCityId: 2, departureTime: \"2019-05-22\"){description }}"}
 
 ```
 
@@ -264,7 +264,7 @@ query {
 
 
 
-### Getting the associations of a ride ### 
+### Getting the associations of a ride ###
 
 You can also get that ride's associated objects, that is:
 - its driver
@@ -340,6 +340,83 @@ The header Content-Type should be application/json
       "createdAt": "2019-05-23T13:31:07.369635+00:00",
       "updatedAt": "2019-05-23T13:31:07.369710+00:00"
     }
+  }
+}
+```
+</details>
+
+### 6. Get a driver's pending requests: ####
+
+To retrieve pending requests for a driver, a user can send a POST request to
+    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
+```
+{ "query": "{ pendingRequests(driverId:1){ id message status } }" }
+```
+
+or the same request in GraphQL query format:
+```
+query {
+  pendingRequests(driverId:1){
+    id
+    message
+    status
+  }
+}
+```
+
+you can also query additional relationship information with more query parameters like so:
+
+```
+query {
+  pendingRequests(driverId:1){
+		ride {
+      id
+		}
+    driver {
+      id
+      firstName
+      lastName
+		}
+    passenger {
+      id
+      firstName
+      lastName
+    }
+    id
+    message
+    status
+  }
+}
+```
+The header Content-Type should be application/json
+
+<details>
+  <summary>See example</summary>
+
+
+```
+{
+  "data": {
+    "pendingRequests": [
+      {
+        "ride": {
+          "id": "1"
+        },
+        "driver": {
+          "id": "1",
+          "firstName": "Johnny",
+          "lastName": "Depp"
+        },
+        "passenger": {
+          "id": "3",
+          "firstName": "Jim",
+          "lastName": "Carey"
+        },
+        "id": "2",
+        "message": "Room for one more?",
+        "status": "pending"
+      }
+    ]
   }
 }
 ```
