@@ -421,3 +421,39 @@ The header Content-Type should be application/json
 }
 ```
 </details>
+
+### 6. Change the status of a ride: ####
+
+To change the status of a ride, a user can send a POST request to
+    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
+```
+{ "mutation": "{ changeRideStatus(id:1 status:"new_status"){ id status } }" }
+```
+
+or the same request in GraphQL query format:
+```
+mutation {
+  changeRideStatus(id:1 status:"new_status"){
+    id
+    status
+  }
+}
+```
+
+The header Content-Type should be application/json
+
+<details>
+  <summary>See example</summary>
+
+
+```
+{
+  "data": {
+    "changeRideStatus": {
+      "id": 1,
+      "status": "new_status"
+    }
+  }
+}
+```
+</details>
