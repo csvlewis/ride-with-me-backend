@@ -422,7 +422,7 @@ The header Content-Type should be application/json
 ```
 </details>
 
-### 6. Change the status of a ride: ####
+### 7. Change the status of a ride: ####
 
 To change the status of a ride, a user can send a POST request to
     https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
