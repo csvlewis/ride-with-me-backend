@@ -1,0 +1,54 @@
+version: 2 # use CircleCI 2.0
+jobs: # A basic unit of work in a run
+  build: # runs not using Workflows must have a `build` job as entry point
+    # directory where steps are run
+    working_directory: ~/ride-with-me-backend
+    docker: # run the steps with Docker
+      # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
+      - image: circleci/python:3.7.3
+        environment: # environment variables for primary container
+          PIPENV_VENV_IN_PROJECT: true
+          DATABASE_URL: postgres://ynqjyvrzxdxcjt:fde17d2832ce6e9b305c5d52f9032aefe1eb5528017805fabe015170044675df@ec2-107-20-230-70.compute-1.amazonaws.com:5432/d1gv86tatmmn3e
+      # CircleCI PostgreSQL images available at: https://hub.docker.com/r/circleci/postgres/
+      - image: circleci/postgres:9.6.2
+        environment: # environment variables for the Postgres container.
+          POSTGRES_USER: root
+          POSTGRES_DB: ride_with_me_backend
+    steps: # steps that comprise the `build` job
+      - checkout # check out source code to working directory
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+      # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: deps10-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install
+      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.6/site-packages"
+    deploy:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Master to Heroku
+            command: |
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/ride-with-me-backend.git master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

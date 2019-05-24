@@ -33,6 +33,7 @@ django-cors-headers = "*"
 pytest-django = "*"
 snapshottest = "*"
 mixer = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.7"
