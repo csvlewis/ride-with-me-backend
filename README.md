@@ -136,7 +136,7 @@ The header Content-Type should be application/json
 ```
 {
     "data": {
-        "availableRides": [
+        "searchRidesByCities": [
             {
                 "id": "1"
             },
@@ -161,18 +161,24 @@ The header Content-Type should be application/json
 ```
 </details>
 
-### 4. Get all available rides with start and end point: ####
+### 4. Get all available rides with start and end point and optional date argument: ####
 
-To get a list of all currently available rides with a certain start and end city id, a user can send a POST request to
-    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
+Users can search for Rides by making a request to our graphql endpoint (https://ride-with-me-backend/graphql). 
+
+The query is calles "searchRidesByCities" and it accepts 3 arguments:
+1. startCityId: type Integer and is required
+2. endCityId: type integer and is required
+3. departureTime: Date type and is optional. The format is "2019-05-22". 
+
+A user can send a POST request to https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
 ```
-{ "query": "{ searchRideByCities(startCityId: 1, endCityId:2) { id } }" }
+{ "query": "{ searchRidesByCities(startCityId: 1, endCityId:2) { id } }" }
 ```
 
 or the same request in GraphQL query format:
 ```
 query {
-    searchRideByCities(startCityId:1 endCityId:2) {
+    searchRidesByCities(startCityId:1 endCityId:2) {
         id
     }
 }
@@ -180,14 +186,33 @@ query {
 
 More ride information can be requested with additional query parameters like so:
 ```
-{ "query": "{ searchByCities(startCityId: 1, endCityId:2) { id description mileage price totalSeats departureTime status driver { firstName lastName } endCity { name } startCity { name } } }" }
+{ "query": "{ searchRidesByCities(startCityId: 1, endCityId:2) { id description mileage price totalSeats departureTime status driver { firstName lastName } endCity { name } startCity { name } } }" }
 ```
-The header Content-Type should be application/json
+**The header Content-Type should be application/json**
+
+#### Example query with date parameter in GraphQL query format: ####
+
+```
+query {
+  searchRidesByCities(startCityId: 1, endCityId: 2, departureTime: "2019-05-22") {
+    description
+    departureTime
+  }
+}
+
+```
+
+**It can also be sent as the body of a POST request, for which the body would be:**
+
+```
+{"query": "{searchRidesByCities(startCityId:1, endCityId: 2, departureTime: \"2019-05-22\"){description }}"} 
+
+```
 
 <details>
   <summary>See example</summary>
 
-
+#### Example of payload ####
 ```
 {
     "data": {
@@ -198,7 +223,7 @@ The header Content-Type should be application/json
                 "mileage": 15,
                 "price": 5,
                 "totalSeats": 1,
-                "departureTime": "2019-05-22T16:00:00+00:00",
+                "departureTime": "2019-05-22",
                 "status": "available",
                 "driver": {
                     "firstName": "Leonardo",
@@ -217,7 +242,7 @@ The header Content-Type should be application/json
                 "mileage": 15,
                 "price": 5,
                 "totalSeats": 2,
-                "departureTime": "2019-05-22T16:00:00+00:00",
+                "departureTime": "2019-05-23",
                 "status": "available",
                 "driver": {
                     "firstName": "Johnny",
@@ -234,6 +259,37 @@ The header Content-Type should be application/json
     }
 }
 ```
+
+
+
+
+
+### Getting the associations of a ride ### 
+
+You can also get that ride's associated objects, that is:
+- its driver
+- startCity
+- endCity
+- passengers
+
+To get the passengers of a ride, you need to first query the ridePassengerSet for that particular ride and then specify the passenger attribute and the attributes for that passenger that you want back
+
+Post request body of getting associated passengers:
+
+```
+{"query": "{searchRidesByCities(startCityId:1, endCityId: 2){description driver {firstName} ridepassengerSet {passenger {firstName}}}}"}
+```
+
+### Example of a query on GraphiQL:  ###
+
+<img width="1416" alt="Screen Shot 2019-05-23 at 8 33 41 PM" src="https://user-images.githubusercontent.com/13354855/58298804-19098280-7d9a-11e9-9a5c-b399b86915e4.png">
+
+
+
+
+
+
+
 </details>
 
 ### 5. Create a new ride: ####
