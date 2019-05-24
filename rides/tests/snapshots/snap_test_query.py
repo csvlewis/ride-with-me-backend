@@ -191,3 +191,21 @@ snapshots['test_all_available_rides 1'] = {
         ]
     }
 }
+
+snapshots['test_create_new_ride 1'] = {
+    'data': {
+        'createRide': {
+            'id': 12
+        }
+    }
+}
+
+snapshots['test_find_ride_by_id 1'] = {
+    'data': {
+        'searchRideById': [
+            {
+                'id': '1'
+            }
+        ]
+    }
+}
