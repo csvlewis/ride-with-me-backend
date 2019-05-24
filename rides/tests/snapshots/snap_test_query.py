@@ -221,3 +221,12 @@ snapshots['test_pending_requests 1'] = {
         ]
     }
 }
+
+snapshots['test_change_ride_status 1'] = {
+    'data': {
+        'changeRideStatus': {
+            'id': 1,
+            'status': 'new_status'
+        }
+    }
+}

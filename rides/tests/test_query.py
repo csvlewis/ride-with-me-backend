@@ -31,3 +31,8 @@ def test_pending_requests(snapshot):
     client = Client(schema)
     response = client.execute("query { pendingRequests(driverId:1){ id message status } }")
     snapshot.assert_match(response)
+
+def test_change_ride_status(snapshot):
+    client = Client(schema)
+    response = client.execute('mutation { changeRideStatus(id:1 status:"new_status"){ id status } }')
+    snapshot.assert_match(response)
