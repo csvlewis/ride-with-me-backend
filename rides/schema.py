@@ -45,7 +45,7 @@ class CreateRide(graphene.Mutation):
     mileage = graphene.Int()
     price = graphene.Float()
     total_seats = graphene.Int()
-    departure_time = graphene.types.datetime.DateTime()
+    departure_time = graphene.types.datetime.Date()
     status = graphene.String()
     created_at = graphene.types.datetime.DateTime()
     updated_at = graphene.types.datetime.DateTime()
@@ -58,7 +58,7 @@ class CreateRide(graphene.Mutation):
         mileage = graphene.Int()
         price = graphene.Float()
         total_seats = graphene.Int()
-        departure_time = graphene.types.datetime.DateTime()
+        departure_time = graphene.types.datetime.Date()
 
     def mutate(self, info, driver_id, start_city_id, end_city_id, description, mileage, price, total_seats, departure_time):
         ride = Ride(driver_id=driver_id, start_city_id=start_city_id, end_city_id=end_city_id, description=description, mileage=mileage, price=price, total_seats=total_seats, departure_time=departure_time, status='available')
@@ -94,7 +94,7 @@ class Query(graphene.ObjectType):
 
     def resolve_search_ride_by_id(self, info, id):
         return Ride.objects.filter(id = id)
-      
+
     def resolve_search_rides_by_cities(self, info, start_city_id, end_city_id, departure_time = None):
 
         if departure_time and Ride.objects.filter(status='available', start_city_id = start_city_id, end_city_id = end_city_id, departure_time__gte = departure_time):
@@ -102,6 +102,6 @@ class Query(graphene.ObjectType):
 
         else:
             return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id).order_by('departure_time')
-    
-    class Mutation(graphene.ObjectType):
-      create_ride = CreateRide.Field()
+
+class Mutation(graphene.ObjectType):
+    create_ride = CreateRide.Field()
