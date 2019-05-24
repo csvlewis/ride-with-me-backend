@@ -5,7 +5,7 @@ jobs: # A basic unit of work in a run
     working_directory: ~/ride-with-me-backend
     docker: # run the steps with Docker
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
-      - image: circleci/python:3.6.4
+      - image: circleci/python:3.7.3
         environment: # environment variables for primary container
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgres://ynqjyvrzxdxcjt:fde17d2832ce6e9b305c5d52f9032aefe1eb5528017805fabe015170044675df@ec2-107-20-230-70.compute-1.amazonaws.com:5432/d1gv86tatmmn3e
