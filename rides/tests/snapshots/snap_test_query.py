@@ -234,3 +234,14 @@ snapshots['test_change_ride_status 1'] = {
         }
     }
 }
+
+snapshots['test_change_request_status 1'] = {
+    'data': {
+        'changeRequestStatus': {
+            'request': {
+                'id': '1',
+                'status': 'new_status'
+            }
+        }
+    }
+}

@@ -36,3 +36,8 @@ def test_change_ride_status(snapshot):
     client = Client(schema)
     response = client.execute('mutation { changeRideStatus(id:1 status:"new_status"){ ride { id status } } }')
     snapshot.assert_match(response)
+
+def test_change_request_status(snapshot):
+    client = Client(schema)
+    response = client.execute('mutation { changeRequestStatus(id:1 status: "new_status"){ request{ id status } } }')
+    snapshot.assert_match(response)
