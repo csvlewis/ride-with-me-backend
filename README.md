@@ -445,7 +445,7 @@ Here is the same request in HTTP format:
 More ride information can be requested with additional query parameters like so:
 ```
 query {
-  searchRidesByCities(startCityId:1 endCityId:2 departureTime:"2019-05-22") {
+  createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
     id
     description
     mileage
@@ -485,28 +485,9 @@ query {
 ```
 {
   "data": {
-    "searchRidesByCities": [
-      {
-        "id": "11",
-        "description": "Taking a trip",
-        "mileage": 15,
-        "price": 5,
-        "totalSeats": 1,
-        "departureTime": "2019-05-22",
-        "status": "available",
-        "driver": {
-            "firstName": "Leonardo",
-            "lastName": "DiCaprio"
-        },
-        "endCity": {
-            "name": "Golden, CO"
-        },
-        "startCity": {
-            "name": "Denver, CO"
-        }
-      },
-      {
-        "id": "21",
+    "createRide": {
+      "ride": {
+        "id": "69",
         "description": "Going for a ride",
         "mileage": 100,
         "price": 50,
@@ -514,17 +495,23 @@ query {
         "departureTime": "2019-05-23",
         "status": "available",
         "driver": {
-            "firstName": "Johnny",
-            "lastName": "Depp"
+          "id": "1",
+          "firstName": "Johnny",
+          "lastName": "Depp"
         },
+        "ridepassengerSet": [],
         "endCity": {
-            "name": "Golden, CO"
+          "id": "2",
+          "name": "Golden, CO"
         },
         "startCity": {
-            "name": "Denver, CO"
+          "id": "1",
+          "name": "Denver, CO"
         }
-      },
-      ...
+      }
+    }
+  }
+}
 ```
 </details>
 
