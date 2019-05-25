@@ -56,8 +56,7 @@ class CreateRide(graphene.Mutation):
         return CreateRide(ride=ride)
 
 class UpdateRide(graphene.Mutation):
-    id = graphene.Int()
-    status = graphene.String()
+    ride = graphene.Field(RideType)
 
     class Arguments:
         id = graphene.Int()
@@ -67,7 +66,11 @@ class UpdateRide(graphene.Mutation):
         ride = Ride.objects.filter(id = id)[0]
         setattr(ride, 'status', status)
         ride.save()
-        return UpdateRide(id=id, status=status)
+        return UpdateRide(ride)
+
+# class UpdateRequest(graphene.Mutation):
+#     id = graphene.Int()
+#     status = graphene.String()
 
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)

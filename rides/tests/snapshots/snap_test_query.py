@@ -195,7 +195,9 @@ snapshots['test_all_available_rides 1'] = {
 snapshots['test_create_new_ride 1'] = {
     'data': {
         'createRide': {
-            'id': 12
+            'ride': {
+                'id': '12'
+            }
         }
     }
 }
@@ -225,8 +227,10 @@ snapshots['test_pending_requests 1'] = {
 snapshots['test_change_ride_status 1'] = {
     'data': {
         'changeRideStatus': {
-            'id': 1,
-            'status': 'new_status'
+            'ride': {
+                'id': '1',
+                'status': 'new_status'
+            }
         }
     }
 }
