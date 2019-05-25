@@ -444,8 +444,8 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-mutation {
-  createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
+mutation($driverId:Int! $startCityId:Int! $endCityId:Int! $description:String! $mileage:Int! $price:Float! $totalSeats:Int! $departureTime:Date!){
+	createRide(driverId:$driverId startCityId:$startCityId endCityId:$endCityId description:$description mileage:$mileage price:$price totalSeats:$totalSeats departureTime:$departureTime){
     id
     description
     mileage
