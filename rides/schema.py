@@ -68,9 +68,18 @@ class UpdateRide(graphene.Mutation):
         ride.save()
         return UpdateRide(ride)
 
-# class UpdateRequest(graphene.Mutation):
-#     id = graphene.Int()
-#     status = graphene.String()
+class UpdateRequest(graphene.Mutation):
+    request = graphene.Field(RequestType)
+
+    class Arguments:
+        id = graphene.Int()
+        status = graphene.String()
+
+    def mutate(self, info, id, status):
+        request = Request.objects.filter(id = id)[0]
+        setattr(request, 'status', status)
+        request.save()
+        return UpdateRequest(request)
 
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
@@ -103,3 +112,4 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     create_ride = CreateRide.Field()
     change_ride_status = UpdateRide.Field()
+    change_request_status = UpdateRequest.Field()
