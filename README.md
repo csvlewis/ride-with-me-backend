@@ -364,7 +364,68 @@ query {
 ```
 </details>
 
-#### 5. Create a new ride: ####
+#### 5. Get pending requests: ####
+
+To get pending requests for a user, a user can make the GraphQL query:
+```
+query {
+  pendingRequests(driverId:1){
+    id
+  }
+}
+```
+
+Here is the same request in HTTP format:
+
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=query{pendingRequests(driverId:1){id}}
+
+More ride information can be requested with additional query parameters like so:
+```
+query {
+  pendingRequests(driverId:1){
+    id
+    ride {
+      id
+    }
+    passenger {
+      firstName
+      lastName
+    }
+    message
+    status
+    createdAt
+  }
+}
+```
+
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=query{pendingRequests(driverId:1){id,ride{id}passenger{firstName,lastName}message,status,createdAt}}
+
+<details>
+  <summary>See example</summary>
+```
+{
+  "data": {
+    "pendingRequests": [
+      {
+        "id": "2",
+        "ride": {
+          "id": "1"
+        },
+        "passenger": {
+          "firstName": "Jim",
+          "lastName": "Carey"
+        },
+        "message": "Room for one more?",
+        "status": "pending",
+        "createdAt": "2019-05-20T16:23:00.067741+00:00"
+      }
+    ]
+  }
+}
+```
+</details>
+
+#### 6. Create a new ride: ####
 
 To create a new ride, a user can make the GraphQL query:
 ```
@@ -467,83 +528,6 @@ query {
 ```
 </details>
 
-### 6. Get a driver's pending requests: ####
-
-To retrieve pending requests for a driver, a user can send a POST request to
-    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
-```
-{ "query": "{ pendingRequests(driverId:1){ id message status } }" }
-```
-
-or the same request in GraphQL query format:
-```
-query {
-  pendingRequests(driverId:1){
-    id
-    message
-    status
-  }
-}
-```
-
-you can also query additional relationship information with more query parameters like so:
-
-```
-query {
-  pendingRequests(driverId:1){
-		ride {
-      id
-		}
-    driver {
-      id
-      firstName
-      lastName
-		}
-    passenger {
-      id
-      firstName
-      lastName
-    }
-    id
-    message
-    status
-  }
-}
-```
-The header Content-Type should be application/json
-
-<details>
-  <summary>See example</summary>
-
-
-```
-{
-  "data": {
-    "pendingRequests": [
-      {
-        "ride": {
-          "id": "1"
-        },
-        "driver": {
-          "id": "1",
-          "firstName": "Johnny",
-          "lastName": "Depp"
-        },
-        "passenger": {
-          "id": "3",
-          "firstName": "Jim",
-          "lastName": "Carey"
-        },
-        "id": "2",
-        "message": "Room for one more?",
-        "status": "pending"
-      }
-    ]
-  }
-}
-```
-</details>
-
 ### 7. Change the status of a ride: ####
 
 To change the status of a ride, a user can send a POST request to
@@ -582,12 +566,9 @@ The header Content-Type should be application/json
 ```
 </details>
 
+### 8. Create a Request ###
 
-
-
-### 8. Create a Request ### 
-
-A potential passenger can send a request to a driver to join their ride. 
+A potential passenger can send a request to a driver to join their ride.
 
 
 <details>
@@ -623,5 +604,3 @@ Example of response:
 
 ```
 </details>
-
-
