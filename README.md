@@ -272,7 +272,7 @@ Here is the same request in HTTP format:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{searchRidesByCities(startCityId:1,endCityId:2,departureTime:"2019-05-22"){id}}
 
 More ride information can be requested with additional query parameters like so:
-```
+```graphql
 query {
   searchRidesByCities(startCityId:1 endCityId:2 departureTime:"2019-05-22") {
     id
@@ -310,7 +310,7 @@ query {
 
 <details>
   <summary>See example</summary>
-```
+```graphql
   {
     "data": {
       "searchRidesByCities": [
@@ -431,8 +431,8 @@ To create a new ride, a user can make the GraphQL query:
 ```
 mutation {
 	createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
-		ride {
-			id
+    ride {
+        id
     }
   }
 }
@@ -443,9 +443,10 @@ Here is the same request in HTTP format:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{createRide(driverId:1,startCityId:1,endCityId:2,description:"Going for a ride",mileage:100,price:50.00,totalSeats:4,departureTime:"2019-05-23"){ride{id}}}
 
 More ride information can be requested with additional query parameters like so:
-```
-query {
-  createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
+
+```graphql
+mutation($driverId:Int! $startCityId:Int! $endCityId:Int! $description:String! $mileage:Int! $price:Float! $totalSeats:Int! $departureTime:Date!){
+	createRide(driverId:$driverId startCityId:$startCityId endCityId:$endCityId description:$description mileage:$mileage price:$price totalSeats:$totalSeats departureTime:$departureTime){
     id
     description
     mileage
