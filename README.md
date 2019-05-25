@@ -457,3 +457,47 @@ The header Content-Type should be application/json
 }
 ```
 </details>
+
+
+
+
+### 8. Create a Request ### 
+
+A potential passenger can send a request to a driver to join their ride. 
+
+
+<details>
+  <summary>See example</summary>
+
+The mutation should look like this:
+
+```graphql
+mutation($driverId: Int!, $message: String!, $passengerId:Int!, $rideId: Int!){
+  createRequest(driverId: $driverId, message: $message, passengerId: $passengerId, rideId: $rideId){
+  	request {
+                   message
+                     }
+  }
+},
+variables: {"driverId": 1, "message": "Message test sending request", "passengerId": 2, "rideId": 3}
+```
+
+
+Example of response:
+
+
+```graphql
+{
+  "data": {
+    "createRequest": {
+      "request": {
+        "message": "Message test sending request"
+      }
+    }
+  }
+}
+
+```
+</details>
+
+

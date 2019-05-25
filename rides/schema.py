@@ -93,12 +93,36 @@ class UpdateRide(graphene.Mutation):
         ride.save()
         return UpdateRide(id=id, status=status)
 
+class CreateRequest(graphene.Mutation):
+    request = graphene.Field(RequestType)
+
+    class Arguments:
+        driver_id = graphene.Int()
+        message = graphene.String()
+        passenger_id = graphene.Int()
+        ride_id = graphene.Int()
+        status = graphene.String()
+        created_at = graphene.types.datetime.DateTime()
+        updated_at = graphene.types.datetime.DateTime()
+
+    def mutate(self, info, driver_id, message, passenger_id, ride_id):
+        request = Request(
+            driver_id = driver_id,
+            message = message,
+            passenger_id = passenger_id,
+            ride_id = ride_id
+        )
+        request.save()
+
+        return CreateRequest(request=request)
+
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
     search_ride_by_id = graphene.List(RideType, id = graphene.Int())
     search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_time = graphene.types.datetime.Date())
     pending_requests = graphene.List(RequestType, driver_id = graphene.Int())
+    request = graphene.Field(RequestType)
 
     def resolve_all_cities(self, info, **kwargs):
         return City.objects.all()
@@ -124,3 +148,4 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     create_ride = CreateRide.Field()
     change_ride_status = UpdateRide.Field()
+    create_request = CreateRequest.Field()
