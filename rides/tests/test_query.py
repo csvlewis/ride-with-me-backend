@@ -9,7 +9,7 @@ pytestmark = pytest.mark.django_db
 
 def test_all_cities(snapshot):
     client = Client(schema)
-    response = client.execute("query { allCities{name}}")
+    response = client.execute("query { allCities{ name } }")
     snapshot.assert_match(response)
 
 def test_find_ride_by_id(snapshot):
@@ -24,7 +24,7 @@ def test_all_available_rides(snapshot):
 
 def test_create_new_ride(snapshot):
     client = Client(schema)
-    response = client.execute('mutation { createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") { id } }')
+    response = client.execute('mutation { createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23"){ ride { id } } }')
     snapshot.assert_match(response)
 
 def test_pending_requests(snapshot):
@@ -34,5 +34,10 @@ def test_pending_requests(snapshot):
 
 def test_change_ride_status(snapshot):
     client = Client(schema)
-    response = client.execute('mutation { changeRideStatus(id:1 status:"new_status"){ id status } }')
+    response = client.execute('mutation { changeRideStatus(id:1 status:"new_status"){ ride { id status } } }')
+    snapshot.assert_match(response)
+
+def test_change_request_status(snapshot):
+    client = Client(schema)
+    response = client.execute('mutation { changeRequestStatus(id:1 status: "new_status"){ request{ id status } } }')
     snapshot.assert_match(response)

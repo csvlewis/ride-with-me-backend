@@ -43,7 +43,7 @@ class Request(models.Model):
     driver = models.ForeignKey(User, related_name='driver', on_delete=models.CASCADE)
     passenger = models.ForeignKey(User, related_name='passenger', on_delete=models.CASCADE)
     message = models.TextField()
-    status = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
