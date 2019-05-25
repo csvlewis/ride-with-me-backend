@@ -515,15 +515,9 @@ query {
 ```
 </details>
 
-### 7. Change the status of a ride: ####
+#### 7. Change a ride's status: ####
 
-To change the status of a ride, a user can send a POST request to
-    https://ride-with-me-backend.herokuapp.com/graphql with the following query in the body:
-```
-{ "mutation": "{ changeRideStatus(id:1 status:"new_status"){ id status } }" }
-```
-
-or the same request in GraphQL query format:
+To change the status of a ride, a user can make the GraphQL query:
 ```
 mutation {
   changeRideStatus(id:1 status:"new_status"){
@@ -535,18 +529,21 @@ mutation {
 }
 ```
 
-The header Content-Type should be application/json
+Here is the same request in HTTP format:
+
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{changeRideStatus(id:1 status:"new_status"){ride {id,status}}}
 
 <details>
   <summary>See example</summary>
-
 
 ```
 {
   "data": {
     "changeRideStatus": {
-      "id": 1,
-      "status": "new_status"
+      "ride": {
+        "id": "1",
+        "status": "new_status"
+      }
     }
   }
 }
@@ -555,39 +552,70 @@ The header Content-Type should be application/json
 
 ### 8. Create a Request ###
 
-A potential passenger can send a request to a driver to join their ride.
-
-
-<details>
-  <summary>See example</summary>
-
-The mutation should look like this:
-
-```graphql
+To send a request to a driver, a user can make the GraphQL query:
+```
 mutation($driverId: Int!, $message: String!, $passengerId:Int!, $rideId: Int!){
   createRequest(driverId: $driverId, message: $message, passengerId: $passengerId, rideId: $rideId){
   	request {
-                   message
-                     }
+      id
+    }
   }
 },
 variables: {"driverId": 1, "message": "Message test sending request", "passengerId": 2, "rideId": 3}
 ```
 
+Here is the same request in HTTP format:
 
-Example of response:
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation($driverId:Int!,$message:String!,$passengerId:Int!,$rideId:Int!){createRequest(driverId:$driverId,message:$message,passengerId:$passengerId,rideId:$rideId){request{id,message}}}&variables={"driverId":1,"message":"Message test sending request","passengerId":2,"rideId":3}
 
+<details>
+  <summary>See example</summary>
 
-```graphql
+```
 {
   "data": {
     "createRequest": {
       "request": {
+        "id": "14",
         "message": "Message test sending request"
       }
     }
   }
 }
+```
+</details>
 
+#### 9. Change a request's status: ####
+
+To change the status of a requests, a user can make the GraphQL query:
+```
+mutation {
+  changeRequestStatus(id:1 status:"new_status"){
+    request {
+      id
+      status
+    }
+  }
+}
+```
+
+Here is the same request in HTTP format:
+
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{changeRequestStatus(id:1status:"new_status"){request {id,status}}}
+
+<details>
+  <summary>See example</summary>
+
+```
+{
+  "data": {
+    "changeRideStatus": {
+      "ride": {
+        "id": "1",
+        "status": "new_status"
+      }
+    }
+  }
+}
 ```
 </details>
