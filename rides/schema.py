@@ -37,18 +37,7 @@ class RidePassengerType(DjangoObjectType):
         model = RidePassenger
 
 class CreateRide(graphene.Mutation):
-    id = graphene.Int()
-    driver_id = graphene.Int()
-    start_city_id = graphene.Int()
-    end_city_id = graphene.Int()
-    description = graphene.String()
-    mileage = graphene.Int()
-    price = graphene.Float()
-    total_seats = graphene.Int()
-    departure_time = graphene.types.datetime.Date()
-    status = graphene.String()
-    created_at = graphene.types.datetime.DateTime()
-    updated_at = graphene.types.datetime.DateTime()
+    ride = graphene.Field(RideType)
 
     class Arguments:
         driver_id = graphene.Int()
@@ -64,20 +53,7 @@ class CreateRide(graphene.Mutation):
         ride = Ride(driver_id=driver_id, start_city_id=start_city_id, end_city_id=end_city_id, description=description, mileage=mileage, price=price, total_seats=total_seats, departure_time=departure_time, status='available')
         ride.save()
 
-        return CreateRide(
-            id=ride.id,
-            driver_id=ride.driver_id,
-            start_city_id=ride.start_city_id,
-            end_city_id=ride.end_city_id,
-            description=ride.description,
-            mileage=ride.mileage,
-            price=ride.price,
-            total_seats=ride.total_seats,
-            departure_time=ride.departure_time,
-            status=ride.status,
-            created_at=ride.created_at,
-            updated_at=ride.updated_at
-        )
+        return CreateRide(ride=ride)
 
 class UpdateRide(graphene.Mutation):
     id = graphene.Int()
