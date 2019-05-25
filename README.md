@@ -302,10 +302,9 @@ To get a create a new ride, a user can send a POST request to
 
 or the same request in GraphQL query format:
 ```
-mutation {
-   createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
-        id
-        driverId
+mutation($driverId:Int! $startCityId:Int! $endCityId:Int! $description:String! $mileage:Int! $price:Float! $totalSeats:Int! $departureTime:Date!){
+	createRide(driverId:$driverId startCityId:$startCityId endCityId:$endCityId description:$description mileage:$mileage price:$price totalSeats:$totalSeats departureTime:$departureTime){
+    	 driverId
         startCityId
         endCityId
         description
@@ -315,7 +314,7 @@ mutation {
         departureTime
         createdAt
         updatedAt
-    }
+  }
 }
 ```
 The header Content-Type should be application/json
