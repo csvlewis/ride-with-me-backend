@@ -304,17 +304,19 @@ or the same request in GraphQL query format:
 ```
 mutation {
    createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
-        id
-        driverId
-        startCityId
-        endCityId
-        description
-        mileage
-        price
-        totalSeats
-        departureTime
-        createdAt
-        updatedAt
+     ride {
+       id
+       driverId
+       startCityId
+       endCityId
+       description
+       mileage
+       price
+       totalSeats
+       departureTime
+       createdAt
+       updatedAt
+     }
     }
 }
 ```
@@ -434,8 +436,10 @@ or the same request in GraphQL query format:
 ```
 mutation {
   changeRideStatus(id:1 status:"new_status"){
-    id
-    status
+    ride {
+      id
+      status
+    }
   }
 }
 ```
