@@ -106,6 +106,43 @@ class CreateRequest(graphene.Mutation):
 
         return CreateRequest(request=request)
 
+class CreateRidePassenger(graphene.Mutation):
+    ok = graphene.Boolean()
+    message = graphene.String()
+
+    class Arguments:
+        passenger_id = graphene.Int()
+        ride_id = graphene.Int()
+
+    def mutate(self, info, passenger_id, ride_id):
+        ride_query = Ride.objects.filter(id = ride_id)
+        passenger_query = RidePassenger.objects.filter(ride_id = ride_id)
+        request_query = Request.objects.filter(ride_id = ride_id, passenger_id = passenger_id)
+        ride = ride_query[0]
+        available_seats = ride.total_seats - passenger_query.count()
+        if available_seats == 0:
+            ok = False
+            message = "The ride with id %s is already full" % (ride_id)
+        else:
+            ride_passenger = RidePassenger(
+                ride_id = ride_id,
+                passenger_id = passenger_id
+            )
+            ride_passenger.save()
+            new_available_seats = available_seats - 1
+            if request_query.first() is not None:
+                request = request_query[0]
+                request.status = "accepted"
+                request.save()
+            if new_available_seats == 0:
+                ride.status = "full"
+                ride.save()
+            ok = True
+            message =  "The passenger with id %s has been added to the ride with id %s. Now the ride has %s available seat(s)." % (passenger_id, ride_id, new_available_seats)
+
+        return CreateRidePassenger(ok = ok, message = message)
+
+
 class DeleteRidePassenger(graphene.Mutation):
     ok = graphene.Boolean()
     message = graphene.String()
@@ -173,4 +210,5 @@ class Mutation(graphene.ObjectType):
     change_ride_status = UpdateRide.Field()
     change_request_status = UpdateRequest.Field()
     create_request = CreateRequest.Field()
+    create_ride_passenger = CreateRidePassenger.Field()
     delete_ride_passenger = DeleteRidePassenger.Field()

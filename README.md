@@ -624,7 +624,7 @@ Here is the same request in HTTP format:
 
 #### 10. Delete a RidePassenger (When a passenger cancels a ride): ####
 
-A user can cancel an upcoming Ride. The ride's status should now be "available", if it was previously full. The RidePassenger associated with that user and that ride should be deleted. 
+A user can cancel an upcoming Ride. The ride's status should now be "available", if it was previously full. The RidePassenger associated with that user and that ride should be deleted.
 
 To cancel an upcoming Ride, a user can send the following GraphQL mutation:
 
@@ -637,19 +637,19 @@ mutation($passengerId: Int! $rideId: Int!){
   }
 }
 ```
-**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted. 
+**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted.
 
 Example of variables sent with that mutation:
 
 ```
-{"passengerId": 8, "rideId":2} 
+{"passengerId": 8, "rideId":2}
 
 ```
 
 
 <details>
   <summary>See example</summary>
-	
+
 If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
 
 ```graphql
@@ -676,6 +676,62 @@ If the mutation is unsuccessful, you should see a response similar to this:
   }
 }
 
+```
+
+</details>
+
+#### 11. Add a RidePassenger (When a driver accepts a ride request): ####
+
+A driver can add a passenger to a ride by accepting a ride request. When they do so, a relationship is created between the ride and the passenger, and the related request's status is changed to 'accepted'. If the ride is already full when the driver tries to accept the request, the passenger will not be added and the request's status will remain 'pending'.
+
+To add a passenger to a ride, a user can send the following GraphQL mutation:
+
+
+```graphql
+mutation($passengerId: Int! $rideId: Int!) {
+  createRidePassenger(passengerId:$passengerId, rideId:$rideId){
+    ok
+    message
+  }
+}
+```
+**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got created.
+
+Example of variables sent with that mutation:
+
+```
+{"passengerId": 8, "rideId":2}
+
+```
+
+
+<details>
+  <summary>See example</summary>
+
+If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
+
+```graphql
+{
+  "data": {
+    "createRidePassenger": {
+      "ok": true,
+      "message": "The passenger with id 2 has been added to the ride with id 15. Now the ride has 3 available seat(s)."
+    }
+  }
+}
+```
+
+If the mutation is unsuccessful, you should see a response similar to this:
+
+```graphql
+{
+  "data": {
+    "createRidePassenger": {
+      "ok": false,
+      "message": "The ride with id 1 is already full"
+    }
+  }
+}
 ```
 
 </details>
