@@ -430,32 +430,34 @@ More ride information can be requested with additional query parameters like so:
 ```
 mutation {
   createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
-    id
-    description
-    mileage
-    price
-    totalSeats
-    departureTime
-    status
-    driver {
+    ride {
       id
-      firstName
-      lastName
-    }
-    ridepassengerSet {
-      passenger {
+      description
+      mileage
+      price
+      totalSeats
+      departureTime
+      status
+      driver {
         id
         firstName
         lastName
       }
-    }
-    endCity {
-      id
-      name
-    }
-    startCity {
-      id
-      name
+      ridepassengerSet {
+        passenger {
+          id
+          firstName
+          lastName
+        }
+      }
+      endCity {
+        id
+        name
+      }
+      startCity {
+        id
+        name
+      }
     }
   }
 }
