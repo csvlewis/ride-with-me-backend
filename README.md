@@ -415,8 +415,8 @@ To create a new ride, a user can make the GraphQL query:
 ```
 mutation {
 	createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
-		ride {
-			id
+    ride {
+        id
     }
   }
 }
@@ -428,7 +428,7 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-query {
+mutation {
   createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
     id
     description
