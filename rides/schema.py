@@ -2,6 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from django.db.models.functions import Concat
 from django.db.models import Value
+from django.db.models import Q
 
 from .models import City
 from .models import Ride
@@ -111,6 +112,11 @@ class Query(graphene.ObjectType):
     search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_time = graphene.types.datetime.Date())
     pending_requests = graphene.List(RequestType, driver_id = graphene.Int())
     request = graphene.Field(RequestType)
+    my_rides = graphene.List(RideType, user_id = graphene.Int())
+
+    def resolve_my_rides(self, info, user_id):
+        return Ride.objects.filter(Q(driver_id=user_id) | Q(ridepassenger__passenger_id=user_id)).order_by('id').distinct()
+
 
     def resolve_all_cities(self, info, **kwargs):
         return City.objects.all()
