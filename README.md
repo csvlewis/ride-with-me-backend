@@ -24,7 +24,6 @@ or the same request in HTTP format:
   <summary>See example</summary>
 
 ```
-
 {
   "data": {
     "allCities": [
@@ -868,4 +867,52 @@ If the mutation is unsuccessful, you should see a response similar to this:
 }
 ```
 
+</details>
+
+#### 14. Login User: ####
+
+To login or register a user, send the following GraphQL mutation:
+
+```graphql
+mutation($email: String! $firstName: String! $lastName: String!) {
+  loginUser(email: $email firstName:$firstName lastName:$lastName){
+    user {
+      id
+      lastName
+      firstName
+      email
+      uuid
+    }
+  }
+}
+```
+
+Example variables:
+
+```
+{"email": "new_user@gmail.com", "firstName": "First", "lastName": "Last"}
+
+```
+
+
+<details>
+  <summary>See example</summary>
+
+A uuid will be generated and returned for the user and required for all further requests that need authorization.
+
+```
+{
+  "data": {
+    "loginUser": {
+      "user": {
+        "id": "14",
+        "lastName": "User",
+        "firstName": "New",
+        "email": "new_user@gmail.com",
+        "uuid": "f6d3963a-80cb-11e9-a5b9-88e9fe6e9b8e"
+      }
+    }
+  }
+}
+```
 </details>

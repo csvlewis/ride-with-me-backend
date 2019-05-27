@@ -1,4 +1,5 @@
 import graphene
+import uuid
 from graphene_django import DjangoObjectType
 from django.db.models.functions import Concat
 from django.db.models import Count
@@ -49,6 +50,28 @@ class RequestType(DjangoObjectType):
 class RidePassengerType(DjangoObjectType):
     class Meta:
         model = RidePassenger
+
+class LoginUser(graphene.Mutation):
+    user = graphene.Field(UserType)
+
+    class Arguments:
+        first_name = graphene.String()
+        last_name = graphene.String()
+        email = graphene.String()
+
+    def mutate(self, info, first_name, last_name, email):
+        user = User.objects.filter(email=email)
+        generated_uuid = uuid.uuid1()
+        if user.count() == 0:
+            user = User.objects.create(
+                first_name  = first_name,
+                last_name  = last_name,
+                email  = email,
+                uuid  = generated_uuid
+            )
+        else:
+            user = user[0]
+        return LoginUser(user=user)
 
 class CreateRide(graphene.Mutation):
     ride = graphene.Field(RideType)
@@ -234,3 +257,4 @@ class Mutation(graphene.ObjectType):
     create_request = CreateRequest.Field()
     create_ride_passenger = CreateRidePassenger.Field()
     delete_ride_passenger = DeleteRidePassenger.Field()
+    login_user = LoginUser.Field()
