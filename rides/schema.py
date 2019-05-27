@@ -114,9 +114,15 @@ class DeleteRidePassenger(graphene.Mutation):
         ride_id = graphene.Int()
 
     def mutate(self, info, passenger_id, ride_id):
-        RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger_id).delete()
-        message =  "The passenger with id %s has been deleted from the ride with id %s" % (passenger_id, ride_id)
-        return DeleteRidePassenger(ok = True, message = message)
+        result = RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger_id).delete()
+        if result[0] == 0:
+            ok = False
+            message = "There is no passenger with id %s in ride with id %s" % (passenger_id, ride_id)
+        else:
+            message =  "The passenger with id %s has been deleted from the ride with id %s" % (passenger_id, ride_id)
+            ok = True
+
+        return DeleteRidePassenger(ok = ok, message = message)
 
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
