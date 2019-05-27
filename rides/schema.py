@@ -104,6 +104,20 @@ class CreateRequest(graphene.Mutation):
 
         return CreateRequest(request=request)
 
+class DeleteRidePassenger(graphene.Mutation):
+    ok = graphene.Boolean()
+    message = graphene.String()
+
+    class Arguments:
+        id = graphene.Int()
+        passenger_id = graphene.Int()
+        ride_id = graphene.Int()
+
+    def mutate(self, info, passenger_id, ride_id):
+        RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger_id).delete()
+        message =  "The passenger with id %s has been deleted from the ride with id %s" % (passenger_id, ride_id)
+        return DeleteRidePassenger(ok = True, message = message)
+
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
@@ -138,3 +152,4 @@ class Mutation(graphene.ObjectType):
     change_ride_status = UpdateRide.Field()
     change_request_status = UpdateRequest.Field()
     create_request = CreateRequest.Field()
+    delete_ride_passenger = DeleteRidePassenger.Field()
