@@ -51,7 +51,45 @@ or the same request in HTTP format:
 ```
 </details>
 
-#### 2. Get a ride by id: ####
+#### 2. Get a user by id: ####
+
+To information about a user, you can can make the GraphQL query:
+```
+query {
+  searchUserById(id:1){
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
+    apiKey
+    createdAt
+    updatedAt
+  }
+}
+```
+
+<details>
+  <summary>See example</summary>
+
+```
+{
+  "data": {
+    "searchUserById": {
+      "id": "1",
+      "firstName": "Johnny",
+      "lastName": "Depp",
+      "email": "johnnydepp@gmail.com",
+      "phoneNumber": 1234567890,
+      "apiKey": "key_1",
+      "createdAt": "2019-05-20T16:23:00.067741+00:00",
+      "updatedAt": "2019-05-20T16:23:00.067741+00:00"
+    }
+  }
+}
+```
+</details>
+#### 3. Get a ride by id: ####
 
 To get a ride by id, a user can make the GraphQL query:
 ```
@@ -146,7 +184,7 @@ query {
 ```
 </details>
 
-#### 3. Get all available rides: ####
+#### 4. Get all available rides: ####
 
 To get all available rides, a user can make the GraphQL query:
 ```
@@ -254,7 +292,7 @@ query {
 ```
 </details>
 
-#### 4. Get all available rides with start and end point and optional date: ####
+#### 5. Get all available rides with start and end point and optional date: ####
 
 To search rides with a certain start and end point, a user can make the GraphQL query:
 ```
@@ -364,7 +402,7 @@ query {
 ```
 </details>
 
-#### 5. Create a new ride: ####
+#### 6. Create a new ride: ####
 
 To create a new ride, a user can make the GraphQL query:
 ```
@@ -454,7 +492,7 @@ query {
 ```
 </details>
 
-#### 6. Change a ride's status: ####
+#### 7. Change a ride's status: ####
 
 To change the status of a ride, a user can make the GraphQL query:
 ```
@@ -489,7 +527,7 @@ Here is the same request in HTTP format:
 ```
 </details>
 
-#### 7. Get pending requests: ####
+#### 8. Get pending requests: ####
 
 To get pending requests for a user, a user can make the GraphQL query:
 ```
@@ -550,7 +588,7 @@ query {
 ```
 </details>
 
-### 8. Create a Request ###
+### 9. Create a Request ###
 
 To send a request to a driver, a user can make the GraphQL query:
 ```
@@ -585,7 +623,7 @@ Here is the same request in HTTP format:
 ```
 </details>
 
-#### 9. Change a request's status: ####
+#### 10. Change a request's status: ####
 
 To change the status of a requests, a user can make the GraphQL query:
 ```
@@ -622,7 +660,7 @@ Here is the same request in HTTP format:
 
 
 
-#### 10. Delete a RidePassenger (When a passenger cancels a ride): ####
+#### 11. Delete a RidePassenger (When a passenger cancels a ride): ####
 
 A user can cancel an upcoming Ride. The ride's status should now be "available", if it was previously full. The RidePassenger associated with that user and that ride should be deleted.
 
@@ -680,7 +718,7 @@ If the mutation is unsuccessful, you should see a response similar to this:
 
 </details>
 
-#### 11. Add a RidePassenger (When a driver accepts a ride request): ####
+#### 12. Add a RidePassenger (When a driver accepts a ride request): ####
 
 A driver can add a passenger to a ride by accepting a ride request. When they do so, a relationship is created between the ride and the passenger, and the related request's status is changed to 'accepted'. If the ride is already full when the driver tries to accept the request, the passenger will not be added and the request's status will remain 'pending'.
 
