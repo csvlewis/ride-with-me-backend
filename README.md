@@ -637,14 +637,21 @@ Here is the same request in HTTP format:
 
 To change the status of a requests, a user can make the GraphQL query:
 ```
-mutation {
-  changeRequestStatus(id:1 status:"new_status"){
+mutation($id: Int!, $status: String!) {
+  changeRequestStatus(id:$id status:$status){
     request {
       id
       status
     }
   }
 }
+```
+
+Example of variables sent with that mutation:
+
+```
+{ "id": 1, "status": "new_status" }
+
 ```
 
 Here is the same request in HTTP format:
