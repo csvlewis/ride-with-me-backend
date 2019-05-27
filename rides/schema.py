@@ -103,9 +103,10 @@ class CreateRequest(graphene.Mutation):
         created_at = graphene.types.datetime.DateTime()
         updated_at = graphene.types.datetime.DateTime()
 
-    def mutate(self, info, driver_id, message, passenger_id, ride_id):
+    def mutate(self, info, message, passenger_id, ride_id):
+        ride = Ride.objects.get(pk=ride_id)
         request = Request(
-            driver_id = driver_id,
+            driver_id = ride.driver_id,
             message = message,
             passenger_id = passenger_id,
             ride_id = ride_id
