@@ -51,7 +51,87 @@ or the same request in HTTP format:
 ```
 </details>
 
-#### 2. Get a user by id: ####
+#### 2. Get searchable cities: ####
+
+To get a list of all cities associated with a ride, a user can make the GraphQL query:
+
+```
+query {
+  searchableCities {
+    endCities {
+      id
+      name
+    }
+    startCities {
+      id
+      name
+    }
+  }
+}
+```
+
+<details>
+  <summary>See example</summary>
+
+```
+{
+  "data": {
+    "searchableCities": {
+      "endCities": [
+        {
+          "id": "4",
+          "name": "Austin, TX"
+        },
+        {
+          "id": "1",
+          "name": "Denver, CO"
+        },
+        {
+          "id": "29",
+          "name": "Detroit, MI"
+        },
+        {
+          "id": "2",
+          "name": "Golden, CO"
+        },
+        {
+          "id": "5",
+          "name": "Las Vegas, NV"
+        },
+        {
+          "id": "3",
+          "name": "Los Angeles, CA"
+        }
+      ],
+      "startCities": [
+        {
+          "id": "4",
+          "name": "Austin, TX"
+        },
+        {
+          "id": "1",
+          "name": "Denver, CO"
+        },
+        {
+          "id": "2",
+          "name": "Golden, CO"
+        },
+        {
+          "id": "5",
+          "name": "Las Vegas, NV"
+        },
+        {
+          "id": "3",
+          "name": "Los Angeles, CA"
+        }
+      ]
+    }
+  }
+}
+```
+</details>
+
+#### 3. Get a user by id: ####
 
 To information about a user, you can can make the GraphQL query:
 ```
@@ -89,8 +169,7 @@ query {
 }
 ```
 </details>
-
-#### 3. Get a ride by id: ####
+#### 4. Get a ride by id: ####
 
 To get a ride by id, a user can make the GraphQL query:
 ```
@@ -185,7 +264,7 @@ query {
 ```
 </details>
 
-#### 4. Get all available rides: ####
+#### 5. Get all available rides: ####
 
 To get all available rides, a user can make the GraphQL query:
 ```
@@ -291,11 +370,11 @@ query {
         }
       },
       ...
-      
+
 ```
 </details>
 
-#### 5. Get all available rides with start and end point and optional date: ####
+#### 6. Get all available rides with start and end point and optional date: ####
 
 To search rides with a certain start and end point, a user can make the GraphQL query:
 
@@ -352,7 +431,7 @@ query {
 
 <details>
   <summary>See example</summary>
-	
+
 ```
   {
     "data": {
@@ -404,12 +483,12 @@ query {
           }
         },
         ...
-	
+
 ```
 
 </details>
 
-#### 6. Create a new ride: ####
+#### 7. Create a new ride: ####
 
 To create a new ride, a user can make the GraphQL query:
 ```
@@ -501,7 +580,7 @@ mutation {
 ```
 </details>
 
-#### 7. Change a ride's status: ####
+#### 8. Change a ride's status: ####
 
 To change the status of a ride, a user can make the GraphQL query:
 ```
@@ -536,7 +615,7 @@ Here is the same request in HTTP format:
 ```
 </details>
 
-#### 8. Get pending requests: ####
+#### 9. Get pending requests: ####
 
 To get pending requests for a user, a user can make the GraphQL query:
 ```
@@ -597,7 +676,7 @@ query {
 ```
 </details>
 
-#### 9. Create a Request ####
+### 10. Create a Request ###
 
 To send a request to a driver, a user can make the GraphQL query:
 
@@ -633,7 +712,7 @@ Here is the same request in HTTP format:
 ```
 </details>
 
-#### 10. Change a request's status: ####
+#### 11. Change a request's status: ####
 
 To change the status of a requests, a user can make the GraphQL query:
 ```
@@ -677,7 +756,7 @@ Here is the same request in HTTP format:
 
 
 
-#### 11. Delete a RidePassenger (When a passenger cancels a ride): ####
+#### 12. Delete a RidePassenger (When a passenger cancels a ride): ####
 
 A user can cancel an upcoming Ride. The ride's status should now be "available", if it was previously full. The RidePassenger associated with that user and that ride should be deleted.
 
@@ -735,7 +814,7 @@ If the mutation is unsuccessful, you should see a response similar to this:
 
 </details>
 
-#### 12. Add a RidePassenger (When a driver accepts a ride request): ####
+#### 13. Add a RidePassenger (When a driver accepts a ride request): ####
 
 A driver can add a passenger to a ride by accepting a ride request. When they do so, a relationship is created between the ride and the passenger, and the related request's status is changed to 'accepted'. If the ride is already full when the driver tries to accept the request, the passenger will not be added and the request's status will remain 'pending'.
 
