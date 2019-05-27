@@ -36,7 +36,7 @@ class Ride(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.description
+        return "ID: %s, Description: %s" % (self.id, self.description)
 
 class Request(models.Model):
     ride = models.ForeignKey(Ride, on_delete=models.CASCADE)
