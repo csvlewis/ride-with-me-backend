@@ -193,7 +193,7 @@ class Query(graphene.ObjectType):
         return Ride.objects.filter(Q(driver_id=user_id) | Q(ridepassenger__passenger_id=user_id)).order_by('id').distinct()
 
     def resolve_all_cities(self, info, **kwargs):
-        return City.objects.all()
+        return City.objects.all().order_by('city')
 
     def resolve_available_rides(self, info, **kwargs):
         return Ride.objects.filter(status='available')
