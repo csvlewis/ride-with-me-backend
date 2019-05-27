@@ -201,6 +201,7 @@ query {
   <summary>See example</summary>
 
 ```
+
 {
   "data": {
     "availableRides": [
@@ -251,12 +252,14 @@ query {
         }
       },
       ...
+      
 ```
 </details>
 
 #### 4. Get all available rides with start and end point and optional date: ####
 
 To search rides with a certain start and end point, a user can make the GraphQL query:
+
 ```
 query {
   searchRidesByCities(startCityId:1 endCityId:2 departureTime:"2019-05-22") {
@@ -310,6 +313,7 @@ query {
 
 <details>
   <summary>See example</summary>
+	
 ```
   {
     "data": {
@@ -361,7 +365,9 @@ query {
           }
         },
         ...
+	
 ```
+
 </details>
 
 #### 5. Get pending requests: ####
