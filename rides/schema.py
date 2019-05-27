@@ -176,14 +176,13 @@ class Query(graphene.ObjectType):
     search_ride_by_id = graphene.List(RideType, id = graphene.Int())
     search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_time = graphene.types.datetime.Date())
     pending_requests = graphene.List(RequestType, driver_id = graphene.Int())
-    request = graphene.Field(RequestType)
+    search_user_by_id = graphene.Field(UserType, id = graphene.Int())
 
     def resolve_all_cities(self, info, **kwargs):
         return City.objects.all()
 
     def resolve_available_rides(self, info, **kwargs):
         return Ride.objects.filter(status='available')
-
 
     def resolve_search_ride_by_id(self, info, id):
         return Ride.objects.filter(id = id)
@@ -198,6 +197,9 @@ class Query(graphene.ObjectType):
 
     def resolve_pending_requests(self, info, driver_id):
         return Request.objects.filter(driver_id = driver_id, status = 'pending')
+
+    def resolve_search_user_by_id(self, info, id):
+        return User.objects.filter(id = id)[0]
 
 class Mutation(graphene.ObjectType):
     create_ride = CreateRide.Field()
