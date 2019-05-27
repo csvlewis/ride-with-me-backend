@@ -1,6 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
 from django.db.models.functions import Concat
+from django.db.models import Count
 from django.db.models import Value
 
 from .models import City
@@ -104,6 +105,34 @@ class CreateRequest(graphene.Mutation):
 
         return CreateRequest(request=request)
 
+class DeleteRidePassenger(graphene.Mutation):
+    ok = graphene.Boolean()
+    message = graphene.String()
+
+    class Arguments:
+        id = graphene.Int()
+        passenger_id = graphene.Int()
+        ride_id = graphene.Int()
+
+    def mutate(self, info, passenger_id, ride_id):
+        result = RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger_id).delete()
+
+        ride_query = Ride.objects.filter(id=ride_id).annotate(num_passengers=Count('ridepassenger'))
+
+        if result[0] == 0:
+            ok = False
+            message = "There is no passenger with id %s in ride with id %s" % (passenger_id, ride_id)
+        else:
+            ride = ride_query[0]
+            ride.status = "available"
+            ride.save()
+            seats = ride.total_seats - ride.num_passengers
+
+            message =  "The passenger with id %s has been deleted from the ride with id %s. Now the ride has %s available seat(s)." % (passenger_id, ride_id, seats)
+            ok = True
+
+        return DeleteRidePassenger(ok = ok, message = message)
+
 class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
@@ -138,3 +167,4 @@ class Mutation(graphene.ObjectType):
     change_ride_status = UpdateRide.Field()
     change_request_status = UpdateRequest.Field()
     create_request = CreateRequest.Field()
+    delete_ride_passenger = DeleteRidePassenger.Field()

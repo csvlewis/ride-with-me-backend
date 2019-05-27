@@ -619,3 +619,63 @@ Here is the same request in HTTP format:
 }
 ```
 </details>
+
+
+
+#### 10. Delete a RidePassenger (When a passenger cancels a ride): ####
+
+A user can cancel an upcoming Ride. The ride's status should now be "available", if it was previously full. The RidePassenger associated with that user and that ride should be deleted. 
+
+To cancel an upcoming Ride, a user can send the following GraphQL mutation:
+
+
+```graphql
+mutation($passengerId: Int! $rideId: Int!){
+  deleteRidePassenger(passengerId:$passengerId, rideId:$rideId){
+    ok
+    message
+  }
+}
+```
+**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted. 
+
+Example of variables sent with that mutation:
+
+```
+{"passengerId": 8, "rideId":2} 
+
+```
+
+
+<details>
+  <summary>See example</summary>
+	
+If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
+
+```graphql
+{
+  "data": {
+    "deleteRidePassenger": {
+      "ok": true,
+      "message": "The passenger with id 8 has been deleted from the ride with id 2. Now the ride has 3 available seat(s)."
+    }
+  }
+}
+
+```
+
+If the mutation is unsuccessful, you should see a response similar to this:
+
+```graphql
+{
+  "data": {
+    "deleteRidePassenger": {
+      "ok": false,
+      "message": "There is no passenger with id 88 in ride with id 2"
+    }
+  }
+}
+
+```
+
+</details>
