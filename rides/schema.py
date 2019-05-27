@@ -22,8 +22,16 @@ class CityType(DjangoObjectType):
         return ''
 
 class RideType(DjangoObjectType):
+    available_seats = graphene.Int()
     class Meta:
         model = Ride
+
+    def resolve_available_seats(self, info):
+        if self is not None:
+            rides = Ride.objects.filter(id=self.id).annotate(num_passengers=Count('ridepassenger'))
+            available_seats = self.total_seats - rides[0].num_passengers
+            return available_seats
+        return ''
 
 class UserType(DjangoObjectType):
     class Meta:
