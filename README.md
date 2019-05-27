@@ -89,6 +89,7 @@ query {
 }
 ```
 </details>
+
 #### 3. Get a ride by id: ####
 
 To get a ride by id, a user can make the GraphQL query:
@@ -594,9 +595,10 @@ query {
 ```
 </details>
 
-### 9. Create a Request ###
+#### 9. Create a Request ####
 
 To send a request to a driver, a user can make the GraphQL query:
+
 ```
 mutation($driverId: Int!, $message: String!, $passengerId:Int!, $rideId: Int!){
   createRequest(driverId: $driverId, message: $message, passengerId: $passengerId, rideId: $rideId){
