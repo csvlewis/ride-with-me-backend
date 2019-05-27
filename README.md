@@ -364,68 +364,7 @@ query {
 ```
 </details>
 
-#### 5. Get pending requests: ####
-
-To get pending requests for a user, a user can make the GraphQL query:
-```
-query {
-  pendingRequests(driverId:1){
-    id
-  }
-}
-```
-
-Here is the same request in HTTP format:
-
-    https://ride-with-me-backend.herokuapp.com/graphql/?query=query{pendingRequests(driverId:1){id}}
-
-More ride information can be requested with additional query parameters like so:
-```
-query {
-  pendingRequests(driverId:1){
-    id
-    ride {
-      id
-    }
-    passenger {
-      firstName
-      lastName
-    }
-    message
-    status
-    createdAt
-  }
-}
-```
-
-    https://ride-with-me-backend.herokuapp.com/graphql/?query=query{pendingRequests(driverId:1){id,ride{id}passenger{firstName,lastName}message,status,createdAt}}
-
-<details>
-  <summary>See example</summary>
-```
-{
-  "data": {
-    "pendingRequests": [
-      {
-        "id": "2",
-        "ride": {
-          "id": "1"
-        },
-        "passenger": {
-          "firstName": "Jim",
-          "lastName": "Carey"
-        },
-        "message": "Room for one more?",
-        "status": "pending",
-        "createdAt": "2019-05-20T16:23:00.067741+00:00"
-      }
-    ]
-  }
-}
-```
-</details>
-
-#### 6. Create a new ride: ####
+#### 5. Create a new ride: ####
 
 To create a new ride, a user can make the GraphQL query:
 ```
@@ -515,7 +454,7 @@ query {
 ```
 </details>
 
-#### 7. Change a ride's status: ####
+#### 6. Change a ride's status: ####
 
 To change the status of a ride, a user can make the GraphQL query:
 ```
@@ -545,6 +484,67 @@ Here is the same request in HTTP format:
         "status": "new_status"
       }
     }
+  }
+}
+```
+</details>
+
+#### 7. Get pending requests: ####
+
+To get pending requests for a user, a user can make the GraphQL query:
+```
+query {
+  pendingRequests(driverId:1){
+    id
+  }
+}
+```
+
+Here is the same request in HTTP format:
+
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=query{pendingRequests(driverId:1){id}}
+
+More ride information can be requested with additional query parameters like so:
+```
+query {
+  pendingRequests(driverId:1){
+    id
+    ride {
+      id
+    }
+    passenger {
+      firstName
+      lastName
+    }
+    message
+    status
+    createdAt
+  }
+}
+```
+
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=query{pendingRequests(driverId:1){id,ride{id}passenger{firstName,lastName}message,status,createdAt}}
+
+<details>
+  <summary>See example</summary>
+```
+{
+  "data": {
+    "pendingRequests": [
+      {
+        "id": "2",
+        "ride": {
+          "id": "1"
+        },
+        "passenger": {
+          "firstName": "Jim",
+          "lastName": "Carey"
+        },
+        "message": "Room for one more?",
+        "status": "pending",
+        "createdAt": "2019-05-20T16:23:00.067741+00:00"
+      }
+    ]
   }
 }
 ```
