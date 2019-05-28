@@ -214,7 +214,7 @@ class Query(graphene.ObjectType):
     available_rides = graphene.List(RideType)
     search_ride_by_id = graphene.List(RideType, id = graphene.Int())
     search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_time = graphene.types.datetime.Date())
-    pending_requests = graphene.List(RequestType, driver_id = graphene.Int())
+    pending_requests = graphene.List(RequestType, driver_uuid = graphene.String())
     search_user_by_id = graphene.Field(UserType, id = graphene.Int())
     request = graphene.Field(RequestType)
     my_rides = graphene.List(RideType, user_id = graphene.Int())
@@ -246,8 +246,10 @@ class Query(graphene.ObjectType):
         else:
             return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id).order_by('departure_time')
 
-    def resolve_pending_requests(self, info, driver_id):
-        return Request.objects.filter(driver_id = driver_id, status = 'pending')
+    def resolve_pending_requests(self, info, driver_uuid):
+        driver = User.objects.filter(uuid = driver_uuid)
+        if driver[0].uuid == driver_uuid:
+            return Request.objects.filter(driver_id = driver[0].id, status = 'pending')
 
     def resolve_search_user_by_id(self, info, id):
         return User.objects.filter(id = id)[0]
