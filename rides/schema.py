@@ -216,7 +216,7 @@ class Query(graphene.ObjectType):
     pending_requests = graphene.List(RequestType, driver_uuid = graphene.String())
     search_user_by_id = graphene.Field(UserType, id = graphene.Int())
     request = graphene.Field(RequestType)
-    my_rides = graphene.List(RideType, user_uuid = graphene.Int())
+    my_rides = graphene.List(RideType, user_uuid = graphene.String())
     searchable_cities = graphene.Field(SearchableCityType)
 
     def resolve_searchable_cities(self, info):

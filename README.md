@@ -39,6 +39,7 @@ or the same request in HTTP format:
       {
         "name": "Austin, TX"
       },
+
 ...continued
 ```
 </details>
@@ -159,6 +160,7 @@ To information about a user, you can can make the GraphQL query:
 }
 ```
 </details>
+
 #### 4. Get a ride by id: ####
 
 To get a ride by id, a user can make the GraphQL query:
@@ -366,6 +368,7 @@ More ride information can be requested with additional query parameters like so:
           "name": "Denver, CO"
         }
       },
+
 ...continued
 ```
 </details>
@@ -597,19 +600,23 @@ mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $descripti
 To change the status of a ride, a user can make the GraphQL query:
 
 ```
-mutation($id:Int!, $status:String!) {
-  changeRideStatus(id:$id status:$status){
+mutation ($id: Int!, $status: String!) {
+  changeRideStatus(id: $id, status: $status) {
     ride {
       id
       status
     }
   }
 }
+
 ```
 
 Example of variables sent with this request:
 ```
-{ "id": 1, "status":"new_status" }
+{
+	"id": 1,
+	"status": "completed"
+}
 ```
 
     https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{changeRideStatus(id:1 status:"new_status"){ride {id,status}}}
@@ -623,7 +630,7 @@ Example of variables sent with this request:
     "changeRideStatus": {
       "ride": {
         "id": "1",
-        "status": "new_status"
+        "status": "completed"
       }
     }
   }
@@ -631,12 +638,12 @@ Example of variables sent with this request:
 ```
 </details>
 
-#### 9. Get pending requests: ####
+#### 9. Get a driver's pending requests: ####
 
-To get pending requests for a user, a user can make the GraphQL query:
+To get pending requests for a driver, a user can make the GraphQL query:
 ```
-query {
-  pendingRequests(driverUuid:"key_1"){
+{
+  pendingRequests(driverUuid: "key_1") {
     id
   }
 }
@@ -648,8 +655,8 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-query {
-  pendingRequests(driverUuid:"key_1"){
+{
+  pendingRequests(driverUuid: "key_1") {
     id
     ride {
       id
@@ -674,21 +681,33 @@ query {
   "data": {
     "pendingRequests": [
       {
-        "id": "2",
+        "id": "21",
         "ride": {
           "id": "1"
         },
         "passenger": {
-          "firstName": "Jim",
-          "lastName": "Carey"
+          "firstName": "Arnold",
+          "lastName": "Schwarzenegger"
         },
-        "message": "Room for one more?",
+        "message": "This is a new request",
         "status": "pending",
-        "createdAt": "2019-05-20T16:23:00.067741+00:00"
-      }
-    ]
-  }
-}
+        "createdAt": "2019-05-28T18:22:59.014297+00:00"
+      },
+      {
+        "id": "20",
+        "ride": {
+          "id": "1"
+        },
+        "passenger": {
+          "firstName": "Arnold",
+          "lastName": "Schwarzenegger"
+        },
+        "message": "This is a new request",
+        "status": "pending",
+        "createdAt": "2019-05-28T18:22:58.469016+00:00"
+      },
+
+...continued
 ```
 </details>
 
@@ -697,18 +716,30 @@ query {
 To send a request to a driver, a user can make the GraphQL query:
 
 ```
-mutation($message: String!, $passengerUuid:String!, $rideId: Int!){
-  createRequest(message: $message, passengerUuid: $passengerUuid, rideId: $rideId){
-  	request {
+mutation ($message: String!, $passengerUuid: String!, $rideId: Int!) {
+  createRequest(message: $message, passengerUuid: $passengerUuid, rideId: $rideId) {
+    request {
       id
+      message
+      passenger {
+        id
+      }
+      ride {
+        id
+      }
     }
   }
 }
+
 ```
 Example of variables sent with that mutation:
 
 ```
-{"message": "Message test sending request", "passengerUuid": "key_1", "rideId": 3}
+{
+	"message": "Message test sending request",
+	"passengerUuid": "key_1",
+	"rideId": 3
+}
 ```
 
 Here is the same request in HTTP format:
@@ -723,8 +754,14 @@ Here is the same request in HTTP format:
   "data": {
     "createRequest": {
       "request": {
-        "id": "14",
-        "message": "Message test sending request"
+        "id": "26",
+        "message": "Message test sending request",
+        "passenger": {
+          "id": "1"
+        },
+        "ride": {
+          "id": "3"
+        }
       }
     }
   }
@@ -734,7 +771,7 @@ Here is the same request in HTTP format:
 
 #### 11. Change a request's status: ####
 
-To change the status of a requests, a user can make the GraphQL query:
+To accept or deny a ride request, a driver can make the GraphQL query:
 ```
 mutation($id: Int!, $status: String!) {
   changeRequestStatus(id:$id status:$status){
@@ -749,8 +786,10 @@ mutation($id: Int!, $status: String!) {
 Example of variables sent with that mutation:
 
 ```
-{ "id": 1, "status": "new_status" }
-
+{
+	"id": 1,
+	"status": "accepted"
+}
 ```
 
 Here is the same request in HTTP format:
@@ -763,18 +802,16 @@ Here is the same request in HTTP format:
 ```
 {
   "data": {
-    "changeRideStatus": {
-      "ride": {
+    "changeRequestStatus": {
+      "request": {
         "id": "1",
-        "status": "new_status"
+        "status": "accepted"
       }
     }
   }
 }
 ```
 </details>
-
-
 
 #### 12. Delete a RidePassenger (When a passenger cancels a ride): ####
 
@@ -791,14 +828,17 @@ mutation($passengerUuid: String! $rideId: Int!){
   }
 }
 ```
-**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted.
 
 Example of variables sent with that mutation:
 
 ```
-{"passengerUuid": "key_1", "rideId":2}
+{
+  "passengerUuid": "key_1",
+   "rideId":2
+ }
 ```
 
+**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted.
 
 <details>
   <summary>See example</summary>
@@ -853,7 +893,10 @@ mutation($passengerId: Int! $rideId: Int!) {
 Example of variables sent with that mutation:
 
 ```
-{"passengerId": 8, "rideId":2}
+{
+  "passengerId": 8,
+  "rideId":2
+}
 
 ```
 
@@ -894,53 +937,109 @@ If the mutation is unsuccessful, you should see a response similar to this:
 A user can get a list of all rides that they are associated with (as a driver or passenger) by sending the following GraphQL query:
 
 ```graphql
-query {
-  myRides(userUuid:"key_1"){
-    ride {
+{
+  myRides(userUuid: "key_1") {
+    id
+    description
+    mileage
+    price
+    totalSeats
+    departureTime
+    status
+    driver {
       id
+      firstName
+      lastName
+    }
+    ridepassengerSet {
+      passenger {
+        id
+        firstName
+        lastName
+      }
+    }
+    endCity {
+      id
+      name
+    }
+    startCity {
+      id
+      name
     }
   }
 }
 ```
-**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got created.
-
-Example of variables sent with that mutation:
-
-```
-{"passengerId": 8, "rideId":2}
-
-```
-
 
 <details>
   <summary>See example</summary>
 
-If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
-
-```graphql
+```
 {
   "data": {
-    "createRidePassenger": {
-      "ok": true,
-      "message": "The passenger with id 2 has been added to the ride with id 15. Now the ride has 3 available seat(s)."
-    }
-  }
-}
+    "myRides": [
+      {
+        "id": "1",
+        "description": "Looking for two passengers",
+        "mileage": 15,
+        "price": 5.0,
+        "totalSeats": 2,
+        "departureTime": "2019-05-22",
+        "status": "completed",
+        "driver": {
+          "id": "1",
+          "firstName": "Johnny",
+          "lastName": "Depp"
+        },
+        "ridepassengerSet": [
+          {
+            "passenger": {
+              "id": "4",
+              "firstName": "Emma",
+              "lastName": "Watson"
+            }
+          },
+          {
+            "passenger": {
+              "id": "2",
+              "firstName": "Arnold",
+              "lastName": "Schwarzenegger"
+            }
+          }
+        ],
+        "endCity": {
+          "id": "2",
+          "name": "Golden, CO"
+        },
+        "startCity": {
+          "id": "1",
+          "name": "Denver, CO"
+        }
+      },
+      {
+        "id": "21",
+        "description": "Going for a ride",
+        "mileage": 100,
+        "price": 50.0,
+        "totalSeats": 4,
+        "departureTime": "2019-05-23",
+        "status": "available",
+        "driver": {
+          "id": "1",
+          "firstName": "Johnny",
+          "lastName": "Depp"
+        },
+        "ridepassengerSet": [],
+        "endCity": {
+          "id": "2",
+          "name": "Golden, CO"
+        },
+        "startCity": {
+          "id": "1",
+          "name": "Denver, CO"
+        }
+      },
+...continued
 ```
-
-If the mutation is unsuccessful, you should see a response similar to this:
-
-```graphql
-{
-  "data": {
-    "createRidePassenger": {
-      "ok": false,
-      "message": "The ride with id 1 is already full"
-    }
-  }
-}
-```
-
 </details>
 
 #### 15. Login User: ####
@@ -948,23 +1047,28 @@ If the mutation is unsuccessful, you should see a response similar to this:
 To login or register a user, send the following GraphQL mutation:
 
 ```graphql
-mutation($email: String! $firstName: String! $lastName: String!) {
-  loginUser(email: $email firstName:$firstName lastName:$lastName){
+mutation ($email: String!, $firstName: String!, $lastName: String!) {
+  loginUser(email: $email, firstName: $firstName, lastName: $lastName) {
     user {
       id
-      lastName
       firstName
+      lastName
       email
       uuid
     }
   }
 }
+
 ```
 
 Example of variables sent with this request:
 
 ```
-{"email": "new_user@gmail.com", "firstName": "First", "lastName": "Last"}
+{
+	"email": "new_user@gmail.com",
+	"firstName": "First",
+	"lastName": "Last"
+}
 
 ```
 
@@ -979,11 +1083,11 @@ A uuid will be generated and returned for the user and required for all further 
   "data": {
     "loginUser": {
       "user": {
-        "id": "14",
-        "lastName": "User",
-        "firstName": "New",
+        "id": "11",
+        "firstName": "First",
+        "lastName": "Last",
         "email": "new_user@gmail.com",
-        "uuid": "f6d3963a-80cb-11e9-a5b9-88e9fe6e9b8e"
+        "uuid": "cdbadd56-8181-11e9-bfdc-9a2c58adc569"
       }
     }
   }
