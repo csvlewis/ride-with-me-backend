@@ -23,10 +23,6 @@ class CityType(DjangoObjectType):
             return '%s, %s' % (self.city, self.state)
         return ''
 
-class SearchableCityType(graphene.ObjectType):
-    start_cities = graphene.List(CityType)
-    end_cities = graphene.List(CityType)
-
 class RideType(DjangoObjectType):
     available_seats = graphene.Int()
     class Meta:
@@ -217,13 +213,10 @@ class Query(graphene.ObjectType):
     search_user_by_id = graphene.Field(UserType, id = graphene.Int())
     request = graphene.Field(RequestType)
     my_rides = graphene.List(RideType, user_uuid = graphene.String())
-    searchable_cities = graphene.Field(SearchableCityType)
+    searchable_cities = graphene.List(CityType)
 
-    def resolve_searchable_cities(self, info):
-        start_cities = City.objects.filter(start_city__isnull=False).distinct().order_by('city')
-        end_cities = City.objects.filter(end_city__isnull=False).distinct().order_by('city')
-
-        return SearchableCityType(start_cities=start_cities, end_cities=end_cities)
+    def resolve_searchable_cities(self, info, **kwargs):
+        return City.objects.filter(Q(start_city__isnull=False) | Q(end_city__isnull=False)).order_by('city').distinct()
 
     def resolve_my_rides(self, info, user_uuid):
         user = User.objects.filter(uuid = user_uuid)
