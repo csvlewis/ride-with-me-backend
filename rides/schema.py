@@ -184,26 +184,27 @@ class DeleteRidePassenger(graphene.Mutation):
     message = graphene.String()
 
     class Arguments:
-        id = graphene.Int()
-        passenger_id = graphene.Int()
+        passenger_uuid = graphene.String()
         ride_id = graphene.Int()
 
-    def mutate(self, info, passenger_id, ride_id):
-        result = RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger_id).delete()
+    def mutate(self, info, passenger_uuid, ride_id):
+        passenger = User.objects.filter(uuid = passenger_uuid)
+        if passenger[0].uuid == passenger_uuid:
+            result = RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger[0].id).delete()
 
-        ride_query = Ride.objects.filter(id=ride_id).annotate(num_passengers=Count('ridepassenger'))
+            ride_query = Ride.objects.filter(id=ride_id).annotate(num_passengers=Count('ridepassenger'))
 
-        if result[0] == 0:
-            ok = False
-            message = "There is no passenger with id %s in ride with id %s" % (passenger_id, ride_id)
-        else:
-            ride = ride_query[0]
-            ride.status = "available"
-            ride.save()
-            seats = ride.total_seats - ride.num_passengers
+            if result[0] == 0:
+                ok = False
+                message = "There is no passenger with id %s in ride with id %s" % (passenger[0].id, ride_id)
+            else:
+                ride = ride_query[0]
+                ride.status = "available"
+                ride.save()
+                seats = ride.total_seats - ride.num_passengers
 
-            message =  "The passenger with id %s has been deleted from the ride with id %s. Now the ride has %s available seat(s)." % (passenger_id, ride_id, seats)
-            ok = True
+                message =  "The passenger with id %s has been deleted from the ride with id %s. Now the ride has %s available seat(s)." % (passenger[0].id, ride_id, seats)
+                ok = True
 
         return DeleteRidePassenger(ok = ok, message = message)
 
