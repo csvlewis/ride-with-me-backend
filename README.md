@@ -676,6 +676,7 @@ More ride information can be requested with additional query parameters like so:
 
 <details>
   <summary>See example</summary>
+	
 ```
 {
   "data": {
@@ -711,7 +712,7 @@ More ride information can be requested with additional query parameters like so:
 ```
 </details>
 
-### 10. Create a Request ###
+#### 10. Create a Request ####
 
 To send a request to a driver, a user can make the GraphQL query:
 
