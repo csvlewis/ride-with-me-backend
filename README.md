@@ -51,14 +51,8 @@ To get a list of all cities associated with a ride, a user can make the GraphQL 
 ```
 {
   searchableCities {
-    endCities {
-      id
-      name
-    }
-    startCities {
-      id
-      name
-    }
+    id
+    name
   }
 }
 ```
@@ -69,56 +63,32 @@ To get a list of all cities associated with a ride, a user can make the GraphQL 
 ```
 {
   "data": {
-    "searchableCities": {
-      "endCities": [
-        {
-          "id": "4",
-          "name": "Austin, TX"
-        },
-        {
-          "id": "10",
-          "name": "Boulder, CO"
-        },
-        {
-          "id": "1",
-          "name": "Denver, CO"
-        },
-        {
-          "id": "2",
-          "name": "Golden, CO"
-        },
-        {
-          "id": "5",
-          "name": "Las Vegas, NV"
-        },
-        {
-          "id": "3",
-          "name": "Los Angeles, CA"
-        }
-      ],
-      "startCities": [
-        {
-          "id": "4",
-          "name": "Austin, TX"
-        },
-        {
-          "id": "1",
-          "name": "Denver, CO"
-        },
-        {
-          "id": "2",
-          "name": "Golden, CO"
-        },
-        {
-          "id": "5",
-          "name": "Las Vegas, NV"
-        },
-        {
-          "id": "3",
-          "name": "Los Angeles, CA"
-        }
-      ]
-    }
+    "searchableCities": [
+      {
+        "id": "4",
+        "name": "Austin, TX"
+      },
+      {
+        "id": "10",
+        "name": "Boulder, CO"
+      },
+      {
+        "id": "1",
+        "name": "Denver, CO"
+      },
+      {
+        "id": "2",
+        "name": "Golden, CO"
+      },
+      {
+        "id": "5",
+        "name": "Las Vegas, NV"
+      },
+      {
+        "id": "3",
+        "name": "Los Angeles, CA"
+      }
+    ]
   }
 }
 ```
