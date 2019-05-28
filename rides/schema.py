@@ -77,7 +77,7 @@ class CreateRide(graphene.Mutation):
     ride = graphene.Field(RideType)
 
     class Arguments:
-        driver_id = graphene.Int()
+        driver_uuid = graphene.String()
         start_city_id = graphene.Int()
         end_city_id = graphene.Int()
         description = graphene.String()
@@ -86,9 +86,11 @@ class CreateRide(graphene.Mutation):
         total_seats = graphene.Int()
         departure_time = graphene.types.datetime.Date()
 
-    def mutate(self, info, driver_id, start_city_id, end_city_id, description, mileage, price, total_seats, departure_time):
-        ride = Ride(driver_id=driver_id, start_city_id=start_city_id, end_city_id=end_city_id, description=description, mileage=mileage, price=price, total_seats=total_seats, departure_time=departure_time, status='available')
-        ride.save()
+    def mutate(self, info, driver_uuid, start_city_id, end_city_id, description, mileage, price, total_seats, departure_time):
+        driver = User.objects.filter(uuid = driver_uuid)
+        if driver[0].uuid == driver_uuid:
+            ride = Ride(driver_id=driver[0].id, start_city_id=start_city_id, end_city_id=end_city_id, description=description, mileage=mileage, price=price, total_seats=total_seats, departure_time=departure_time, status='available')
+            ride.save()
 
         return CreateRide(ride=ride)
 
