@@ -216,7 +216,7 @@ class Query(graphene.ObjectType):
     pending_requests = graphene.List(RequestType, driver_uuid = graphene.String())
     search_user_by_id = graphene.Field(UserType, id = graphene.Int())
     request = graphene.Field(RequestType)
-    my_rides = graphene.List(RideType, user_id = graphene.Int())
+    my_rides = graphene.List(RideType, user_uuid = graphene.Int())
     searchable_cities = graphene.Field(SearchableCityType)
 
     def resolve_searchable_cities(self, info):
@@ -225,8 +225,10 @@ class Query(graphene.ObjectType):
 
         return SearchableCityType(start_cities=start_cities, end_cities=end_cities)
 
-    def resolve_my_rides(self, info, user_id):
-        return Ride.objects.filter(Q(driver_id=user_id) | Q(ridepassenger__passenger_id=user_id)).order_by('id').distinct()
+    def resolve_my_rides(self, info, user_uuid):
+        user = User.objects.filter(uuid = user_uuid)
+        if user[0].uuid == user_uuid:
+            return Ride.objects.filter(Q(driver_id=user[0].id) | Q(ridepassenger__passenger_id=user[0].id)).order_by('id').distinct()
 
     def resolve_all_cities(self, info, **kwargs):
         return City.objects.all().order_by('city')
