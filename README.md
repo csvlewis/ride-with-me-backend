@@ -589,9 +589,10 @@ mutation($driverUuid:String! $startCityId:Int!, $endCityId:Int! $description:Str
 #### 8. Change a ride's status: ####
 
 To change the status of a ride, a user can make the GraphQL query:
+
 ```
-mutation {
-  changeRideStatus(id:1 status:"new_status"){
+mutation($id:Int!, $status:String!) {
+  changeRideStatus(id:$id status:$status){
     ride {
       id
       status
@@ -600,7 +601,10 @@ mutation {
 }
 ```
 
-Here is the same request in HTTP format:
+Example of variables sent with this request:
+```
+{ "id": 1, "status":"new_status" }
+```
 
     https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{changeRideStatus(id:1 status:"new_status"){ride {id,status}}}
 
@@ -898,7 +902,7 @@ mutation($email: String! $firstName: String! $lastName: String!) {
 }
 ```
 
-Example variables:
+Example of variables sent with this request:
 
 ```
 {"email": "new_user@gmail.com", "firstName": "First", "lastName": "Last"}
