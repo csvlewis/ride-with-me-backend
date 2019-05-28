@@ -742,7 +742,7 @@ Here is the same request in HTTP format:
 
 #### 11. Change a request's status: ####
 
-To accept or deny a ride request, a driver can make the GraphQL query:
+To change the status of a ride request (accepted or denied), a driver can make the GraphQL query:
 ```
 mutation($id: Int!, $status: String!) {
   changeRequestStatus(id:$id status:$status){
@@ -765,7 +765,8 @@ Example of variables sent with that mutation:
 
 Here is the same request in HTTP format:
 
-    https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{changeRequestStatus(id:1status:"new_status"){request {id,status}}}
+    https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation($id:Int!,$status:String!){changeRequestStatus(id:$id,status:$status){request{id,status}}}&variables={"id":1,"status":"accepted"}
+
 
 <details>
   <summary>See example</summary>
