@@ -482,7 +482,6 @@ query {
           }
         },
         ...
-
 ```
 
 </details>
@@ -490,14 +489,22 @@ query {
 #### 7. Create a new ride: ####
 
 To create a new ride, a user can make the GraphQL query:
+
+
 ```
-mutation {
-	createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
+mutation($driverUuid:String! $startCityId:Int!, $endCityId:Int! $description:String! $mileage:Int! $price:Float! totalSeats:Int! departureTime:String!) {
+	createRide(driverUuid:$driverUuid startCityId:$startCityId endCityId:$endCityId description:$description mileage:$mileage price:$price totalSeats:$totalSeats departureTime:$departureTime) {
     ride {
-        id
+      id
     }
   }
 }
+```
+Example of variables sent with that mutation:
+
+```
+{"driverUuid": key_1, "startCityId":1, "endCityId":2, description:"Going for a ride", "mileage":200, "price":50.00, "totalSeats":3, departureTime:
+"2019-5-22"}
 ```
 
 Here is the same request in HTTP format:
@@ -506,9 +513,9 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-mutation {
-  createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
-    ride {
+mutation($driverUuid:String! $startCityId:Int!, $endCityId:Int! $description:String! $mileage:Int! $price:Float! totalSeats:Int! departureTime:String!) {
+	createRide(driverUuid:$driverUuid startCityId:$startCityId endCityId:$endCityId description:$description mileage:$mileage price:$price totalSeats:$totalSeats departureTime:$departureTime) {
+      ride {
       id
       description
       mileage
@@ -686,8 +693,12 @@ mutation($driverId: Int!, $message: String!, $passengerId:Int!, $rideId: Int!){
       id
     }
   }
-},
-variables: {"driverId": 1, "message": "Message test sending request", "passengerId": 2, "rideId": 3}
+}
+```
+Example of variables sent with that mutation:
+
+```
+{"driverId": 1, "message": "Message test sending request", "passengerId": 2, "rideId": 3}
 ```
 
 Here is the same request in HTTP format:
