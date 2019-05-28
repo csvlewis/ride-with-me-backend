@@ -124,23 +124,21 @@ class CreateRequest(graphene.Mutation):
     request = graphene.Field(RequestType)
 
     class Arguments:
-        driver_id = graphene.Int()
         message = graphene.String()
-        passenger_id = graphene.Int()
+        passenger_uuid = graphene.String()
         ride_id = graphene.Int()
-        status = graphene.String()
-        created_at = graphene.types.datetime.DateTime()
-        updated_at = graphene.types.datetime.DateTime()
 
-    def mutate(self, info, message, passenger_id, ride_id):
+    def mutate(self, info, message, passenger_uuid, ride_id):
         ride = Ride.objects.get(pk=ride_id)
-        request = Request(
-            driver_id = ride.driver_id,
-            message = message,
-            passenger_id = passenger_id,
-            ride_id = ride_id
-        )
-        request.save()
+        passenger = User.objects.filter(uuid = passenger_uuid)
+        if passenger[0].uuid == passenger_uuid:
+            request = Request(
+                driver_id = ride.driver_id,
+                message = message,
+                passenger_id = passenger[0].id,
+                ride_id = ride_id
+            )
+            request.save()
 
         return CreateRequest(request=request)
 
