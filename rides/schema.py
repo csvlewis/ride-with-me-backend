@@ -77,7 +77,7 @@ class CreateRide(graphene.Mutation):
     ride = graphene.Field(RideType)
 
     class Arguments:
-        driver_id = graphene.Int()
+        driver_uuid = graphene.String()
         start_city_id = graphene.Int()
         end_city_id = graphene.Int()
         description = graphene.String()
@@ -86,9 +86,11 @@ class CreateRide(graphene.Mutation):
         total_seats = graphene.Int()
         departure_time = graphene.types.datetime.Date()
 
-    def mutate(self, info, driver_id, start_city_id, end_city_id, description, mileage, price, total_seats, departure_time):
-        ride = Ride(driver_id=driver_id, start_city_id=start_city_id, end_city_id=end_city_id, description=description, mileage=mileage, price=price, total_seats=total_seats, departure_time=departure_time, status='available')
-        ride.save()
+    def mutate(self, info, driver_uuid, start_city_id, end_city_id, description, mileage, price, total_seats, departure_time):
+        driver = User.objects.filter(uuid = driver_uuid)
+        if driver[0].uuid == driver_uuid:
+            ride = Ride(driver_id=driver[0].id, start_city_id=start_city_id, end_city_id=end_city_id, description=description, mileage=mileage, price=price, total_seats=total_seats, departure_time=departure_time, status='available')
+            ride.save()
 
         return CreateRide(ride=ride)
 
@@ -122,23 +124,21 @@ class CreateRequest(graphene.Mutation):
     request = graphene.Field(RequestType)
 
     class Arguments:
-        driver_id = graphene.Int()
         message = graphene.String()
-        passenger_id = graphene.Int()
+        passenger_uuid = graphene.String()
         ride_id = graphene.Int()
-        status = graphene.String()
-        created_at = graphene.types.datetime.DateTime()
-        updated_at = graphene.types.datetime.DateTime()
 
-    def mutate(self, info, message, passenger_id, ride_id):
+    def mutate(self, info, message, passenger_uuid, ride_id):
         ride = Ride.objects.get(pk=ride_id)
-        request = Request(
-            driver_id = ride.driver_id,
-            message = message,
-            passenger_id = passenger_id,
-            ride_id = ride_id
-        )
-        request.save()
+        passenger = User.objects.filter(uuid = passenger_uuid)
+        if passenger[0].uuid == passenger_uuid:
+            request = Request(
+                driver_id = ride.driver_id,
+                message = message,
+                passenger_id = passenger[0].id,
+                ride_id = ride_id
+            )
+            request.save()
 
         return CreateRequest(request=request)
 
@@ -184,26 +184,27 @@ class DeleteRidePassenger(graphene.Mutation):
     message = graphene.String()
 
     class Arguments:
-        id = graphene.Int()
-        passenger_id = graphene.Int()
+        passenger_uuid = graphene.String()
         ride_id = graphene.Int()
 
-    def mutate(self, info, passenger_id, ride_id):
-        result = RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger_id).delete()
+    def mutate(self, info, passenger_uuid, ride_id):
+        passenger = User.objects.filter(uuid = passenger_uuid)
+        if passenger[0].uuid == passenger_uuid:
+            result = RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger[0].id).delete()
 
-        ride_query = Ride.objects.filter(id=ride_id).annotate(num_passengers=Count('ridepassenger'))
+            ride_query = Ride.objects.filter(id=ride_id).annotate(num_passengers=Count('ridepassenger'))
 
-        if result[0] == 0:
-            ok = False
-            message = "There is no passenger with id %s in ride with id %s" % (passenger_id, ride_id)
-        else:
-            ride = ride_query[0]
-            ride.status = "available"
-            ride.save()
-            seats = ride.total_seats - ride.num_passengers
+            if result[0] == 0:
+                ok = False
+                message = "There is no passenger with id %s in ride with id %s" % (passenger[0].id, ride_id)
+            else:
+                ride = ride_query[0]
+                ride.status = "available"
+                ride.save()
+                seats = ride.total_seats - ride.num_passengers
 
-            message =  "The passenger with id %s has been deleted from the ride with id %s. Now the ride has %s available seat(s)." % (passenger_id, ride_id, seats)
-            ok = True
+                message =  "The passenger with id %s has been deleted from the ride with id %s. Now the ride has %s available seat(s)." % (passenger[0].id, ride_id, seats)
+                ok = True
 
         return DeleteRidePassenger(ok = ok, message = message)
 
@@ -212,10 +213,10 @@ class Query(graphene.ObjectType):
     available_rides = graphene.List(RideType)
     search_ride_by_id = graphene.List(RideType, id = graphene.Int())
     search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_time = graphene.types.datetime.Date())
-    pending_requests = graphene.List(RequestType, driver_id = graphene.Int())
+    pending_requests = graphene.List(RequestType, driver_uuid = graphene.String())
     search_user_by_id = graphene.Field(UserType, id = graphene.Int())
     request = graphene.Field(RequestType)
-    my_rides = graphene.List(RideType, user_id = graphene.Int())
+    my_rides = graphene.List(RideType, user_uuid = graphene.String())
     searchable_cities = graphene.Field(SearchableCityType)
 
     def resolve_searchable_cities(self, info):
@@ -224,8 +225,10 @@ class Query(graphene.ObjectType):
 
         return SearchableCityType(start_cities=start_cities, end_cities=end_cities)
 
-    def resolve_my_rides(self, info, user_id):
-        return Ride.objects.filter(Q(driver_id=user_id) | Q(ridepassenger__passenger_id=user_id)).order_by('id').distinct()
+    def resolve_my_rides(self, info, user_uuid):
+        user = User.objects.filter(uuid = user_uuid)
+        if user[0].uuid == user_uuid:
+            return Ride.objects.filter(Q(driver_id=user[0].id) | Q(ridepassenger__passenger_id=user[0].id)).order_by('id').distinct()
 
     def resolve_all_cities(self, info, **kwargs):
         return City.objects.all().order_by('city')
@@ -244,8 +247,10 @@ class Query(graphene.ObjectType):
         else:
             return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id).order_by('departure_time')
 
-    def resolve_pending_requests(self, info, driver_id):
-        return Request.objects.filter(driver_id = driver_id, status = 'pending')
+    def resolve_pending_requests(self, info, driver_uuid):
+        driver = User.objects.filter(uuid = driver_uuid)
+        if driver[0].uuid == driver_uuid:
+            return Request.objects.filter(driver_id = driver[0].id, status = 'pending')
 
     def resolve_search_user_by_id(self, info, id):
         return User.objects.filter(id = id)[0]

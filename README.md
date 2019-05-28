@@ -10,7 +10,7 @@ All endpoints can be accessed by sending a POST request to https://ride-with-me-
 
 To get a list of all cities, a user can make the GraphQL query:
 ```
-query {
+{
   allCities {
     name
   }
@@ -28,25 +28,19 @@ or the same request in HTTP format:
   "data": {
     "allCities": [
       {
-        "name": "Prairie Ridge, WA"
+        "name": "Aspen Park, CO"
       },
       {
-        "name": "Edison, WA"
+        "name": "Atlanta, GA"
       },
       {
-          "name": "Packwood, WA"
+        "name": "Aurora, CO"
       },
       {
-          "name": "Wautauga Beach, WA"
+        "name": "Austin, TX"
       },
-      {
-          "name": "Harper, WA"
-      },
-      {
-          "name": "Telma, WA"
-      }
-      ]
-            ...
+
+...continued
 ```
 </details>
 
@@ -55,7 +49,7 @@ or the same request in HTTP format:
 To get a list of all cities associated with a ride, a user can make the GraphQL query:
 
 ```
-query {
+{
   searchableCities {
     endCities {
       id
@@ -82,12 +76,12 @@ query {
           "name": "Austin, TX"
         },
         {
-          "id": "1",
-          "name": "Denver, CO"
+          "id": "10",
+          "name": "Boulder, CO"
         },
         {
-          "id": "29",
-          "name": "Detroit, MI"
+          "id": "1",
+          "name": "Denver, CO"
         },
         {
           "id": "2",
@@ -134,14 +128,13 @@ query {
 
 To information about a user, you can can make the GraphQL query:
 ```
-query {
-  searchUserById(id:1){
+{
+  searchUserById(id: 1) {
     id
     firstName
     lastName
     email
-    phoneNumber
-    apiKey
+    uuid
     createdAt
     updatedAt
   }
@@ -159,8 +152,7 @@ query {
       "firstName": "Johnny",
       "lastName": "Depp",
       "email": "johnnydepp@gmail.com",
-      "phoneNumber": 1234567890,
-      "apiKey": "key_1",
+      "uuid": "key_1",
       "createdAt": "2019-05-20T16:23:00.067741+00:00",
       "updatedAt": "2019-05-20T16:23:00.067741+00:00"
     }
@@ -168,15 +160,17 @@ query {
 }
 ```
 </details>
+
 #### 4. Get a ride by id: ####
 
 To get a ride by id, a user can make the GraphQL query:
 ```
-query {
-  searchRideById(id:1) {
+{
+  searchRideById(id: 1) {
     id
   }
 }
+
 ```
 or the same request in HTTP format:
 
@@ -185,8 +179,8 @@ or the same request in HTTP format:
 More ride information can be requested with additional query parameters like so:
 
 ```
-query {
-  searchRideById(id:1) {
+{
+  searchRideById(id: 1) {
     id
     description
     mileage
@@ -230,31 +224,38 @@ query {
         "id": "1",
         "description": "Looking for two passengers",
         "mileage": 15,
-        "price": 5,
+        "price": 5.0,
         "totalSeats": 2,
         "departureTime": "2019-05-22",
-        "status": "cancelled",
+        "status": "new_status",
         "driver": {
-            "id": "1",
-            "firstName": "Johnny",
-            "lastName": "Depp"
+          "id": "1",
+          "firstName": "Johnny",
+          "lastName": "Depp"
         },
         "ridepassengerSet": [
-            {
-                "passenger": {
-                    "id": "4",
-                    "firstName": "Emma",
-                    "lastName": "Watson"
-                }
+          {
+            "passenger": {
+              "id": "4",
+              "firstName": "Emma",
+              "lastName": "Watson"
             }
+          },
+          {
+            "passenger": {
+              "id": "2",
+              "firstName": "Arnold",
+              "lastName": "Schwarzenegger"
+            }
+          }
         ],
         "endCity": {
-            "id": "2",
-            "name": "Golden, CO"
+          "id": "2",
+          "name": "Golden, CO"
         },
         "startCity": {
-            "id": "1",
-            "name": "Denver, CO"
+          "id": "1",
+          "name": "Denver, CO"
         }
       }
     ]
@@ -267,7 +268,7 @@ query {
 
 To get all available rides, a user can make the GraphQL query:
 ```
-query {
+{
   availableRides {
     id
   }
@@ -279,7 +280,7 @@ or the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-query {
+{
   availableRides {
     id
     description
@@ -318,58 +319,57 @@ query {
   <summary>See example</summary>
 
 ```
-
 {
   "data": {
     "availableRides": [
       {
-        "id": "7",
-        "description": "Looking to take one passenger",
-        "mileage": 930,
-        "price": 175,
+        "id": "3",
+        "description": "Anyone need a ride this weekend?",
+        "mileage": 1000,
+        "price": 200.0,
         "totalSeats": 1,
-        "departureTime": "2019-05-27",
+        "departureTime": "2019-05-29",
         "status": "available",
         "driver": {
-            "id": "7",
-            "firstName": "Natalie",
-            "lastName": "Portman"
+          "id": "2",
+          "firstName": "Arnold",
+          "lastName": "Schwarzenegger"
         },
         "ridepassengerSet": [],
         "endCity": {
-            "id": "2",
-            "name": "Golden, CO"
+          "id": "3",
+          "name": "Los Angeles, CA"
         },
         "startCity": {
-            "id": "4",
-            "name": "Austin, TX"
+          "id": "2",
+          "name": "Golden, CO"
         }
       },
       {
-        "id": "11",
-        "description": "Taking a trip",
-        "mileage": 15,
-        "price": 5,
-        "totalSeats": 1,
-        "departureTime": "2019-05-22",
+        "id": "4",
+        "description": "Looking to pick up two passengers",
+        "mileage": 922,
+        "price": 175.0,
+        "totalSeats": 2,
+        "departureTime": "2019-05-20",
         "status": "available",
         "driver": {
-            "id": "5",
-            "firstName": "Leonardo",
-            "lastName": "DiCaprio"
+          "id": "3",
+          "firstName": "Jim",
+          "lastName": "Carey"
         },
         "ridepassengerSet": [],
         "endCity": {
-            "id": "2",
-            "name": "Golden, CO"
+          "id": "4",
+          "name": "Austin, TX"
         },
         "startCity": {
-            "id": "1",
-            "name": "Denver, CO"
+          "id": "1",
+          "name": "Denver, CO"
         }
       },
-      ...
 
+...continued
 ```
 </details>
 
@@ -378,8 +378,8 @@ query {
 To search rides with a certain start and end point, a user can make the GraphQL query:
 
 ```
-query {
-  searchRidesByCities(startCityId:1 endCityId:2 departureTime:"2019-05-22") {
+{
+  searchRidesByCities(startCityId: 1, endCityId: 2, departureTime: "2019-05-22") {
     id
   }
 }
@@ -393,8 +393,8 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-query {
-  searchRidesByCities(startCityId:1 endCityId:2 departureTime:"2019-05-22") {
+{
+  searchRidesByCities(startCityId: 1, endCityId: 2, departureTime: "2019-05-22") {
     id
     description
     mileage
@@ -424,6 +424,7 @@ query {
     }
   }
 }
+
 ```
 
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{searchRidesByCities(startCityId:1,endCityId:2,departureTime:"2019-05-22"){id,description,mileage,price,totalSeats,departureTime,status,driver{id,firstName,lastName}ridepassengerSet{passenger{id,firstName,lastName}}endCity{id,name}startCity{id,name}}}
@@ -482,7 +483,6 @@ query {
           }
         },
         ...
-
 ```
 
 </details>
@@ -490,13 +490,29 @@ query {
 #### 7. Create a new ride: ####
 
 To create a new ride, a user can make the GraphQL query:
+
 ```
-mutation {
-	createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
+mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $description: String!, $mileage: Int!, $price: Float!, $totalSeats: Int!, $departureTime: Date!) {
+  createRide(driverUuid: $driverUuid, startCityId: $startCityId, endCityId: $endCityId, description: $description, mileage: $mileage, price: $price, totalSeats: $totalSeats, departureTime: $departureTime) {
     ride {
-        id
+      id
     }
   }
+}
+
+```
+Example of variables sent with that mutation:
+
+```
+{
+	"driverUuid": "key_1",
+	"startCityId": 1,
+	"endCityId": 2,
+	"description": "Going for a ride",
+	"mileage": 200,
+	"price": 50,
+	"totalSeats": 3,
+	"departureTime": "2019-05-22"
 }
 ```
 
@@ -506,8 +522,8 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-mutation {
-  createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23") {
+mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $description: String!, $mileage: Int!, $price: Float!, $totalSeats: Int!, $departureTime: Date!) {
+  createRide(driverUuid: $driverUuid, startCityId: $startCityId, endCityId: $endCityId, description: $description, mileage: $mileage, price: $price, totalSeats: $totalSeats, departureTime: $departureTime) {
     ride {
       id
       description
@@ -551,12 +567,12 @@ mutation {
   "data": {
     "createRide": {
       "ride": {
-        "id": "69",
+        "id": "76",
         "description": "Going for a ride",
-        "mileage": 100,
-        "price": 50,
-        "totalSeats": 4,
-        "departureTime": "2019-05-23",
+        "mileage": 200,
+        "price": 50.0,
+        "totalSeats": 3,
+        "departureTime": "2019-05-22",
         "status": "available",
         "driver": {
           "id": "1",
@@ -582,18 +598,26 @@ mutation {
 #### 8. Change a ride's status: ####
 
 To change the status of a ride, a user can make the GraphQL query:
+
 ```
-mutation {
-  changeRideStatus(id:1 status:"new_status"){
+mutation ($id: Int!, $status: String!) {
+  changeRideStatus(id: $id, status: $status) {
     ride {
       id
       status
     }
   }
 }
+
 ```
 
-Here is the same request in HTTP format:
+Example of variables sent with this request:
+```
+{
+	"id": 1,
+	"status": "completed"
+}
+```
 
     https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{changeRideStatus(id:1 status:"new_status"){ride {id,status}}}
 
@@ -606,7 +630,7 @@ Here is the same request in HTTP format:
     "changeRideStatus": {
       "ride": {
         "id": "1",
-        "status": "new_status"
+        "status": "completed"
       }
     }
   }
@@ -614,12 +638,12 @@ Here is the same request in HTTP format:
 ```
 </details>
 
-#### 9. Get pending requests: ####
+#### 9. Get a driver's pending requests: ####
 
-To get pending requests for a user, a user can make the GraphQL query:
+To get pending requests for a driver, a user can make the GraphQL query:
 ```
-query {
-  pendingRequests(driverId:1){
+{
+  pendingRequests(driverUuid: "key_1") {
     id
   }
 }
@@ -631,8 +655,8 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```
-query {
-  pendingRequests(driverId:1){
+{
+  pendingRequests(driverUuid: "key_1") {
     id
     ride {
       id
@@ -652,42 +676,71 @@ query {
 
 <details>
   <summary>See example</summary>
+	
 ```
 {
   "data": {
     "pendingRequests": [
       {
-        "id": "2",
+        "id": "21",
         "ride": {
           "id": "1"
         },
         "passenger": {
-          "firstName": "Jim",
-          "lastName": "Carey"
+          "firstName": "Arnold",
+          "lastName": "Schwarzenegger"
         },
-        "message": "Room for one more?",
+        "message": "This is a new request",
         "status": "pending",
-        "createdAt": "2019-05-20T16:23:00.067741+00:00"
-      }
-    ]
-  }
-}
+        "createdAt": "2019-05-28T18:22:59.014297+00:00"
+      },
+      {
+        "id": "20",
+        "ride": {
+          "id": "1"
+        },
+        "passenger": {
+          "firstName": "Arnold",
+          "lastName": "Schwarzenegger"
+        },
+        "message": "This is a new request",
+        "status": "pending",
+        "createdAt": "2019-05-28T18:22:58.469016+00:00"
+      },
+
+...continued
 ```
 </details>
 
-### 10. Create a Request ###
+#### 10. Create a Request ####
 
 To send a request to a driver, a user can make the GraphQL query:
 
 ```
-mutation($driverId: Int!, $message: String!, $passengerId:Int!, $rideId: Int!){
-  createRequest(driverId: $driverId, message: $message, passengerId: $passengerId, rideId: $rideId){
-  	request {
+mutation ($message: String!, $passengerUuid: String!, $rideId: Int!) {
+  createRequest(message: $message, passengerUuid: $passengerUuid, rideId: $rideId) {
+    request {
       id
+      message
+      passenger {
+        id
+      }
+      ride {
+        id
+      }
     }
   }
-},
-variables: {"driverId": 1, "message": "Message test sending request", "passengerId": 2, "rideId": 3}
+}
+
+```
+Example of variables sent with that mutation:
+
+```
+{
+	"message": "Message test sending request",
+	"passengerUuid": "key_1",
+	"rideId": 3
+}
 ```
 
 Here is the same request in HTTP format:
@@ -702,8 +755,14 @@ Here is the same request in HTTP format:
   "data": {
     "createRequest": {
       "request": {
-        "id": "14",
-        "message": "Message test sending request"
+        "id": "26",
+        "message": "Message test sending request",
+        "passenger": {
+          "id": "1"
+        },
+        "ride": {
+          "id": "3"
+        }
       }
     }
   }
@@ -713,7 +772,7 @@ Here is the same request in HTTP format:
 
 #### 11. Change a request's status: ####
 
-To change the status of a requests, a user can make the GraphQL query:
+To accept or deny a ride request, a driver can make the GraphQL query:
 ```
 mutation($id: Int!, $status: String!) {
   changeRequestStatus(id:$id status:$status){
@@ -728,8 +787,10 @@ mutation($id: Int!, $status: String!) {
 Example of variables sent with that mutation:
 
 ```
-{ "id": 1, "status": "new_status" }
-
+{
+	"id": 1,
+	"status": "accepted"
+}
 ```
 
 Here is the same request in HTTP format:
@@ -742,18 +803,16 @@ Here is the same request in HTTP format:
 ```
 {
   "data": {
-    "changeRideStatus": {
-      "ride": {
+    "changeRequestStatus": {
+      "request": {
         "id": "1",
-        "status": "new_status"
+        "status": "accepted"
       }
     }
   }
 }
 ```
 </details>
-
-
 
 #### 12. Delete a RidePassenger (When a passenger cancels a ride): ####
 
@@ -763,22 +822,24 @@ To cancel an upcoming Ride, a user can send the following GraphQL mutation:
 
 
 ```graphql
-mutation($passengerId: Int! $rideId: Int!){
-  deleteRidePassenger(passengerId:$passengerId, rideId:$rideId){
+mutation($passengerUuid: String! $rideId: Int!){
+  deleteRidePassenger(passengerUuid:$passengerUuid, rideId:$rideId){
     ok
     message
   }
 }
 ```
-**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted.
 
 Example of variables sent with that mutation:
 
 ```
-{"passengerId": 8, "rideId":2}
-
+{
+  "passengerUuid": "key_1",
+   "rideId":2
+ }
 ```
 
+**ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted.
 
 <details>
   <summary>See example</summary>
@@ -833,7 +894,10 @@ mutation($passengerId: Int! $rideId: Int!) {
 Example of variables sent with that mutation:
 
 ```
-{"passengerId": 8, "rideId":2}
+{
+  "passengerId": 8,
+  "rideId":2
+}
 
 ```
 
@@ -869,28 +933,143 @@ If the mutation is unsuccessful, you should see a response similar to this:
 
 </details>
 
-#### 14. Login User: ####
+#### 14. Get Rides associated with a User: ####
 
-To login or register a user, send the following GraphQL mutation:
+A user can get a list of all rides that they are associated with (as a driver or passenger) by sending the following GraphQL query:
 
 ```graphql
-mutation($email: String! $firstName: String! $lastName: String!) {
-  loginUser(email: $email firstName:$firstName lastName:$lastName){
-    user {
+{
+  myRides(userUuid: "key_1") {
+    id
+    description
+    mileage
+    price
+    totalSeats
+    departureTime
+    status
+    driver {
       id
-      lastName
       firstName
-      email
-      uuid
+      lastName
+    }
+    ridepassengerSet {
+      passenger {
+        id
+        firstName
+        lastName
+      }
+    }
+    endCity {
+      id
+      name
+    }
+    startCity {
+      id
+      name
     }
   }
 }
 ```
 
-Example variables:
+<details>
+  <summary>See example</summary>
 
 ```
-{"email": "new_user@gmail.com", "firstName": "First", "lastName": "Last"}
+{
+  "data": {
+    "myRides": [
+      {
+        "id": "1",
+        "description": "Looking for two passengers",
+        "mileage": 15,
+        "price": 5.0,
+        "totalSeats": 2,
+        "departureTime": "2019-05-22",
+        "status": "completed",
+        "driver": {
+          "id": "1",
+          "firstName": "Johnny",
+          "lastName": "Depp"
+        },
+        "ridepassengerSet": [
+          {
+            "passenger": {
+              "id": "4",
+              "firstName": "Emma",
+              "lastName": "Watson"
+            }
+          },
+          {
+            "passenger": {
+              "id": "2",
+              "firstName": "Arnold",
+              "lastName": "Schwarzenegger"
+            }
+          }
+        ],
+        "endCity": {
+          "id": "2",
+          "name": "Golden, CO"
+        },
+        "startCity": {
+          "id": "1",
+          "name": "Denver, CO"
+        }
+      },
+      {
+        "id": "21",
+        "description": "Going for a ride",
+        "mileage": 100,
+        "price": 50.0,
+        "totalSeats": 4,
+        "departureTime": "2019-05-23",
+        "status": "available",
+        "driver": {
+          "id": "1",
+          "firstName": "Johnny",
+          "lastName": "Depp"
+        },
+        "ridepassengerSet": [],
+        "endCity": {
+          "id": "2",
+          "name": "Golden, CO"
+        },
+        "startCity": {
+          "id": "1",
+          "name": "Denver, CO"
+        }
+      },
+...continued
+```
+</details>
+
+#### 15. Login User: ####
+
+To login or register a user, send the following GraphQL mutation:
+
+```graphql
+mutation ($email: String!, $firstName: String!, $lastName: String!) {
+  loginUser(email: $email, firstName: $firstName, lastName: $lastName) {
+    user {
+      id
+      firstName
+      lastName
+      email
+      uuid
+    }
+  }
+}
+
+```
+
+Example of variables sent with this request:
+
+```
+{
+	"email": "new_user@gmail.com",
+	"firstName": "First",
+	"lastName": "Last"
+}
 
 ```
 
@@ -905,11 +1084,11 @@ A uuid will be generated and returned for the user and required for all further 
   "data": {
     "loginUser": {
       "user": {
-        "id": "14",
-        "lastName": "User",
-        "firstName": "New",
+        "id": "11",
+        "firstName": "First",
+        "lastName": "Last",
         "email": "new_user@gmail.com",
-        "uuid": "f6d3963a-80cb-11e9-a5b9-88e9fe6e9b8e"
+        "uuid": "cdbadd56-8181-11e9-bfdc-9a2c58adc569"
       }
     }
   }
