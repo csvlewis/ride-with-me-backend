@@ -27,7 +27,7 @@ Ride with Me is a carpooling application that connects drivers with passengers
 6. [Authors](#authors) 
 
 
-### Description ### 
+## Description ## 
 
 [Ride With Me](https://ride-with-me-fe.herokuapp.com/) is a carpooling application that connects drivers with passengers in need of a ride for a long distance trip. It allows drivers to have a more affordable ride by charging for available seats in the car, and it allows passengers to pay an affordable fee for an eco-friendly ride. 
 
@@ -42,7 +42,7 @@ This is the back end API that allows Ride With Me to function. The back end prod
 
 
 
-### Setup ###
+## Setup ##
 To run the application locally:
 ```
 git clone https://github.com/csvlewis/ride-with-me-backend.git
@@ -55,7 +55,7 @@ python manage.py runserver
 
 ```
 
-### GraphQL Queries and Mutations: ###
+## GraphQL Queries and Mutations: ##
 
 All endpoints can be accessed by sending a POST request to https://ride-with-me-backend.herokuapp.com/graphql. Each request should have a parameter of 'query', which should have a value set to the desired GraphQL query.
 
@@ -1123,7 +1123,7 @@ A uuid will be generated and returned for the user and required for all further 
 
 
 
-### Running the Tests ###
+## Running the Tests ##
 
 We are using [pytest](https://docs.pytest.org/en/latest/) to test our code. 
 
@@ -1141,7 +1141,7 @@ open htmlcov/index.html
 ```
 
 
-### Built With ### 
+## Built With ## 
 - Django
 - Graphene-Python
 - Pytest
@@ -1149,7 +1149,7 @@ open htmlcov/index.html
 - SnapshotTest
 
 
-### Authors ###
+## Authors ##
 
 - [Chris Lewis](https://github.com/csvlewis)
 - [Teresa Knowles](https://github.com/teresa-m-knowles)
