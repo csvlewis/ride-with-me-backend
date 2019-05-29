@@ -962,8 +962,8 @@ If the mutation is unsuccessful, you should see a response similar to this:
 A user can get a list of all rides that they are associated with (as a driver or passenger) by sending the following GraphQL query:
 
 ```graphql
-{
-  myRides(userUuid: "key_1") {
+query ($userUuid: String!) {
+  myRides(userUuid: $userUuid) {
     id
     description
     mileage
@@ -992,6 +992,14 @@ A user can get a list of all rides that they are associated with (as a driver or
       name
     }
   }
+}
+```
+
+Example of variables sent with this request:
+
+```graphql
+{
+    "userUuid": "c96808f0-8195-11e9-93f6-88e9fe6e9b8e"
 }
 ```
 
