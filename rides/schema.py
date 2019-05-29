@@ -141,7 +141,7 @@ class UpdateRequest(graphene.Mutation):
         end_city = str(ride[0].end_city)
         departure_date = str(ride[0].departure_date)
         passenger_email = request.passenger.email
-        send_mail(f'{driver_name} has rejected your ride request', f'{driver_name} has rejected your ride request from {start_city} to {end_city} on {departure_date}. If you would like to search for a new ride, visit https://ride-with-me-fe.herokuapp.com/findride.', 'admin@ride-with-me-fe.herokuapp.com', ['13chlewis@gmail.com'], fail_silently=False)
+        send_mail(f'{driver_name} has rejected your ride request', f'{driver_name} has rejected your ride request from {start_city} to {end_city} on {departure_date}. If you would like to search for a new ride, visit https://ride-with-me-fe.herokuapp.com/findride.', 'admin@ride-with-me-fe.herokuapp.com', [f'{passenger_email}'], fail_silently=False)
 
         return UpdateRequest(request)
 
