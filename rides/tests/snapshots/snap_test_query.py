@@ -164,64 +164,6 @@ snapshots['test_all_cities 1'] = {
     }
 }
 
-snapshots['test_all_available_rides 1'] = {
-    'data': {
-        'availableRides': [
-            {
-                'id': '1'
-            },
-            {
-                'id': '2'
-            },
-            {
-                'id': '4'
-            },
-            {
-                'id': '5'
-            },
-            {
-                'id': '6'
-            },
-            {
-                'id': '7'
-            },
-            {
-                'id': '9'
-            },
-            {
-                'id': '10'
-            },
-            {
-                'id': '11'
-            },
-            {
-                'id': '12'
-            }
-        ]
-    }
-}
-
-snapshots['test_create_new_ride 1'] = {
-    'data': {
-        'createRide': {
-            'ride': {
-                'id': '13'
-            }
-        }
-    }
-}
-
-snapshots['test_change_ride_status 1'] = {
-    'data': {
-        'changeRideStatus': {
-            'ride': {
-                'id': '1',
-                'status': 'new_status'
-            }
-        }
-    }
-}
-
 snapshots['test_searchable_cities 1'] = {
     'data': {
         'searchableCities': [
@@ -297,6 +239,43 @@ snapshots['test_ride_by_id 1'] = {
     }
 }
 
+snapshots['test_all_available_rides 1'] = {
+    'data': {
+        'availableRides': [
+            {
+                'id': '1'
+            },
+            {
+                'id': '2'
+            },
+            {
+                'id': '4'
+            },
+            {
+                'id': '5'
+            },
+            {
+                'id': '6'
+            },
+            {
+                'id': '7'
+            },
+            {
+                'id': '9'
+            },
+            {
+                'id': '10'
+            },
+            {
+                'id': '11'
+            },
+            {
+                'id': '12'
+            }
+        ]
+    }
+}
+
 snapshots['test_available_ride_search 1'] = {
     'data': {
         'searchRidesByCities': [
@@ -307,6 +286,30 @@ snapshots['test_available_ride_search 1'] = {
                 'id': '11'
             }
         ]
+    }
+}
+
+snapshots['test_create_new_ride 1'] = {
+    'data': {
+        'createRide': {
+            'ride': {
+                'description': 'Test ride',
+                'id': '13',
+                'mileage': 1378,
+                'travelTime': '20 hours 9 mins'
+            }
+        }
+    }
+}
+
+snapshots['test_change_ride_status 1'] = {
+    'data': {
+        'changeRideStatus': {
+            'ride': {
+                'id': '1',
+                'status': 'new_status'
+            }
+        }
     }
 }
 
@@ -399,7 +402,7 @@ snapshots['test_register_user 1'] = {
                 'firstName': 'New',
                 'id': '11',
                 'lastName': 'User',
-                'uuid': 'd9cf94a2-822a-11e9-bca0-88e9fe6e9b8e'
+                'uuid': '8e05c800-8231-11e9-8125-88e9fe841b0d'
             }
         }
     }

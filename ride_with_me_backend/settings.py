@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%)5t!wubq9$+^460$4w97s2(-g(fr7ygp^@0e_1uhsc4e52qg#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -133,7 +133,6 @@ GRAPHENE = {
 CORS_ORIGIN_ALLOW_ALL = True
 
 TEST_RUNNER = 'snapshottest.django.TestRunner'
-
 
 # Configure Django App for Heroku.
 import django_heroku

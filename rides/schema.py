@@ -5,6 +5,9 @@ from django.db.models.functions import Concat
 from django.db.models import Count
 from django.db.models import Value
 from django.db.models import Q
+import requests
+from envparse import env
+env.read_envfile()
 
 from .models import City
 from .models import Ride
@@ -82,10 +85,27 @@ class CreateRide(graphene.Mutation):
         total_seats = graphene.Int()
         departure_date = graphene.types.datetime.Date()
 
-    def mutate(self, info, driver_uuid, start_city_id, end_city_id, description, mileage, price, total_seats, departure_date):
+    def mutate(self, info, driver_uuid, start_city_id, end_city_id, description, price, total_seats, departure_date):
+        start_city = City.objects.get(pk=start_city_id)
+        end_city = City.objects.get(pk=end_city_id)
+        request = requests.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s+%s&destinations=%s+%s&key=%s' % (str(start_city.city), str(start_city.state), str(end_city.city), str(end_city.state), env.str('GOOGLE_MAPS_API_KEY')))
+        response = request.json()
+        mileage = int(round(response["rows"][0]["elements"][0]["distance"]["value"] * 0.00062137))
+        travel_time = response["rows"][0]["elements"][0]["duration"]["text"]
+
         driver = User.objects.filter(uuid = driver_uuid)
         if driver[0].uuid == driver_uuid:
-            ride = Ride(driver_id=driver[0].id, start_city_id=start_city_id, end_city_id=end_city_id, description=description, mileage=mileage, price=price, total_seats=total_seats, departure_date=departure_date)
+            ride = Ride(
+                        driver_id=driver[0].id,
+                        start_city_id=start_city_id,
+                        end_city_id=end_city_id,
+                        description=description,
+                        mileage=mileage,
+                        travel_time=travel_time,
+                        price=price,
+                        total_seats=total_seats,
+                        departure_date=departure_date,
+                        status='available')
             ride.save()
 
         return CreateRide(ride=ride)

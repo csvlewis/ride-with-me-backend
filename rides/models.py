@@ -27,6 +27,7 @@ class Ride(models.Model):
     end_city = models.ForeignKey(City, related_name='end_city', on_delete=models.CASCADE)
     description = models.TextField()
     mileage = models.IntegerField()
+    travel_time = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     total_seats = models.IntegerField()
     departure_date = models.DateField()

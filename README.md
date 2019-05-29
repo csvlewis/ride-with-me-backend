@@ -509,13 +509,38 @@ continued...
 
 #### 7. Create a new ride: ####
 
-To create a new ride, a user can make the GraphQL query:
+To create a new ride, a user needs to pass the following parameters to the mutation:
+- driverUUid: as a String
+- startCityId: as an Integer
+- endCityId: as an Integer
+- description: as a String
+- price: as a Float
+- totalSeats: as an Integer
+- departureDate: as a Date ("2019-05-29")
+
+The mutation will calculate:
+- travelTime: as a String
+- mileage: as an Integer
 
 ```graphql
-mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $description: String!, $mileage: Int!, $price: Float!, $totalSeats: Int!, $departureDate: Date!) {
-  createRide(driverUuid: $driverUuid, startCityId: $startCityId, endCityId: $endCityId, description: $description, mileage: $mileage, price: $price, totalSeats: $totalSeats, departureDate: $departureDate) {
+mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $description: String!, $price: Float!, $totalSeats: Int!, $departureDate: Date!) {
+  createRide(driverUuid: $driverUuid, startCityId: $startCityId, endCityId: $endCityId, description: $description, price: $price, totalSeats: $totalSeats, departureDate: $departureDate) {
     ride {
       id
+      description
+      travelTime
+      mileage
+      driver{
+        firstName
+        lastName
+      }
+      status
+      endCity{
+        name
+      }
+      startCity{
+        name
+      }
     }
   }
 }
@@ -524,11 +549,10 @@ Example of variables sent with that mutation:
 
 ```graphql
 {
-	"driverUuid": "key_1",
+	"driverUuid": "cbe2753e-8195-11e9-93f6-88e9fe6e9b8e",
 	"startCityId": 1,
 	"endCityId": 2,
 	"description": "Going for a ride",
-	"mileage": 200,
 	"price": 50,
 	"totalSeats": 3,
 	"departureDate": "2019-05-22"
