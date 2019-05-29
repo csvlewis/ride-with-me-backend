@@ -2,7 +2,6 @@
 
 Ride with Me is a carpooling application that connects drivers with passengers
 
-
 ## Table of Contents  ##
 1. [Description](#description)  
 2. [Setup](#setup)
@@ -26,7 +25,6 @@ Ride with Me is a carpooling application that connects drivers with passengers
 5. [Built With](#built-with)
 6. [Authors](#authors)
 
-
 ## Description ##
 
 [Ride With Me](https://ride-with-me-fe.herokuapp.com/) is a carpooling application that connects drivers with passengers in need of a ride for a long distance trip. It allows drivers to have a more affordable ride by charging for available seats in the car, and it allows passengers to pay an affordable fee for an eco-friendly ride.
@@ -35,12 +33,9 @@ By using Ride With Me, a user can search for a ride between different cities, ch
 
 All the payments are made in person, so there are no transaction fees involved.
 
-
 The website is live on https://ride-with-me-fe.herokuapp.com/
 
 This is the back end API that allows Ride With Me to function. The back end production site is https://ride-with-me-backend.herokuapp.com/
-
-
 
 ## Setup ##
 To run the application locally:
@@ -75,7 +70,7 @@ or the same request in HTTP format:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "allCities": [
@@ -91,7 +86,6 @@ or the same request in HTTP format:
       {
         "name": "Austin, TX"
       },
-
 ...continued
 ```
 </details>
@@ -112,7 +106,7 @@ To get a list of all cities associated with a ride, a user can make the GraphQL 
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "searchableCities": [
@@ -150,8 +144,8 @@ To get a list of all cities associated with a ride, a user can make the GraphQL 
 
 To information about a user, you can can make the GraphQL query:
 ```graphql
-{
-  searchUserById(id: 1) {
+query ($userId: Int!) {
+  searchUserById(id: $userId) {
     id
     firstName
     lastName
@@ -163,10 +157,16 @@ To information about a user, you can can make the GraphQL query:
 }
 ```
 
+Example of variables sent with this request:
+```
+{
+	"userId": 1
+}
+```
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "searchUserById": {
@@ -187,12 +187,20 @@ To information about a user, you can can make the GraphQL query:
 
 To get a ride by id, a user can make the GraphQL query:
 ```graphql
-{
-  searchRideById(id: 1) {
+query ($rideId: Int!) {
+  searchRideById(id: $rideId) {
     id
   }
 }
 ```
+
+Example of variables sent with this request:
+```
+{
+	"rideId": 1
+}
+```
+
 or the same request in HTTP format:
 
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{searchRideById(id:1){id}}
@@ -200,8 +208,8 @@ or the same request in HTTP format:
 More ride information can be requested with additional query parameters like so:
 
 ```graphql
-{
-  searchRideById(id: 1) {
+query ($rideId: Int!) {
+  searchRideById(id: $rideId) {
     id
     description
     mileage
@@ -237,7 +245,7 @@ More ride information can be requested with additional query parameters like so:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "searchRideById": [
@@ -339,7 +347,7 @@ More ride information can be requested with additional query parameters like so:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "availableRides": [
@@ -389,7 +397,6 @@ More ride information can be requested with additional query parameters like so:
           "name": "Denver, CO"
         }
       },
-
 ...continued
 ```
 </details>
@@ -399,10 +406,17 @@ More ride information can be requested with additional query parameters like so:
 To search rides with a certain start and end point, a user can make the GraphQL query:
 
 ```graphql
-{
-  searchRidesByCities(startCityId: 1, endCityId: 2, departureDate: "2019-05-22") {
+query ($startCityId: Int! $endCityId: Int! $departureDate: Date!) {
+  searchRidesByCities(startCityId: $startCityId, endCityId: $endCityId, departureDate: $departureDate) {
     id
   }
+}
+```
+
+Example of variables sent with this request:
+```
+{
+	"startCityId": 1, "endCityId": 2, "departureDate": "2019-05-22"
 }
 ```
 
@@ -414,8 +428,8 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```graphql
-{
-  searchRidesByCities(startCityId: 1, endCityId: 2, departureDate: "2019-05-22") {
+query ($startCityId: Int!, $endCityId: Int!, $departureDate: Date!) {
+  searchRidesByCities(startCityId: $startCityId, endCityId: $endCityId, departureDate: $departureDate) {
     id
     description
     mileage
@@ -452,7 +466,7 @@ More ride information can be requested with additional query parameters like so:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
   {
     "data": {
       "searchRidesByCities": [
@@ -605,7 +619,7 @@ mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $descripti
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "createRide": {
@@ -661,7 +675,7 @@ Example of variables sent with this request:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "changeRideStatus": {
@@ -679,12 +693,19 @@ Example of variables sent with this request:
 
 To get pending requests for a driver, a user can make the GraphQL query:
 ```graphql
-{
-  pendingRequests(driverUuid: "key_1") {
+query ($driverUuid: String!) {
+  pendingRequests(driverUuid: $driverUuid) {
     id
   }
 }
 ```
+Example of variables send with this request:
+```
+{
+	"driverUuid": "c96808f0-8195-11e9-93f6-88e9fe6e9b8e"
+}
+```
+
 
 Here is the same request in HTTP format:
 
@@ -692,8 +713,8 @@ Here is the same request in HTTP format:
 
 More ride information can be requested with additional query parameters like so:
 ```graphql
-{
-  pendingRequests(driverUuid: "key_1") {
+query ($driverUuid: String!) {
+  pendingRequests(driverUuid: $driverUuid) {
     id
     ride {
       id
@@ -714,7 +735,7 @@ More ride information can be requested with additional query parameters like so:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "pendingRequests": [
@@ -786,7 +807,7 @@ Here is the same request in HTTP format:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "createRequest": {
@@ -837,7 +858,7 @@ Here is the same request in HTTP format:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "changeRequestStatus": {
@@ -883,7 +904,7 @@ Example of variables sent with that mutation:
 
 If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
 
-```json
+```
 {
   "data": {
     "deleteRidePassenger": {
@@ -896,7 +917,7 @@ If the mutation is successful (there was a ride with the given rideId that had a
 
 If the mutation is unsuccessful, you should see a response similar to this:
 
-```json
+```
 {
   "data": {
     "deleteRidePassenger": {
@@ -941,7 +962,7 @@ Example of variables sent with that mutation:
 
 If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
 
-```json
+```
 {
   "data": {
     "createRidePassenger": {
@@ -954,7 +975,7 @@ If the mutation is successful (there was a ride with the given rideId that had a
 
 If the mutation is unsuccessful, you should see a response similar to this:
 
-```json
+```
 {
   "data": {
     "createRidePassenger": {
@@ -1016,7 +1037,7 @@ Example of variables sent with this request:
 <details>
   <summary>See example of response</summary>
 
-```json
+```
 {
   "data": {
     "myRides": [
@@ -1119,7 +1140,7 @@ Example of variables sent with this request:
 
 A uuid will be generated and returned for the user and required for all further requests that need authorization.
 
-```json
+```
 {
   "data": {
     "loginUser": {
