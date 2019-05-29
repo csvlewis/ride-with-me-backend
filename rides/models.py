@@ -16,6 +16,7 @@ class City(models.Model):
 class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    image_url = models.CharField(max_length=200)
     email = models.EmailField(max_length=100)
     uuid = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)

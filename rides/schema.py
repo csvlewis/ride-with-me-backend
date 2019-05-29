@@ -56,9 +56,10 @@ class LoginUser(graphene.Mutation):
     class Arguments:
         first_name = graphene.String()
         last_name = graphene.String()
+        image_url = graphene.String()
         email = graphene.String()
 
-    def mutate(self, info, first_name, last_name, email):
+    def mutate(self, info, first_name, last_name, email, image_url):
         user = User.objects.filter(email=email)
         generated_uuid = uuid.uuid1()
         if user.count() == 0:
@@ -66,7 +67,8 @@ class LoginUser(graphene.Mutation):
                 first_name  = first_name,
                 last_name  = last_name,
                 email  = email,
-                uuid  = generated_uuid
+                uuid  = generated_uuid,
+                image_url = image_url
             )
         else:
             user = user[0]
