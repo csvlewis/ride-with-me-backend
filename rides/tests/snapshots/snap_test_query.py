@@ -399,7 +399,7 @@ snapshots['test_register_user 1'] = {
                 'firstName': 'New',
                 'id': '11',
                 'lastName': 'User',
-                'uuid': '774fff7a-8229-11e9-940a-88e9fe6e9b8e'
+                'uuid': 'd9cf94a2-822a-11e9-bca0-88e9fe6e9b8e'
             }
         }
     }
