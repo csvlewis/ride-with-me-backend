@@ -56,6 +56,7 @@ class LoginUser(graphene.Mutation):
     class Arguments:
         first_name = graphene.String()
         last_name = graphene.String()
+        image_url = graphene.String()
         email = graphene.String()
 
     def mutate(self, info, first_name, last_name, email, image_url):
