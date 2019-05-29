@@ -6,8 +6,7 @@
       "first_name": "Johnny",
       "last_name": "Depp",
       "email": "johnnydepp@gmail.com",
-      "phone_number": "1234567890",
-      "api_key": "key_1",
+      "uuid": "c96808f0-8195-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -19,8 +18,7 @@
       "first_name": "Arnold",
       "last_name": "Schwarzenegger",
       "email": "arnoldscharzenegger@gmail.com",
-      "phone_number": "9876543210",
-      "api_key": "key_2",
+      "uuid": "cbe2753e-8195-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -32,8 +30,7 @@
       "first_name": "Jim",
       "last_name": "Carey",
       "email": "jimcarey@gmail.com",
-      "phone_number": "1112223333",
-      "api_key": "key_3",
+      "uuid": "dbdf7342-8195-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -45,8 +42,7 @@
       "first_name": "Emma",
       "last_name": "Watson",
       "email": "emmawatson@gmail.com",
-      "phone_number": "1111111111",
-      "api_key": "key_4",
+      "uuid": "ea9a8052-8195-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -58,8 +54,7 @@
       "first_name": "Leonardo",
       "last_name": "DiCaprio",
       "email": "leonardodicaprio@gmail.com",
-      "phone_number": "2222222222",
-      "api_key": "key_5",
+      "uuid": "f0c45ba6-8195-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -71,8 +66,7 @@
       "first_name": "Tom",
       "last_name": "Cruise",
       "email": "tomcruise@gmail.com",
-      "phone_number": "3333333333",
-      "api_key": "key_6",
+      "uuid": "f4e48ea4-8195-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -84,8 +78,7 @@
       "first_name": "Natalie",
       "last_name": "Portman",
       "email": "natalieportman@gmail.com",
-      "phone_number": "4444444444",
-      "api_key": "key_7",
+      "uuid": "3fc1d54e-8196-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -97,8 +90,7 @@
       "first_name": "Tom",
       "last_name": "Hanks",
       "email": "tomhanks@gmail.com",
-      "phone_number": "5555555555",
-      "api_key": "key_8",
+      "uuid": "445d74a0-8196-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -110,8 +102,7 @@
       "first_name": "Jennifer",
       "last_name": "Aniston",
       "email": "jenniferaniston@gmail.com",
-      "phone_number": "6666666666",
-      "api_key": "key_9",
+      "uuid": "489de496-8196-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -123,8 +114,7 @@
       "first_name": "Brad",
       "last_name": "Pitt",
       "email": "bradpitt@gmail.com",
-      "phone_number": "7777777777",
-      "api_key": "key_10",
+      "uuid": "4bf939f6-8196-11e9-93f6-88e9fe6e9b8e",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }

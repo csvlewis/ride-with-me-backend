@@ -30,8 +30,8 @@ class Ride(models.Model):
     travel_time = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     total_seats = models.IntegerField()
-    departure_time = models.DateField()
-    status = models.CharField(max_length=100)
+    departure_date = models.DateField()
+    status = models.CharField(max_length=100, default='available')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

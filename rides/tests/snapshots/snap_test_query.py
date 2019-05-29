@@ -11,154 +11,154 @@ snapshots['test_all_cities 1'] = {
     'data': {
         'allCities': [
             {
-                'name': 'Denver, CO'
-            },
-            {
-                'name': 'Golden, CO'
-            },
-            {
-                'name': 'Los Angeles, CA'
-            },
-            {
-                'name': 'Austin, TX'
-            },
-            {
-                'name': 'Las Vegas, NV'
-            },
-            {
                 'name': 'Aspen Park, CO'
-            },
-            {
-                'name': 'Milwaukee, WI'
-            },
-            {
-                'name': 'Aurora, CO'
-            },
-            {
-                'name': 'Vail, CO'
-            },
-            {
-                'name': 'Boulder, CO'
-            },
-            {
-                'name': 'Fort Collins, CO'
-            },
-            {
-                'name': 'Eldora, CO'
-            },
-            {
-                'name': 'Orlando, FL'
-            },
-            {
-                'name': 'Houston, TX'
-            },
-            {
-                'name': 'San Diego, CA'
-            },
-            {
-                'name': 'Indianapolis, IN'
-            },
-            {
-                'name': 'San Francisco, IN'
-            },
-            {
-                'name': 'Fort Worth, TX'
-            },
-            {
-                'name': 'El Paso, TX'
-            },
-            {
-                'name': 'Boston, MA'
-            },
-            {
-                'name': 'Omaha, NE'
-            },
-            {
-                'name': 'Miami, FL'
             },
             {
                 'name': 'Atlanta, GA'
             },
             {
-                'name': 'Oakland, CA'
+                'name': 'Aurora, CO'
             },
             {
-                'name': 'Jersey City, NJ'
-            },
-            {
-                'name': 'Saint Paul, MN'
-            },
-            {
-                'name': 'Lincoln, NE'
-            },
-            {
-                'name': 'Montgomery, AL'
-            },
-            {
-                'name': 'Detroit, MI'
-            },
-            {
-                'name': 'Columbus, OH'
-            },
-            {
-                'name': 'Phoenix, AZ'
-            },
-            {
-                'name': 'Virginia Beach, VA'
-            },
-            {
-                'name': 'Raleigh, NC'
-            },
-            {
-                'name': 'Tulsa, OK'
-            },
-            {
-                'name': 'New Orleans, LA'
-            },
-            {
-                'name': 'Cincinnati, IA'
-            },
-            {
-                'name': 'Newark, NJ'
+                'name': 'Austin, TX'
             },
             {
                 'name': 'Boise City, OK'
             },
             {
-                'name': 'Little Rock, AR'
+                'name': 'Boston, MA'
             },
             {
-                'name': 'Knoxville, TN'
+                'name': 'Boulder, CO'
             },
             {
-                'name': 'Philadelphia, PA'
-            },
-            {
-                'name': 'Washington, DC'
-            },
-            {
-                'name': 'Salt Lake City, UT'
-            },
-            {
-                'name': 'Santa Cruz, CA'
-            },
-            {
-                'name': 'Pittsburgh, PA'
-            },
-            {
-                'name': 'Wichita, KS'
-            },
-            {
-                'name': 'Spokane, WA'
+                'name': 'Cincinnati, IA'
             },
             {
                 'name': 'Cleveland, OH'
             },
             {
+                'name': 'Columbus, OH'
+            },
+            {
+                'name': 'Denver, CO'
+            },
+            {
+                'name': 'Detroit, MI'
+            },
+            {
+                'name': 'El Paso, TX'
+            },
+            {
+                'name': 'Eldora, CO'
+            },
+            {
+                'name': 'Fort Collins, CO'
+            },
+            {
+                'name': 'Fort Worth, TX'
+            },
+            {
+                'name': 'Golden, CO'
+            },
+            {
                 'name': 'Greeley, CO'
             },
             {
+                'name': 'Houston, TX'
+            },
+            {
+                'name': 'Indianapolis, IN'
+            },
+            {
+                'name': 'Jersey City, NJ'
+            },
+            {
+                'name': 'Knoxville, TN'
+            },
+            {
+                'name': 'Las Vegas, NV'
+            },
+            {
+                'name': 'Lincoln, NE'
+            },
+            {
+                'name': 'Little Rock, AR'
+            },
+            {
+                'name': 'Los Angeles, CA'
+            },
+            {
+                'name': 'Miami, FL'
+            },
+            {
+                'name': 'Milwaukee, WI'
+            },
+            {
+                'name': 'Montgomery, AL'
+            },
+            {
+                'name': 'New Orleans, LA'
+            },
+            {
+                'name': 'Newark, NJ'
+            },
+            {
+                'name': 'Oakland, CA'
+            },
+            {
+                'name': 'Omaha, NE'
+            },
+            {
+                'name': 'Orlando, FL'
+            },
+            {
+                'name': 'Philadelphia, PA'
+            },
+            {
+                'name': 'Phoenix, AZ'
+            },
+            {
+                'name': 'Pittsburgh, PA'
+            },
+            {
                 'name': 'Pueblo, CO'
+            },
+            {
+                'name': 'Raleigh, NC'
+            },
+            {
+                'name': 'Saint Paul, MN'
+            },
+            {
+                'name': 'Salt Lake City, UT'
+            },
+            {
+                'name': 'San Diego, CA'
+            },
+            {
+                'name': 'San Francisco, IN'
+            },
+            {
+                'name': 'Santa Cruz, CA'
+            },
+            {
+                'name': 'Spokane, WA'
+            },
+            {
+                'name': 'Tulsa, OK'
+            },
+            {
+                'name': 'Vail, CO'
+            },
+            {
+                'name': 'Virginia Beach, VA'
+            },
+            {
+                'name': 'Washington, DC'
+            },
+            {
+                'name': 'Wichita, KS'
             }
         ]
     }
@@ -171,7 +171,7 @@ snapshots['test_all_available_rides 1'] = {
                 'id': '1'
             },
             {
-                'id': '3'
+                'id': '2'
             },
             {
                 'id': '4'
@@ -186,7 +186,16 @@ snapshots['test_all_available_rides 1'] = {
                 'id': '7'
             },
             {
+                'id': '9'
+            },
+            {
+                'id': '10'
+            },
+            {
                 'id': '11'
+            },
+            {
+                'id': '12'
             }
         ]
     }
@@ -196,31 +205,9 @@ snapshots['test_create_new_ride 1'] = {
     'data': {
         'createRide': {
             'ride': {
-                'id': '12'
+                'id': '13'
             }
         }
-    }
-}
-
-snapshots['test_find_ride_by_id 1'] = {
-    'data': {
-        'searchRideById': [
-            {
-                'id': '1'
-            }
-        ]
-    }
-}
-
-snapshots['test_pending_requests 1'] = {
-    'data': {
-        'pendingRequests': [
-            {
-                'id': '2',
-                'message': 'Room for one more?',
-                'status': 'pending'
-            }
-        ]
     }
 }
 
@@ -235,12 +222,184 @@ snapshots['test_change_ride_status 1'] = {
     }
 }
 
+snapshots['test_searchable_cities 1'] = {
+    'data': {
+        'searchableCities': [
+            {
+                'id': '4',
+                'name': 'Austin, TX'
+            },
+            {
+                'id': '10',
+                'name': 'Boulder, CO'
+            },
+            {
+                'id': '1',
+                'name': 'Denver, CO'
+            },
+            {
+                'id': '2',
+                'name': 'Golden, CO'
+            },
+            {
+                'id': '14',
+                'name': 'Houston, TX'
+            },
+            {
+                'id': '5',
+                'name': 'Las Vegas, NV'
+            },
+            {
+                'id': '3',
+                'name': 'Los Angeles, CA'
+            },
+            {
+                'id': '7',
+                'name': 'Milwaukee, WI'
+            },
+            {
+                'id': '24',
+                'name': 'Oakland, CA'
+            },
+            {
+                'id': '26',
+                'name': 'Saint Paul, MN'
+            },
+            {
+                'id': '44',
+                'name': 'Santa Cruz, CA'
+            }
+        ]
+    }
+}
+
+snapshots['test_user_by_id 1'] = {
+    'data': {
+        'searchUserById': {
+            'createdAt': '2019-05-20T16:23:00.067741+00:00',
+            'email': 'johnnydepp@gmail.com',
+            'firstName': 'Johnny',
+            'id': '1',
+            'lastName': 'Depp',
+            'updatedAt': '2019-05-20T16:23:00.067741+00:00',
+            'uuid': 'c96808f0-8195-11e9-93f6-88e9fe6e9b8e'
+        }
+    }
+}
+
+snapshots['test_ride_by_id 1'] = {
+    'data': {
+        'searchRideById': [
+            {
+                'id': '1'
+            }
+        ]
+    }
+}
+
+snapshots['test_available_ride_search 1'] = {
+    'data': {
+        'searchRidesByCities': [
+            {
+                'id': '1'
+            },
+            {
+                'id': '11'
+            }
+        ]
+    }
+}
+
+snapshots['test_driver_pending_requests 1'] = {
+    'data': {
+        'pendingRequests': [
+            {
+                'id': '2'
+            }
+        ]
+    }
+}
+
+snapshots['test_create_request 1'] = {
+    'data': {
+        'createRequest': {
+            'request': {
+                'id': '11',
+                'message': 'Test message',
+                'passenger': {
+                    'id': '1'
+                },
+                'ride': {
+                    'id': '5'
+                }
+            }
+        }
+    }
+}
+
 snapshots['test_change_request_status 1'] = {
     'data': {
         'changeRequestStatus': {
             'request': {
                 'id': '1',
                 'status': 'new_status'
+            }
+        }
+    }
+}
+
+snapshots['test_delete_ridepassenger 1'] = {
+    'data': {
+        'deleteRidePassenger': {
+            'message': 'The passenger with id 2 has been deleted from the ride with id 8. Now the ride has 1 available seat(s).',
+            'ok': True
+        }
+    }
+}
+
+snapshots['test_add_ridepassenger 1'] = {
+    'data': {
+        'createRidePassenger': {
+            'message': 'The passenger with id 1 has been added to the ride with id 6. Now the ride has 1 available seat(s).',
+            'ok': True
+        }
+    }
+}
+
+snapshots['test_get_my_rides 1'] = {
+    'data': {
+        'myRides': [
+            {
+                'description': "I'm taking a trip to Golden this weekend, room for two passengers!",
+                'id': '1'
+            }
+        ]
+    }
+}
+
+snapshots['test_login_user 1'] = {
+    'data': {
+        'loginUser': {
+            'user': {
+                'email': 'johnnydepp@gmail.com',
+                'firstName': 'Johnny',
+                'id': '1',
+                'lastName': 'Depp',
+                'uuid': 'c96808f0-8195-11e9-93f6-88e9fe6e9b8e'
+            }
+        }
+    }
+}
+
+snapshots['test_register_user 1'] = {
+    'data': {
+        'loginUser': {
+            'user': {
+                'email': 'newuser@gmail.com',
+                'firstName': 'New',
+                'id': '11',
+                'lastName': 'User',
+                'uuid': 'd9cf94a2-822a-11e9-bca0-88e9fe6e9b8e'
             }
         }
     }

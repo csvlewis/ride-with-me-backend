@@ -81,7 +81,7 @@ class CreateRide(graphene.Mutation):
         mileage = graphene.Int()
         price = graphene.Float()
         total_seats = graphene.Int()
-        departure_time = graphene.types.datetime.Date()
+        departure_date = graphene.types.datetime.Date()
 
     def mutate(self, info, driver_uuid, start_city_id, end_city_id, description, price, total_seats, departure_time):
         start_city = City.objects.get(pk=start_city_id)
@@ -226,7 +226,7 @@ class Query(graphene.ObjectType):
     all_cities = graphene.List(CityType)
     available_rides = graphene.List(RideType)
     search_ride_by_id = graphene.List(RideType, id = graphene.Int())
-    search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_time = graphene.types.datetime.Date())
+    search_rides_by_cities = graphene.List(RideType, start_city_id = graphene.Int(), end_city_id = graphene.Int(), departure_date = graphene.types.datetime.Date())
     pending_requests = graphene.List(RequestType, driver_uuid = graphene.String())
     search_user_by_id = graphene.Field(UserType, id = graphene.Int())
     request = graphene.Field(RequestType)
@@ -250,13 +250,13 @@ class Query(graphene.ObjectType):
     def resolve_search_ride_by_id(self, info, id):
         return Ride.objects.filter(id = id)
 
-    def resolve_search_rides_by_cities(self, info, start_city_id, end_city_id, departure_time = None):
+    def resolve_search_rides_by_cities(self, info, start_city_id, end_city_id, departure_date = None):
 
-        if departure_time and Ride.objects.filter(status='available', start_city_id = start_city_id, end_city_id = end_city_id, departure_time__gte = departure_time):
-            return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id, departure_time__gte = departure_time).order_by('departure_time')
+        if departure_date and Ride.objects.filter(status='available', start_city_id = start_city_id, end_city_id = end_city_id, departure_date__gte = departure_date):
+            return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id, departure_date__gte = departure_date).order_by('departure_date')
 
         else:
-            return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id).order_by('departure_time')
+            return Ride.objects.filter(status = 'available', start_city_id = start_city_id, end_city_id = end_city_id).order_by('departure_date')
 
     def resolve_pending_requests(self, info, driver_uuid):
         driver = User.objects.filter(uuid = driver_uuid)
