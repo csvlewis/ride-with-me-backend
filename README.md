@@ -4,8 +4,9 @@ Ride with Me is a carpooling application that connects drivers with passengers
 
 ## Table of Contents  ##
 1. [Description](#description)  
-2. [Setup](#setup)
-3. [GraphQL Queries and Mutations](#graphql-queries-and-mutations)
+2. [How it Works](#how-it-works)
+3. [Setup](#setup)
+4. [GraphQL Queries and Mutations](#graphql-queries-and-mutations)
 	* [Get all cities](#1-get-all-cities)
 	* [Get searchable cities](#2-get-searchable-cities)
 	* [Get a user by id](#3-get-a-user-by-id)
@@ -21,9 +22,9 @@ Ride with Me is a carpooling application that connects drivers with passengers
 	* [Add a RidePassenger (When a driver accepts a ride request)](#13-add-a-ridepassenger-when-a-driver-accepts-a-ride-request)
 	* [Get Rides associated with a User](#14-get-rides-associated-with-a-user)
 	* [Login User](#15-login-user)
-4. [Running the tests](#running-the-tests)
-5. [Built With](#built-with)
-6. [Authors](#authors)
+5. [Running the tests](#running-the-tests)
+6. [Built With](#built-with)
+7. [Authors](#authors)
 
 ## Description ##
 
@@ -36,6 +37,20 @@ All the payments are made in person, so there are no transaction fees involved.
 The website is live on https://ride-with-me-fe.herokuapp.com/
 
 This is the back end API that allows Ride With Me to function. The back end production site is https://ride-with-me-backend.herokuapp.com/
+
+## How it Works ##
+#### 1. Find a ride ####
+ Choose your desired departure and arrival cities, and, optionally, your desired travel date. You will then see a list of available rides between those cities. Read their descriptions, see the price and pick a ride you'd like to join.
+ 
+#### 2. Send a request ####
+  Click on "Request to Join" to send a message to the driver. Be friendly! They can either accept or deny your request. 
+  
+#### 3. Get in touch #### 
+  Once your request has been accepted, you'll receive an email with your driver's contact information, so you can get in touch. Coordinate the pickup location, departure time and payment method.
+  
+#### 4. Travel #### 
+  On the day of your ride, meet your driver at the pickup location. Remember to pay your driver before starting the ride. 
+  Enjoy your ride!
 
 ## Setup ##
 To run the application locally:
