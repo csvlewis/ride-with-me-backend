@@ -35,6 +35,7 @@ snapshottest = "*"
 mixer = "*"
 pytest-cov = "*"
 requests = "*"
+envparse = "*"
 
 [requires]
 python_version = "3.7"
