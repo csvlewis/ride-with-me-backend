@@ -49,8 +49,14 @@ class Request(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return 'ID: %s, Message: %s' % (self.id, self.message)
+
 class RidePassenger(models.Model):
     ride = models.ForeignKey(Ride, on_delete=models.CASCADE)
     passenger = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return 'RideId: %s, PassengerId: %s' % (self.ride, self.passenger)
