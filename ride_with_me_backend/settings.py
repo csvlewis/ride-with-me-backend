@@ -134,6 +134,17 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 TEST_RUNNER = 'snapshottest.django.TestRunner'
 
+from envparse import env
+env.read_envfile()
+
+SENDGRID_API_KEY = env.str('SENDGRID_API_KEY')
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
