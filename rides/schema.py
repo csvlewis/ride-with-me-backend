@@ -5,6 +5,7 @@ from django.db.models.functions import Concat
 from django.db.models import Count
 from django.db.models import Value
 from django.db.models import Q
+import requests
 
 from .models import City
 from .models import Ride
