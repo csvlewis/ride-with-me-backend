@@ -10,7 +10,7 @@
       "mileage": 15,
       "price": 20.00,
       "total_seats": 2,
-      "departure_date": "2019-05-22",
+      "departure_date": "2019-06-01",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -27,8 +27,8 @@
       "mileage": 15,
       "price": 25.00,
       "total_seats": 3,
-      "departure_date": "2019-05-25",
-      "status": "full",
+      "departure_date": "2019-06-03",
+      "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -44,8 +44,8 @@
       "mileage": 1000,
       "price": 200.00,
       "total_seats": 1,
-      "departure_date": "2019-05-29",
-      "status": "available",
+      "departure_date": "2019-06-10",
+      "status": "full",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
     }
@@ -61,7 +61,7 @@
       "mileage": 922,
       "price": 175.00,
       "total_seats": 2,
-      "departure_date": "2019-05-20",
+      "departure_date": "2019-06-04",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -78,7 +78,7 @@
       "mileage": 270,
       "price": 50.00,
       "total_seats": 1,
-      "departure_date": "2019-05-21",
+      "departure_date": "2019-06-16",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -95,7 +95,7 @@
       "mileage": 270,
       "price": 70.00,
       "total_seats": 3,
-      "departure_date": "2019-05-25",
+      "departure_date": "2019-06-12",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -112,7 +112,7 @@
       "mileage": 165,
       "price": 60.00,
       "total_seats": 1,
-      "departure_date": "2019-05-27",
+      "departure_date": "2019-06-20",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -129,7 +129,7 @@
       "mileage": 326,
       "price": 100.00,
       "total_seats": 2,
-      "departure_date": "2019-05-22",
+      "departure_date": "2019-06-01",
       "status": "full",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -146,7 +146,7 @@
       "mileage": 70,
       "price": 30.00,
       "total_seats": 2,
-      "departure_date": "2019-05-21",
+      "departure_date": "2019-06-06",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -163,7 +163,7 @@
       "mileage": 1016,
       "price": 250.00,
       "total_seats": 1,
-      "departure_date": "2019-05-23",
+      "departure_date": "2019-06-18",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
@@ -180,7 +180,24 @@
       "mileage": 15,
       "price": 10.00,
       "total_seats": 1,
-      "departure_date": "2019-05-22",
+      "departure_date": "2019-06-15",
+      "status": "available",
+      "created_at": "2019-05-20 16:23:00.067741+00:00",
+      "updated_at": "2019-05-20 16:23:00.067741+00:00"
+    }
+  },
+  {
+    "model": "rides.ride",
+    "pk": 12,
+    "fields": {
+      "driver_id": 9,
+      "start_city_id": 1,
+      "end_city_id": 10,
+      "description": "Driving to Boulder, room for one passenger",
+      "mileage": 30,
+      "price": 15.00,
+      "total_seats": 1,
+      "departure_date": "2019-06-14",
       "status": "available",
       "created_at": "2019-05-20 16:23:00.067741+00:00",
       "updated_at": "2019-05-20 16:23:00.067741+00:00"
