@@ -134,9 +134,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 TEST_RUNNER = 'snapshottest.django.TestRunner'
 
-GOOGLE_MAPS_API_KEY = os.environ['RIDE_WITH_ME_GOOGLE_MAPS_API_KEY']
-
-
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
