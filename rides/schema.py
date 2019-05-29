@@ -7,6 +7,7 @@ from django.db.models import Value
 from django.db.models import Q
 import requests
 from envparse import env
+from django.core.mail import send_mail
 env.read_envfile()
 
 from .models import City
@@ -134,9 +135,18 @@ class UpdateRequest(graphene.Mutation):
 
     def mutate(self, info, id, status):
         request = Request.objects.filter(id = id)[0]
+        ride = Ride.objects.filter(id = request.ride.id)
         setattr(request, 'status', status)
         request.save()
+        driver_name = ride[0].driver.first_name
+        start_city = str(ride[0].start_city)
+        end_city = str(ride[0].end_city)
+        departure_date = str(ride[0].departure_date)
+        passenger_email = request.passenger.email
+        send_mail(f'{driver_name} has rejected your ride request', f'{driver_name} has rejected your ride request from {start_city} to {end_city} on {departure_date}. If you would like to search for a new ride, visit https://ride-with-me-fe.herokuapp.com/findride.', 'admin@ride-with-me-fe.herokuapp.com', [f'{passenger_email}'], fail_silently=False)
+
         return UpdateRequest(request)
+
 
 class CreateRequest(graphene.Mutation):
     request = graphene.Field(RequestType)
@@ -173,6 +183,8 @@ class CreateRidePassenger(graphene.Mutation):
         passenger_query = RidePassenger.objects.filter(ride_id = ride_id)
         request_query = Request.objects.filter(ride_id = ride_id, passenger_id = passenger_id)
         ride = ride_query[0]
+        driver = ride.driver
+        passenger = User.objects.filter(id=passenger_id)
         available_seats = ride.total_seats - passenger_query.count()
         if available_seats == 0:
             ok = False
@@ -193,6 +205,15 @@ class CreateRidePassenger(graphene.Mutation):
                 ride.save()
             ok = True
             message =  "The passenger with id %s has been added to the ride with id %s. Now the ride has %s available seat(s)." % (passenger_id, ride_id, new_available_seats)
+            driver_name = driver.first_name
+            passenger_name = passenger[0].first_name
+            driver_email = driver.email
+            passenger_email = passenger[0].email
+            start_city = str(ride.start_city)
+            end_city = str(ride.end_city)
+            departure_date = str(ride.departure_date)
+            send_mail(f'{driver_name} has accepted your ride request', f'{driver_name} has accepted your ride request from {start_city} to {end_city} on {departure_date}. If you want to get in touch with {driver_name} before your ride, email them at {driver_email}.', 'admin@ride-with-me-fe.herokuapp.com', [f'{passenger_email}'], fail_silently=False)
+            send_mail(f'{passenger_name} has been added to your ride', f'You have added {passenger_name} to your ride from {start_city} to {end_city} on {departure_date}. If you want to get in touch with {passenger_name} before your ride, email them at {passenger_email}.', 'admin@ride-with-me-fe.herokuapp.com', [f'{driver_email}'], fail_silently=False)
 
         return CreateRidePassenger(ok = ok, message = message)
 
@@ -211,7 +232,6 @@ class DeleteRidePassenger(graphene.Mutation):
             result = RidePassenger.objects.filter(ride_id = ride_id).filter(passenger_id = passenger[0].id).delete()
 
             ride_query = Ride.objects.filter(id=ride_id).annotate(num_passengers=Count('ridepassenger'))
-
             if result[0] == 0:
                 ok = False
                 message = "There is no passenger with id %s in ride with id %s" % (passenger[0].id, ride_id)
@@ -223,6 +243,14 @@ class DeleteRidePassenger(graphene.Mutation):
 
                 message =  "The passenger with id %s has been deleted from the ride with id %s. Now the ride has %s available seat(s)." % (passenger[0].id, ride_id, seats)
                 ok = True
+
+                passenger_name = passenger[0].first_name
+                driver_email = ride.driver.email
+                start_city = str(ride.start_city)
+                end_city = str(ride.end_city)
+                departure_date = str(ride.departure_date)
+                send_mail(f'{passenger_name} has left your ride', f'{passenger_name} has left your ride from {start_city} to {end_city} on {departure_date}. This ride now has {seats} available seat(s).', 'admin@ride-with-me-fe.herokuapp.com', [f'{driver_email}'], fail_silently=False)
+
 
         return DeleteRidePassenger(ok = ok, message = message)
 
