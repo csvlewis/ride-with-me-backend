@@ -24,7 +24,7 @@ def test_all_available_rides(snapshot):
 
 def test_create_new_ride(snapshot):
     client = Client(schema)
-    response = client.execute('mutation { createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureTime:"2019-05-23"){ ride { id } } }')
+    response = client.execute('mutation { createRide(driverId:1 startCityId:1 endCityId:2 description:"Going for a ride" mileage:100 price:50.00 totalSeats:4 departureDate:"2019-05-23"){ ride { id } } }')
     snapshot.assert_match(response)
 
 def test_pending_requests(snapshot):

@@ -23,5 +23,5 @@ def test_ride_object_returns_description(db, django_db_setup):
 
 def test_gets_rides_within_date_range(db, django_db_setup):
     mock_input_date = '2019-05-25'
-    rides = Ride.objects.filter(departure_time__gte=mock_input_date)
+    rides = Ride.objects.filter(departure_date__gte=mock_input_date)
     assert len(rides) == 4
