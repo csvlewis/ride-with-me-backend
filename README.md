@@ -73,7 +73,7 @@ or the same request in HTTP format:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{allCities{name}}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -110,7 +110,7 @@ To get a list of all cities associated with a ride, a user can make the GraphQL 
 ```
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -164,7 +164,7 @@ To information about a user, you can can make the GraphQL query:
 ```
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -235,7 +235,7 @@ More ride information can be requested with additional query parameters like so:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{searchRideById(id:1){id,description,mileage,price,totalSeats,departureDate,status,driver{id,firstName,lastName}ridepassengerSet{passenger{id,firstName,lastName}}endCity{id,name}startCity{id,name}}}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -337,7 +337,7 @@ More ride information can be requested with additional query parameters like so:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{availableRides{id,description,mileage,price,totalSeats,departureDate,status,driver{id,firstName,lastName}ridepassengerSet{passenger{id,firstName,lastName}}endCity{id,name}startCity{id,name}}}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -450,7 +450,7 @@ More ride information can be requested with additional query parameters like so:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{searchRidesByCities(startCityId:1,endCityId:2,departureDate:"2019-05-22"){id,description,mileage,price,totalSeats,departureDate,status,driver{id,firstName,lastName}ridepassengerSet{passenger{id,firstName,lastName}}endCity{id,name}startCity{id,name}}}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
   {
@@ -603,7 +603,7 @@ mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $descripti
     https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{createRide(driverId:1,startCityId:1,endCityId:2,description:"Going for a ride",mileage:100,price:50.00,totalSeats:4,departureDate:"2019-05-23"){ride{id,description,mileage,price,totalSeats,departureDate,status,driver{id,firstName,lastName}ridepassengerSet{passenger{id,firstName,lastName}}endCity{id,name}startCity{id,name}}}}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -659,7 +659,7 @@ Example of variables sent with this request:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation{changeRideStatus(id:1 status:"new_status"){ride {id,status}}}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -712,7 +712,7 @@ More ride information can be requested with additional query parameters like so:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{pendingRequests(driverId:1){id,ride{id}passenger{firstName,lastName}message,status,createdAt}}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -784,7 +784,7 @@ Here is the same request in HTTP format:
     https://ride-with-me-backend.herokuapp.com/graphql/?query=mutation($driverId:Int!,$message:String!,$passengerId:Int!,$rideId:Int!){createRequest(driverId:$driverId,message:$message,passengerId:$passengerId,rideId:$rideId){request{id,message}}}&variables={"driverId":1,"message":"Message test sending request","passengerId":2,"rideId":3}
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -835,7 +835,7 @@ Here is the same request in HTTP format:
 
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -879,7 +879,7 @@ Example of variables sent with that mutation:
 **ok** and **message** are custom fields that get returned to let the user know if the mutation worked. When ok=True, it worked. The message explains what got deleted.
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
 
@@ -937,7 +937,7 @@ Example of variables sent with that mutation:
 
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 If the mutation is successful (there was a ride with the given rideId that had a passenger with the given passengerId), you should see this a response similar to this:
 
@@ -1014,7 +1014,7 @@ Example of variables sent with this request:
 ```
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 ```json
 {
@@ -1115,7 +1115,7 @@ Example of variables sent with this request:
 
 
 <details>
-  <summary>See example</summary>
+  <summary>See example of response</summary>
 
 A uuid will be generated and returned for the user and required for all further requests that need authorization.
 
