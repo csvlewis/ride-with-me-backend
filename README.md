@@ -610,31 +610,26 @@ mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $descripti
   "data": {
     "createRide": {
       "ride": {
-        "id": "76",
+        "id": "4",
         "description": "Going for a ride",
-        "mileage": 200,
-        "price": 50.0,
-        "totalSeats": 3,
-        "departureDate": "2019-05-22",
-        "status": "available",
+        "travelTime": "26 mins",
+        "mileage": 15,
         "driver": {
-          "id": "1",
-          "firstName": "Johnny",
-          "lastName": "Depp"
+          "firstName": "Arnold",
+          "lastName": "Schwarzenegger"
         },
-        "ridepassengerSet": [],
+        "status": "available",
         "endCity": {
-          "id": "2",
           "name": "Golden, CO"
         },
         "startCity": {
-          "id": "1",
           "name": "Denver, CO"
         }
       }
     }
   }
 }
+
 ```
 </details>
 
