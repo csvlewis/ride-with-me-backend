@@ -39,7 +39,7 @@ def test_available_ride_search(snapshot):
 
 def test_create_new_ride(snapshot):
     client = Client(schema)
-    response = client.execute('mutation { createRide(driverUuid: "c96808f0-8195-11e9-93f6-88e9fe6e9b8e", startCityId: 3, endCityId: 4, description: "Test ride", mileage: 100, price: 10.00, totalSeats: 1, departureDate: "2019-06-22") { ride { id } } }')
+    response = client.execute('mutation { createRide(driverUuid: "c96808f0-8195-11e9-93f6-88e9fe6e9b8e", startCityId: 3, endCityId: 4, description: "Test ride", price: 10.00, totalSeats: 1, departureDate: "2019-06-22") { ride { id travelTime description mileage} } }')
     snapshot.assert_match(response)
 
 def test_change_ride_status(snapshot):
