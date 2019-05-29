@@ -52,7 +52,6 @@ pipenv install --dev
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
-
 ```
 
 ## GraphQL Queries and Mutations: ##
@@ -193,7 +192,6 @@ To get a ride by id, a user can make the GraphQL query:
     id
   }
 }
-
 ```
 or the same request in HTTP format:
 
@@ -447,7 +445,6 @@ More ride information can be requested with additional query parameters like so:
     }
   }
 }
-
 ```
 
     https://ride-with-me-backend.herokuapp.com/graphql/?query=query{searchRidesByCities(startCityId:1,endCityId:2,departureDate:"2019-05-22"){id,description,mileage,price,totalSeats,departureDate,status,driver{id,firstName,lastName}ridepassengerSet{passenger{id,firstName,lastName}}endCity{id,name}startCity{id,name}}}
@@ -505,7 +502,7 @@ More ride information can be requested with additional query parameters like so:
               "name": "Denver, CO"
           }
         },
-        ...
+continued...
 ```
 
 </details>
@@ -522,7 +519,6 @@ mutation ($driverUuid: String!, $startCityId: Int!, $endCityId: Int!, $descripti
     }
   }
 }
-
 ```
 Example of variables sent with that mutation:
 
@@ -631,7 +627,6 @@ mutation ($id: Int!, $status: String!) {
     }
   }
 }
-
 ```
 
 Example of variables sent with this request:
@@ -754,7 +749,6 @@ mutation ($message: String!, $passengerUuid: String!, $rideId: Int!) {
     }
   }
 }
-
 ```
 Example of variables sent with that mutation:
 
@@ -879,7 +873,6 @@ If the mutation is successful (there was a ride with the given rideId that had a
     }
   }
 }
-
 ```
 
 If the mutation is unsuccessful, you should see a response similar to this:
@@ -893,7 +886,6 @@ If the mutation is unsuccessful, you should see a response similar to this:
     }
   }
 }
-
 ```
 
 </details>
@@ -922,7 +914,6 @@ Example of variables sent with that mutation:
   "passengerId": 8,
   "rideId":2
 }
-
 ```
 
 
@@ -1091,7 +1082,6 @@ mutation ($email: String!, $firstName: String!, $lastName: String!) {
     }
   }
 }
-
 ```
 
 Example of variables sent with this request:
@@ -1102,7 +1092,6 @@ Example of variables sent with this request:
 	"firstName": "First",
 	"lastName": "Last"
 }
-
 ```
 
 
@@ -1138,14 +1127,12 @@ We are using [pytest](https://docs.pytest.org/en/latest/) to test our code.
 To run the tests:
 ```
 pytest
-
 ```
 
 To see the code coverage
 
 ```
 open htmlcov/index.html
-
 ```
 
 
