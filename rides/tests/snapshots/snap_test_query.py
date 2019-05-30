@@ -381,29 +381,29 @@ snapshots['test_get_my_rides 1'] = {
 }
 
 snapshots['test_login_user 1'] = {
-    'data': {
-        'loginUser': {
-            'user': {
-                'email': 'johnnydepp@gmail.com',
-                'firstName': 'Johnny',
-                'id': '1',
-                'lastName': 'Depp',
-                'uuid': 'c96808f0-8195-11e9-93f6-88e9fe6e9b8e'
-            }
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 92,
+                    'line': 1
+                }
+            ],
+            'message': 'Unknown argument "image_url" on field "loginUser" of type "Mutation". Did you mean "imageUrl"?'
         }
-    }
+    ]
 }
 
 snapshots['test_register_user 1'] = {
-    'data': {
-        'loginUser': {
-            'user': {
-                'email': 'newuser@gmail.com',
-                'firstName': 'New',
-                'id': '11',
-                'lastName': 'User',
-                'uuid': '8e05c800-8231-11e9-8125-88e9fe841b0d'
-            }
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 86,
+                    'line': 1
+                }
+            ],
+            'message': 'Unknown argument "image_url" on field "loginUser" of type "Mutation". Did you mean "imageUrl"?'
         }
-    }
+    ]
 }

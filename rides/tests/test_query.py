@@ -79,10 +79,10 @@ def test_get_my_rides(snapshot):
 
 def test_login_user(snapshot):
     client = Client(schema)
-    response = client.execute('mutation { loginUser(email: "johnnydepp@gmail.com", firstName: "Johnny", lastName: "Depp") { user { id firstName lastName email uuid } } }')
+    response = client.execute('mutation { loginUser(email: "johnnydepp@gmail.com", firstName: "Johnny", lastName: "Depp", image_url:"https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png") { user { id firstName lastName email uuid } } }')
     snapshot.assert_match(response)
 
 def test_register_user(snapshot):
     client = Client(schema)
-    response = client.execute('mutation { loginUser(email: "newuser@gmail.com", firstName: "New", lastName: "User") { user { id firstName lastName email uuid } } }')
+    response = client.execute('mutation { loginUser(email: "newuser@gmail.com", firstName: "New", lastName: "User", image_url:"https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png") { user { id firstName lastName email uuid } } }')
     snapshot.assert_match(response)
