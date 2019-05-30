@@ -23,7 +23,7 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return 'UUID: %s, email: %s' % (self.uuid, self.email)
+        return 'ID: %s, email: %s' % (self.id, self.email)
 
 class Ride(models.Model):
     driver = models.ForeignKey(User, on_delete=models.CASCADE)
