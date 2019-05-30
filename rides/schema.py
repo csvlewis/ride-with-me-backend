@@ -157,11 +157,11 @@ class CreateRequest(graphene.Mutation):
         ride_id = graphene.Int()
 
     def mutate(self, info, message, passenger_uuid, ride_id):
-        ride = Ride.objects.get(pk=ride_id)
+        ride = Ride.objects.filter(pk=ride_id)
         passenger = User.objects.filter(uuid = passenger_uuid)
         if passenger[0].uuid == passenger_uuid:
             request = Request(
-                driver_id = ride.driver_id,
+                driver_id = ride[0].driver_id,
                 message = message,
                 passenger_id = passenger[0].id,
                 ride_id = ride_id
